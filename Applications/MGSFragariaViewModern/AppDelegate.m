@@ -298,7 +298,7 @@
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
 - (void)makePreferencesAndGroups
 {
-    /* Legacy Fragaris was controlled via NSUserDefaults, meaning that every
+    /* Legacy Fragaria was controlled via NSUserDefaults, meaning that every
        instance of Fragaria in your application was forced to have the same
        appearance, whether you wanted it to or not. */
 

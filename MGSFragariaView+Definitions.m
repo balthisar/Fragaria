@@ -135,8 +135,8 @@ NSString * const MGSFragariaDefaultsColoursVariables =    @"coloursVariables";
 		 MGSFragariaDefaultsMinimumGutterWidth : @40,
 		 MGSFragariaDefaultsShowsLineNumbers : @YES,
 		 MGSFragariaDefaultsStartingLineNumber : @1,
-		 MGSFragariaDefaultsGutterFont : ARCHIVED_OBJECT([NSFont fontWithName:@"Menlo" size:11]),
-		 MGSFragariaDefaultsGutterTextColour : ARCHIVED_OBJECT([NSColor colorWithCalibratedWhite:0.42f alpha:1.0f]),
+		 MGSFragariaDefaultsGutterFont : ARCHIVED_OBJECT([NSFont userFixedPitchFontOfSize:11]),
+		 MGSFragariaDefaultsGutterTextColour : ARCHIVED_OBJECT([NSColor disabledControlTextColor]),
 
 		 MGSFragariaDefaultsShowsSyntaxErrors : @YES,
 		 MGSFragariaDefaultsShowsIndividualErrors : @NO,
@@ -162,8 +162,8 @@ NSString * const MGSFragariaDefaultsColoursVariables =    @"coloursVariables";
 		 MGSFragariaDefaultsTextInvisibleCharactersColour : ARCHIVED_OBJECT([NSColor controlTextColor]),
 
 		 MGSFragariaDefaultsTextColor : ARCHIVED_OBJECT([NSColor textColor]),
-		 MGSFragariaDefaultsBackgroundColor : ARCHIVED_OBJECT([NSColor whiteColor]),
-		 MGSFragariaDefaultsTextFont : ARCHIVED_OBJECT([NSFont fontWithName:@"Menlo" size:11]),
+		 MGSFragariaDefaultsBackgroundColor : ARCHIVED_OBJECT([NSColor textBackgroundColor]),
+		 MGSFragariaDefaultsTextFont : ARCHIVED_OBJECT([NSFont userFixedPitchFontOfSize:11]),
 
 		 MGSFragariaDefaultsHasVerticalScroller : @YES,
 		 MGSFragariaDefaultsInsertionPointColor : ARCHIVED_OBJECT([NSColor textColor]),
@@ -226,7 +226,7 @@ NSString * const MGSFragariaDefaultsColoursVariables =    @"coloursVariables";
 
 
 /*
- *  + applyDefaultsToFragariaView
+ *  - resetDefaults
  */
 - (void)resetDefaults
 {

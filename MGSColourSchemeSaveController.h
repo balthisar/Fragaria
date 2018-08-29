@@ -30,21 +30,8 @@
 
 
 /**
- *  Invokes the file name request sheet and returns the name of the
- *  scheme, using a block to capture the end. Returns YES if the user wants
- *  to save the file, or NO if the user cancels.
- *  @param window The window to which to attach the name picker.
- *  @param aCompletionBlock Something you want to do after the user picks a
- *  name or cancels.
+ *  Provide a pre-made alert panel for deleting a scheme.
  */
-- (void)showSchemeNameGetter:(NSWindow *)window completion:(void (^)(BOOL))aCompletionBlock;
-
-/**
- *  Invokes the deletion confirmation request sheet and returns YES if the
- *  user confirms, or NO if the user cancels.
- *  @param window The window to which to attach the sheet.
- *  @param aCompletionBlock Something you want to do after the user confirms.
- */
-- (void)showDeleteConfirmation:(NSWindow *)window completion:(void (^)(BOOL))aCompletionBlock;
+- (NSAlert *)alertPanel;
 
 @end

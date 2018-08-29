@@ -16,7 +16,7 @@
 /**
  *  This application delegate serves as the main delegate and application
  *  controller for the MGSFragariaViewModern application target. It demos
- *  most of the major features provided my MGSFragariaView.
+ *  most of the major features provided by MGSFragariaView.
  **/
 @interface AppDelegate : NSObject <NSApplicationDelegate, MGSBreakpointDelegate, MGSDragOperationDelegate>
 

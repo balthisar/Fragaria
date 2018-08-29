@@ -32,7 +32,9 @@
 - (NSMenu*)contextMenu
 {
     if (!_contextMenu)
-        [NSBundle loadNibNamed:@"MGSContextMenu" owner:self];
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"MGSContextMenu"
+                                                       owner:self
+                                             topLevelObjects:nil];
     return _contextMenu;
 }
 
@@ -49,13 +51,15 @@
     NSWindow *wnd;
     
 	if (entabWindow == nil) {
-		[NSBundle loadNibNamed:@"SMLEntab.nib" owner:self];
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"SMLEntab"
+                                                       owner:self
+                                             topLevelObjects:nil];
         spacesTextFieldEntabWindow.integerValue = target.tabWidth;
 	}
 	
     _completionTarget = target;
     wnd = [_completionTarget window];
-	[NSApp beginSheet:entabWindow modalForWindow:wnd modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [wnd beginSheet:entabWindow completionHandler:nil];
 }
 
 
@@ -67,13 +71,15 @@
     NSWindow *wnd;
     
 	if (detabWindow == nil) {
-		[NSBundle loadNibNamed:@"SMLDetab.nib" owner:self];
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"SMLDetab"
+                                                       owner:self
+                                             topLevelObjects:nil];
         spacesTextFieldDetabWindow.integerValue = target.tabWidth;
 	}
 	
     _completionTarget = target;
     wnd = [_completionTarget window];
-	[NSApp beginSheet:detabWindow modalForWindow:wnd modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [wnd beginSheet:detabWindow completionHandler:nil];
 }
 
 
@@ -84,9 +90,8 @@
 {
 	NSWindow *wnd = [_completionTarget window];
 	
-	[NSApp endSheet:[wnd attachedSheet]];
-	[[wnd attachedSheet] close];
-	
+    [wnd endSheet:[wnd attachedSheet]];
+
     [_completionTarget performEntabWithNumberOfSpaces:[spacesTextFieldEntabWindow integerValue]];
     _completionTarget = nil;
 }
@@ -99,9 +104,8 @@
 {
     NSWindow *wnd = [_completionTarget window];
     
-    [NSApp endSheet:[wnd attachedSheet]];
-    [[wnd attachedSheet] close];
-	
+    [wnd endSheet:[wnd attachedSheet]];
+
 	[_completionTarget performDetabWithNumberOfSpaces:[spacesTextFieldDetabWindow integerValue]];
     _completionTarget = nil;
 }
@@ -117,9 +121,9 @@
 - (IBAction)cancelButtonEntabDetabGoToLineWindowsAction:(id)sender
 {
     NSWindow *wnd = [_completionTarget window];
-    
-    [NSApp endSheet:[wnd attachedSheet]];
-    [[wnd attachedSheet] close];
+
+    [wnd endSheet:[wnd attachedSheet]];
+
     _completionTarget = nil;
 }
 
@@ -133,10 +137,12 @@
     NSWindow *wnd = [_completionTarget window];
     
 	if (goToLineWindow == nil) {
-		[NSBundle loadNibNamed:@"SMLGoToLine.nib" owner:self];
+        [[NSBundle bundleForClass:[self class]] loadNibNamed:@"SMLGoToLine"
+                                                       owner:self
+                                             topLevelObjects:nil];
 	}
 	
-	[NSApp beginSheet:goToLineWindow modalForWindow:wnd modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [wnd beginSheet:goToLineWindow completionHandler:nil];
 }
 
 
@@ -153,6 +159,5 @@
 	[_completionTarget performGoToLine:[lineTextFieldGoToLineWindow integerValue] setSelected:YES];
     _completionTarget = nil;
 }
-
 
 @end

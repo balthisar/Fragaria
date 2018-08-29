@@ -169,10 +169,12 @@ NSString * const KMGSColourSchemeExt = @"plist";
         self.saveController = [[MGSColourSchemeSaveController alloc] init];
         self.saveController.schemeName = NSLocalizedStringFromTableInBundle(@"New Scheme", nil, [NSBundle bundleForClass:[self class]],  @"Default name for new schemes.");
 
-        [self.saveController showSchemeNameGetter:self.parentView.window completion:^void (BOOL confirmed) {
-            if (!confirmed)
+        NSWindow *senderWindow = ((NSButton *)sender).window;
+        [senderWindow beginSheet:self.saveController.window completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode != NSModalResponseOK ) {
                 return;
-            
+            }
+
             NSString *schemefilename = [NSString stringWithFormat:@"%@.%@", self.saveController.fileName, KMGSColourSchemeExt];
             NSURL *schemeurl = [path URLByAppendingPathComponent:schemefilename];
             self.currentScheme.displayName = self.saveController.schemeName;
@@ -187,9 +189,12 @@ NSString * const KMGSColourSchemeExt = @"plist";
     else if (!self.currentScheme.loadedFromBundle)
     {
         self.saveController = [[MGSColourSchemeSaveController alloc] init];
-        [self.saveController showDeleteConfirmation: self.parentView.window completion:^void (BOOL confirmed) {
-            if (confirmed)
-            {
+        NSWindow *senderWindow = ((NSButton *)sender).window;
+        NSAlert *panel = self.saveController.alertPanel;
+        
+        [panel beginSheetModalForWindow:senderWindow completionHandler:^(NSModalResponse returnCode) {
+            NSLog(@"modalResponse=%ld", (long)returnCode);
+            if (returnCode == NSAlertFirstButtonReturn) {
                 NSError *error;
                 [[NSFileManager defaultManager] removeItemAtPath:self.currentScheme.sourceFile error:&error];
                 if (error)
@@ -200,7 +205,6 @@ NSString * const KMGSColourSchemeExt = @"plist";
             }
         }];
     }
-    
 }
 
 

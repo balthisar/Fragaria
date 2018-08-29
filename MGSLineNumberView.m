@@ -84,11 +84,11 @@ typedef enum {
         _fragaria = fragaria;
         
         _showsLineNumbers = YES;
-        _backgroundColor = [NSColor colorWithCalibratedWhite:0.94 alpha:1.0];
+        _backgroundColor = [NSColor controlColor];
         _minimumWidth = 40;
         
-        _font = [NSFont fontWithName:@"Menlo" size:11];
-        _textColor = [NSColor colorWithCalibratedWhite:0.42 alpha:1.0];
+        _font = [NSFont userFixedPitchFontOfSize:11];
+        _textColor = [NSColor disabledControlTextColor];
         [self updateDigitWidthCache];
         
         _breakpointData = [[NSDictionary alloc] init];

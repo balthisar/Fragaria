@@ -22,7 +22,6 @@
 
 @implementation MGSColourSchemeSaveController {
 
-    void (^completionBlock)(BOOL);
     void (^deleteCompletion)(BOOL);
 }
 
@@ -31,7 +30,6 @@
  */
 - (instancetype)init
 {
-    [NSBundle bundleForClass:[MGSColourSchemeSaveController class]];
     if ((self = [self initWithWindowNibName:@"MGSColourSchemeSave" owner:self]))
     {
     }
@@ -53,42 +51,21 @@
 
 
 /*
- * - showSchemeNameGetter:completion:
- */
-- (void)showSchemeNameGetter:(NSWindow *)window completion:(void (^)(BOOL))aCompletionBlock
-{
-    completionBlock = aCompletionBlock;
-    [NSApp beginSheet:self.window
-       modalForWindow:window
-        modalDelegate:self
-       didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-          contextInfo:nil];
-}
-
-
-/*
  * - closeSheet
  */
 - (IBAction)closeSheet:(id)sender
 {
-    [NSApp endSheet:self.window];
-    BOOL confirmed = sender != self.bCancel;
-
-    if (confirmed)
-    {
+    NSModalResponse response;
+    
+    if (sender == self.bSave) {
         NSCharacterSet *cleanCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/\\?%*|\"<>"];
         self.fileName = [[self.schemeName componentsSeparatedByCharactersInSet:cleanCharacters] componentsJoinedByString:@""];
+        response = NSModalResponseOK;
+    } else {
+        response = NSModalResponseCancel;
     }
-    completionBlock(confirmed);
-}
 
-
-/*
- * - didEndSheet:returnCode:contextInfo:
- */
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    [self.window orderOut:self];
+    [self.window.sheetParent endSheet:self.window returnCode:response];
 }
 
 
@@ -102,7 +79,9 @@
 
 - (BOOL)saveButtonEnabled
 {
-    return (self.schemeName && [self.schemeName length] > 0);
+    NSString *untitled = NSLocalizedStringFromTableInBundle(@"New Scheme", nil, [NSBundle bundleForClass:[self class]],  @"Default name for new schemes.");
+    
+    return (self.schemeName && [self.schemeName length] > 0 && ![self.schemeName isEqualToString:untitled]);
 }
 
 
@@ -110,12 +89,10 @@
 
 
 /*
- * - showDeleteConfirmation:completion:
+ * - alertPanel
  */
-- (void)showDeleteConfirmation:(NSWindow *)window completion:(void (^)(BOOL))aCompletionBlock
+- (NSAlert *)alertPanel
 {
-    deleteCompletion = aCompletionBlock;
-
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Delete", nil, [NSBundle bundleForClass:[self class]],  @"String for delete button.")];
     [alert addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, [NSBundle bundleForClass:[self class]],  @"String for cancel button.")];
@@ -123,21 +100,7 @@
     [alert setInformativeText:NSLocalizedStringFromTableInBundle(@"Deleted schemes cannot be restored.", nil, [NSBundle bundleForClass:[self class]],  @"String for alert information.")];
     [alert setAlertStyle:NSWarningAlertStyle];
 
-
-    [alert beginSheetModalForWindow:window
-                      modalDelegate:self
-                     didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-                        contextInfo:nil];
-}
-
-
-/*
- * - alertDidEnd:contextInfo:
- */
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    BOOL result = returnCode == NSAlertFirstButtonReturn;
-    deleteCompletion(result);
+    return alert;
 }
 
 @end
