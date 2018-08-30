@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -112,19 +112,14 @@
 		010870A71C99E26E00C335DA /* Midnight.plist in Copy Colour Schemes */ = {isa = PBXBuildFile; fileRef = 010870A21C99E24F00C335DA /* Midnight.plist */; };
 		010870A81C99E26E00C335DA /* Solarized Dark.plist in Copy Colour Schemes */ = {isa = PBXBuildFile; fileRef = 010870A31C99E24F00C335DA /* Solarized Dark.plist */; };
 		010870A91C99E26E00C335DA /* Solarized Light.plist in Copy Colour Schemes */ = {isa = PBXBuildFile; fileRef = 010870A41C99E24F00C335DA /* Solarized Light.plist */; };
-		01098F171AA7BD0400ED4CFD /* SMLGoToLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01098F191AA7BD0400ED4CFD /* SMLGoToLine.xib */; };
-		01098F1A1AA7BD0900ED4CFD /* SMLEntab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01098F1C1AA7BD0900ED4CFD /* SMLEntab.xib */; };
-		01098F1D1AA7BD0D00ED4CFD /* SMLDetab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01098F1F1AA7BD0D00ED4CFD /* SMLDetab.xib */; };
 		010AACAD1B1CDFC2005D9984 /* MGSHybridUserDefaultsController.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F353561AC1A369007B9E2E /* MGSHybridUserDefaultsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		010F6D2F1AFEA19C0054F3D2 /* MGSUserDefaultsControllerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F353541AC19E56007B9E2E /* MGSUserDefaultsControllerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		011B56D71C1DC7AB00540669 /* MGSLineNumberCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 011B56D61C1DC7AB00540669 /* MGSLineNumberCacheTests.m */; };
 		01281839206FD3E6004D2C3B /* example.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01281838206FD3E5004D2C3B /* example.txt */; };
 		0132786A1A81650300D2DCA5 /* MGSSyntaxDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 013278671A81614600D2DCA5 /* MGSSyntaxDefinition.m */; };
-		013A79191AA8C715008ADFA1 /* MGSContextMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013A791B1AA8C715008ADFA1 /* MGSContextMenu.xib */; };
 		0148656A1B19036900BE1DC4 /* NSObject+Fragaria.m in Sources */ = {isa = PBXBuildFile; fileRef = 014865681B19036900BE1DC4 /* NSObject+Fragaria.m */; };
 		014E7DAA1C1C8D430093ACA6 /* NSTextStorage+Fragaria.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E7DA81C1C8D430093ACA6 /* NSTextStorage+Fragaria.m */; };
 		01684A881B15FBD9008A900D /* MGSFontWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01684A861B15FBD9008A900D /* MGSFontWell.m */; };
-		016E310F1B0324D3000D3497 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 016E31111B0324D3000D3497 /* Localizable.strings */; };
 		017FD58B1A7A992700B305FB /* MGSLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017FD5871A7A992700B305FB /* MGSLineNumberView.m */; };
 		018546711C1F1ABC00F1B79B /* MGSLineRangeForCharacterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018546701C1F1ABC00F1B79B /* MGSLineRangeForCharacterTests.m */; };
 		018CFA0D1AE46B8F00334011 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFA0C1AE46B8F00334011 /* main.m */; };
@@ -147,7 +142,6 @@
 		01D81AD21AA7E37E006DF8B8 /* Features.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D81ACF1AA7E37E006DF8B8 /* Features.xib */; };
 		01D81AD31AA7E37E006DF8B8 /* Lorem.html in Resources */ = {isa = PBXBuildFile; fileRef = 01D81AD01AA7E37E006DF8B8 /* Lorem.html */; };
 		01D81AD41AA7E37E006DF8B8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D81AD11AA7E37E006DF8B8 /* MainMenu.xib */; };
-		01D97A601C49ADE300CCEE97 /* MGSPrefsCommonViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D97A621C49ADE300CCEE97 /* MGSPrefsCommonViews.xib */; };
 		01F01AB01F9CCDEC008E721D /* ColorScheme_NotAPlist.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 01F01AAF1F9CCDEC008E721D /* ColorScheme_NotAPlist.rtf */; };
 		01F01AB11F9CCDF6008E721D /* ColorScheme_WrongRootObject.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F01AAC1F9CCD9D008E721D /* ColorScheme_WrongRootObject.plist */; };
 		01F01AB51F9CCE8C008E721D /* ColorScheme_WrongType1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F01AB21F9CCE0A008E721D /* ColorScheme_WrongType1.plist */; };
@@ -156,8 +150,6 @@
 		01F01AB81F9D52B5008E721D /* MGSColourScheme.h in Headers */ = {isa = PBXBuildFile; fileRef = D0718BA51AB70BE70073493A /* MGSColourScheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01F0D6FF1C120F7D000A08B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0D6FE1C120F7D000A08B6 /* AppDelegate.swift */; };
 		01F0D7011C120F7D000A08B6 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F0D7001C120F7D000A08B6 /* Document.swift */; };
-		01F0D7041C120F7D000A08B6 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F0D7021C120F7D000A08B6 /* Document.xib */; };
-		01F0D7091C120F7D000A08B6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F0D7071C120F7D000A08B6 /* MainMenu.xib */; };
 		01F0D70F1C120FB4000A08B6 /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69B62B118B745700903D1D /* Fragaria.framework */; };
 		01F0D7111C120FC1000A08B6 /* Fragaria.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB69B62B118B745700903D1D /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		01F0D7151C126957000A08B6 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0718B821AB553A20073493A /* MASPreferencesWindowController.m */; };
@@ -189,6 +181,17 @@
 		ABCA4DA916137FC000E4849B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69B62B118B745700903D1D /* Fragaria.framework */; };
 		ABCA4DAB16137FC000E4849B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69B62B118B745700903D1D /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		ABF28AF014C075D400ECAD48 /* NSScanner+Fragaria.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF28AEE14C075D400ECAD48 /* NSScanner+Fragaria.m */; };
+		D00BB053213876A3007E5FA6 /* SMLGoToLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB04B213876A3007E5FA6 /* SMLGoToLine.xib */; };
+		D00BB054213876A3007E5FA6 /* MGSContextMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB04D213876A3007E5FA6 /* MGSContextMenu.xib */; };
+		D00BB055213876A3007E5FA6 /* SMLDetab.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB04F213876A3007E5FA6 /* SMLDetab.xib */; };
+		D00BB056213876A3007E5FA6 /* SMLEntab.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB051213876A3007E5FA6 /* SMLEntab.xib */; };
+		D00BB063213876D3007E5FA6 /* MGSPrefsColourProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB05B213876D3007E5FA6 /* MGSPrefsColourProperties.xib */; };
+		D00BB064213876D3007E5FA6 /* MGSPrefsCommonViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB05D213876D3007E5FA6 /* MGSPrefsCommonViews.xib */; };
+		D00BB065213876D3007E5FA6 /* MGSPrefsEditorProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB05F213876D3007E5FA6 /* MGSPrefsEditorProperties.xib */; };
+		D00BB066213876D3007E5FA6 /* MGSColourSchemeSave.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB061213876D3007E5FA6 /* MGSColourSchemeSave.xib */; };
+		D00BB069213876F3007E5FA6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D00BB067213876F3007E5FA6 /* Localizable.strings */; };
+		D00BB06F213878AF007E5FA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB06D213878AF007E5FA6 /* MainMenu.xib */; };
+		D00BB070213878AF007E5FA6 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00BB06E213878AF007E5FA6 /* Document.xib */; };
 		D01A8CEC1ABE75E0003B2719 /* MGSPrefsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D01A8CEB1ABE75E0003B2719 /* MGSPrefsViewControllerTests.m */; };
 		D01F51721AAF1D35006A3A90 /* MGSFragariaViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F51701AAF1D35006A3A90 /* MGSFragariaViewTests.m */; };
 		D034C80B1A99807F003D3A41 /* MainMenu-Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C8091A99807F003D3A41 /* MainMenu-Document.xib */; };
@@ -207,8 +210,6 @@
 		D071883E1AB3CDFA0073493A /* MGSFragariaView+Definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = D07188381AB3CDFA0073493A /* MGSFragariaView+Definitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D071883F1AB3CDFA0073493A /* MGSFragariaView+Definitions.m in Sources */ = {isa = PBXBuildFile; fileRef = D07188391AB3CDFA0073493A /* MGSFragariaView+Definitions.m */; };
 		D07188441AB3D2220073493A /* MGSPreferencesProxyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D07188421AB3D2220073493A /* MGSPreferencesProxyDictionary.m */; };
-		D07188481AB423830073493A /* MGSPrefsEditorProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07188461AB423830073493A /* MGSPrefsEditorProperties.xib */; };
-		D071884B1AB428570073493A /* MGSPrefsColourProperties.xib in Resources */ = {isa = PBXBuildFile; fileRef = D07188491AB428570073493A /* MGSPrefsColourProperties.xib */; };
 		D071884F1AB54CCA0073493A /* MGSPrefsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D071884D1AB54CCA0073493A /* MGSPrefsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D07188501AB54CCA0073493A /* MGSPrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D071884E1AB54CCA0073493A /* MGSPrefsViewController.m */; };
 		D0718B441AB54E8C0073493A /* MGSPrefsEditorPropertiesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D0718B421AB54E8C0073493A /* MGSPrefsEditorPropertiesViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -220,7 +221,6 @@
 		D0718B851AB553A20073493A /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0718B801AB553A20073493A /* MASPreferencesWindow.xib */; };
 		D0718B861AB553A20073493A /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0718B821AB553A20073493A /* MASPreferencesWindowController.m */; };
 		D0718B8D1AB553E80073493A /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = D0718B881AB553E80073493A /* README.html */; };
-		D0718B921AB556280073493A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0718B901AB556280073493A /* MainMenu.xib */; };
 		D0718B941AB5566F0073493A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0718B931AB5566F0073493A /* main.m */; };
 		D0718B971AB556990073493A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0718B961AB556990073493A /* AppDelegate.m */; };
 		D0718BA81AB70BE70073493A /* MGSColourScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = D0718BA61AB70BE70073493A /* MGSColourScheme.m */; };
@@ -231,7 +231,6 @@
 		D08359DB1A9F0446001B7B50 /* FeaturesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08359D91A9F0446001B7B50 /* FeaturesWindowController.m */; };
 		D0AB50F01A91CDC200A6DF58 /* SMLSyntaxErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AB50EF1A91CDC200A6DF58 /* SMLSyntaxErrorTests.m */; };
 		D0C13BBC1ABD12A400E191A9 /* MGSColourSchemeSaveController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C13BBA1ABD12A400E191A9 /* MGSColourSchemeSaveController.m */; };
-		D0C13BBF1ABD246900E191A9 /* MGSColourSchemeSave.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C13BBD1ABD246900E191A9 /* MGSColourSchemeSave.xib */; };
 		D0C145C71A85F2C900DDE90A /* SMLTextView+MGSDragging.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C145C31A85E1FD00DDE90A /* SMLTextView+MGSDragging.m */; };
 		D0C146521A87196200DDE90A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C146511A87196200DDE90A /* AppDelegate.m */; };
 		D0C146541A87196200DDE90A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C146531A87196200DDE90A /* main.m */; };
@@ -242,6 +241,7 @@
 		D0E521061A90DC02005CB80B /* MGSSyntaxErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E521041A90DC02005CB80B /* MGSSyntaxErrorController.m */; };
 		D0E521131A90E34F005CB80B /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69B62B118B745700903D1D /* Fragaria.framework */; };
 		D0E5211A1A90E399005CB80B /* MGSSyntaxErrorControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E521071A90E307005CB80B /* MGSSyntaxErrorControllerTests.m */; };
+		D0ED3ABC21387C160042FCEE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0ED3ABB21387C160042FCEE /* MainMenu.xib */; };
 		D0F353591AC1A369007B9E2E /* MGSHybridUserDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F353571AC1A369007B9E2E /* MGSHybridUserDefaultsController.m */; };
 		E373BF131718A64700D71602 /* SMLAutoCompleteDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E373BF121718A64700D71602 /* SMLAutoCompleteDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3CF4B7916E6927300C27B5C /* MGSBreakpointDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CF4B7816E6927300C27B5C /* MGSBreakpointDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -555,15 +555,10 @@
 		010870A21C99E24F00C335DA /* Midnight.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Midnight.plist; sourceTree = "<group>"; };
 		010870A31C99E24F00C335DA /* Solarized Dark.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Solarized Dark.plist"; sourceTree = "<group>"; };
 		010870A41C99E24F00C335DA /* Solarized Light.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Solarized Light.plist"; sourceTree = "<group>"; };
-		01098F181AA7BD0400ED4CFD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SMLGoToLine.xib; sourceTree = "<group>"; };
-		01098F1B1AA7BD0900ED4CFD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SMLEntab.xib; sourceTree = "<group>"; };
-		01098F1E1AA7BD0D00ED4CFD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SMLDetab.xib; sourceTree = "<group>"; };
 		011B56D61C1DC7AB00540669 /* MGSLineNumberCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSLineNumberCacheTests.m; sourceTree = "<group>"; };
 		01281838206FD3E5004D2C3B /* example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
 		013278661A81614500D2DCA5 /* MGSSyntaxDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSSyntaxDefinition.h; sourceTree = "<group>"; };
 		013278671A81614600D2DCA5 /* MGSSyntaxDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSyntaxDefinition.m; sourceTree = "<group>"; };
-		013A791A1AA8C715008ADFA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MGSContextMenu.xib; sourceTree = "<group>"; };
-		013A791C1AA8C719008ADFA1 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "en-GB.lproj/MGSContextMenu.xib"; sourceTree = "<group>"; };
 		0144942C1C908A88008DFDC9 /* MGSLineNumberViewDecoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSLineNumberViewDecoration.h; sourceTree = "<group>"; };
 		014865671B19036900BE1DC4 /* NSObject+Fragaria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Fragaria.h"; sourceTree = "<group>"; };
 		014865681B19036900BE1DC4 /* NSObject+Fragaria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Fragaria.m"; sourceTree = "<group>"; };
@@ -572,7 +567,6 @@
 		0166D9971A9FC3B20099AB81 /* SMLTextViewPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLTextViewPrivate.h; sourceTree = "<group>"; };
 		01684A851B15FBD9008A900D /* MGSFontWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSFontWell.h; sourceTree = "<group>"; };
 		01684A861B15FBD9008A900D /* MGSFontWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSFontWell.m; sourceTree = "<group>"; };
-		016E31101B0324D3000D3497 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		017FD5861A7A992700B305FB /* MGSLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSLineNumberView.h; sourceTree = "<group>"; };
 		017FD5871A7A992700B305FB /* MGSLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSLineNumberView.m; sourceTree = "<group>"; };
 		018546701C1F1ABC00F1B79B /* MGSLineRangeForCharacterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSLineRangeForCharacterTests.m; sourceTree = "<group>"; };
@@ -590,17 +584,11 @@
 		01B50A7E1B07AD8C00C9A856 /* NSString+Fragaria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Fragaria.m"; sourceTree = "<group>"; };
 		01BB1BF11A79AA15006C0056 /* MGSSimpleBreakpointDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSSimpleBreakpointDelegate.h; sourceTree = "<group>"; };
 		01BB1BF21A79AA15006C0056 /* MGSSimpleBreakpointDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSimpleBreakpointDelegate.m; sourceTree = "<group>"; };
-		01BEF2A31AA7E761005F11B4 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "en-GB.lproj/SMLDetab.xib"; sourceTree = "<group>"; };
-		01BEF2A41AA7E761005F11B4 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "en-GB.lproj/SMLEntab.xib"; sourceTree = "<group>"; };
-		01BEF2A51AA7E761005F11B4 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "en-GB.lproj/SMLGoToLine.xib"; sourceTree = "<group>"; };
 		01D39A411B19DA690072F43F /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
 		01D39A421B19DA690072F43F /* ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
 		01D81ACF1AA7E37E006DF8B8 /* Features.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Features.xib; sourceTree = "<group>"; };
 		01D81AD01AA7E37E006DF8B8 /* Lorem.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Lorem.html; sourceTree = "<group>"; };
 		01D81AD11AA7E37E006DF8B8 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		01D97A611C49ADE300CCEE97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MGSPrefsCommonViews.xib; sourceTree = "<group>"; };
-		01D97A631C49AE1B00CCEE97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		01D97A641C49AE1B00CCEE97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		01F01AAC1F9CCD9D008E721D /* ColorScheme_WrongRootObject.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ColorScheme_WrongRootObject.plist; sourceTree = "<group>"; };
 		01F01AAF1F9CCDEC008E721D /* ColorScheme_NotAPlist.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ColorScheme_NotAPlist.rtf; sourceTree = "<group>"; };
 		01F01AB21F9CCE0A008E721D /* ColorScheme_WrongType1.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ColorScheme_WrongType1.plist; sourceTree = "<group>"; };
@@ -621,7 +609,7 @@
 		256AC3D90F4B6AC300CF3369 /* FragariaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragariaAppDelegate.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* Fragaria-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fragaria-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3971C8118C1F8A00AEF388 /* MGSSyntaxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSSyntaxController.h; sourceTree = "<group>"; };
 		AB3971C9118C1F8A00AEF388 /* MGSSyntaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSyntaxController.m; sourceTree = "<group>"; };
 		AB3971E6118C27E700AEF388 /* SyntaxDefinitions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxDefinitions.plist; sourceTree = "<group>"; };
@@ -647,6 +635,22 @@
 		ABCA4DAF16137FC000E4849B /* Fragaria Simple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fragaria Simple.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF28AEE14C075D400ECAD48 /* NSScanner+Fragaria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSScanner+Fragaria.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ABF28AEF14C075D400ECAD48 /* NSScanner+Fragaria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+Fragaria.h"; sourceTree = "<group>"; };
+		D00BB04C213876A3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/SMLGoToLine.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB04E213876A3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/MGSContextMenu.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB050213876A3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/SMLDetab.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB052213876A3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/SMLEntab.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB057213876AE007E5FA6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "MGSFragaria Framework/Resources/en-GB.lproj/MGSContextMenu.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB058213876AE007E5FA6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "MGSFragaria Framework/Resources/en-GB.lproj/SMLGoToLine.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB059213876AE007E5FA6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "MGSFragaria Framework/Resources/en-GB.lproj/SMLDetab.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB05A213876AE007E5FA6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB"; path = "MGSFragaria Framework/Resources/en-GB.lproj/SMLEntab.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB05C213876D3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/MGSPrefsColourProperties.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB05E213876D3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/MGSPrefsCommonViews.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB060213876D3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/MGSPrefsEditorProperties.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB062213876D3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "MGSFragaria Framework/Resources/en.lproj/MGSColourSchemeSave.xib"; sourceTree = SOURCE_ROOT; };
+		D00BB068213876F3007E5FA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D00BB06A213876FC007E5FA6 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D00BB06D213878AF007E5FA6 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D00BB06E213878AF007E5FA6 /* Document.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Document.xib; sourceTree = "<group>"; };
 		D01A8CEB1ABE75E0003B2719 /* MGSPrefsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSPrefsViewControllerTests.m; sourceTree = "<group>"; };
 		D01F51701AAF1D35006A3A90 /* MGSFragariaViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSFragariaViewTests.m; sourceTree = "<group>"; };
 		D034C8071A997FA8003D3A41 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -673,8 +677,6 @@
 		D07188391AB3CDFA0073493A /* MGSFragariaView+Definitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MGSFragariaView+Definitions.m"; sourceTree = "<group>"; };
 		D07188411AB3D2220073493A /* MGSPreferencesProxyDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSPreferencesProxyDictionary.h; sourceTree = "<group>"; };
 		D07188421AB3D2220073493A /* MGSPreferencesProxyDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSPreferencesProxyDictionary.m; sourceTree = "<group>"; };
-		D07188471AB423830073493A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MGSPrefsEditorProperties.xib; sourceTree = "<group>"; };
-		D071884A1AB428570073493A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MGSPrefsColourProperties.xib; sourceTree = "<group>"; };
 		D071884D1AB54CCA0073493A /* MGSPrefsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSPrefsViewController.h; sourceTree = "<group>"; };
 		D071884E1AB54CCA0073493A /* MGSPrefsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSPrefsViewController.m; sourceTree = "<group>"; };
 		D0718B421AB54E8C0073493A /* MGSPrefsEditorPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSPrefsEditorPropertiesViewController.h; sourceTree = "<group>"; };
@@ -682,16 +684,15 @@
 		D0718B461AB54EA70073493A /* MGSPrefsColourPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSPrefsColourPropertiesViewController.h; sourceTree = "<group>"; };
 		D0718B471AB54EA70073493A /* MGSPrefsColourPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSPrefsColourPropertiesViewController.m; sourceTree = "<group>"; };
 		D0718B501AB551460073493A /* Fragaria Prefs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fragaria Prefs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0718B531AB551460073493A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Applications/MGSFragariaViewModern/Info.plist; sourceTree = "<group>"; };
+		D0718B531AB551460073493A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0718B7F1AB553A20073493A /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesViewController.h; path = Applications/MASPreferences/MASPreferencesViewController.h; sourceTree = SOURCE_ROOT; };
 		D0718B801AB553A20073493A /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MASPreferencesWindow.xib; path = Applications/MASPreferences/MASPreferencesWindow.xib; sourceTree = SOURCE_ROOT; };
 		D0718B811AB553A20073493A /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASPreferencesWindowController.h; path = Applications/MASPreferences/MASPreferencesWindowController.h; sourceTree = SOURCE_ROOT; };
 		D0718B821AB553A20073493A /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MASPreferencesWindowController.m; path = Applications/MASPreferences/MASPreferencesWindowController.m; sourceTree = SOURCE_ROOT; };
-		D0718B881AB553E80073493A /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = README.html; path = Applications/MGSFragariaViewModern/README.html; sourceTree = SOURCE_ROOT; };
-		D0718B911AB556280073493A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Applications/MGSFragariaViewModern/en.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
-		D0718B931AB5566F0073493A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Applications/MGSFragariaViewModern/main.m; sourceTree = SOURCE_ROOT; };
-		D0718B951AB556990073493A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Applications/MGSFragariaViewModern/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		D0718B961AB556990073493A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Applications/MGSFragariaViewModern/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		D0718B881AB553E80073493A /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = README.html; sourceTree = "<group>"; };
+		D0718B931AB5566F0073493A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0718B951AB556990073493A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0718B961AB556990073493A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D0718BA51AB70BE70073493A /* MGSColourScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSColourScheme.h; sourceTree = "<group>"; };
 		D0718BA61AB70BE70073493A /* MGSColourScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSColourScheme.m; sourceTree = "<group>"; };
 		D0718BA91AB71FE00073493A /* MGSColourSchemeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSColourSchemeController.h; sourceTree = "<group>"; };
@@ -699,29 +700,29 @@
 		D0718BAD1AB721280073493A /* MGSColourSchemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSColourSchemeTests.m; sourceTree = "<group>"; };
 		D07717AE1AC25A8800B23867 /* MGSBoolToGlobalHintTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSBoolToGlobalHintTransformer.h; sourceTree = "<group>"; };
 		D07717AF1AC25A8800B23867 /* MGSBoolToGlobalHintTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSBoolToGlobalHintTransformer.m; sourceTree = "<group>"; };
-		D07717B21AC2670500B23867 /* MGSSampleBreakpointDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSSampleBreakpointDelegate.h; path = Applications/MGSFragariaViewModern/MGSSampleBreakpointDelegate.h; sourceTree = SOURCE_ROOT; };
-		D07717B31AC2670500B23867 /* MGSSampleBreakpointDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSSampleBreakpointDelegate.m; path = Applications/MGSFragariaViewModern/MGSSampleBreakpointDelegate.m; sourceTree = SOURCE_ROOT; };
+		D07717B21AC2670500B23867 /* MGSSampleBreakpointDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSSampleBreakpointDelegate.h; sourceTree = "<group>"; };
+		D07717B31AC2670500B23867 /* MGSSampleBreakpointDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSampleBreakpointDelegate.m; sourceTree = "<group>"; };
 		D08359D81A9F0446001B7B50 /* FeaturesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturesWindowController.h; sourceTree = "<group>"; };
 		D08359D91A9F0446001B7B50 /* FeaturesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturesWindowController.m; sourceTree = "<group>"; };
 		D0AB50EF1A91CDC200A6DF58 /* SMLSyntaxErrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLSyntaxErrorTests.m; sourceTree = "<group>"; };
 		D0C13BB91ABD12A400E191A9 /* MGSColourSchemeSaveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSColourSchemeSaveController.h; sourceTree = "<group>"; };
 		D0C13BBA1ABD12A400E191A9 /* MGSColourSchemeSaveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSColourSchemeSaveController.m; sourceTree = "<group>"; };
-		D0C13BBE1ABD246900E191A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MGSColourSchemeSave.xib; sourceTree = "<group>"; };
 		D0C145C21A85E1FD00DDE90A /* SMLTextView+MGSDragging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMLTextView+MGSDragging.h"; sourceTree = "<group>"; };
 		D0C145C31A85E1FD00DDE90A /* SMLTextView+MGSDragging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMLTextView+MGSDragging.m"; sourceTree = "<group>"; };
 		D0C1464C1A87196200DDE90A /* Fragaria Complex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fragaria Complex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C1464F1A87196200DDE90A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0C146501A87196200DDE90A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "../../../../../../../../Documents/Sviluppo C/Fragaria/Applications/MGSFragariaView/AppDelegate.h"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0C146501A87196200DDE90A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D0C146511A87196200DDE90A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D0C146531A87196200DDE90A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D0C146731A871A0B00DDE90A /* MGSFragariaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSFragariaView.h; sourceTree = "<group>"; };
 		D0C146741A871A0B00DDE90A /* MGSFragariaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSFragariaView.m; sourceTree = "<group>"; };
-		D0E520F21A88E577005CB80B /* Fragaria_Document-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fragaria_Document-Info.plist"; sourceTree = "<group>"; };
+		D0E520F21A88E577005CB80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0E521031A90DC02005CB80B /* MGSSyntaxErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSSyntaxErrorController.h; sourceTree = "<group>"; };
 		D0E521041A90DC02005CB80B /* MGSSyntaxErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSyntaxErrorController.m; sourceTree = "<group>"; };
 		D0E521071A90E307005CB80B /* MGSSyntaxErrorControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSSyntaxErrorControllerTests.m; sourceTree = "<group>"; };
 		D0E5210D1A90E34F005CB80B /* Fragaria Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fragaria Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0E521101A90E34F005CB80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0ED3ABB21387C160042FCEE /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D0F353541AC19E56007B9E2E /* MGSUserDefaultsControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSUserDefaultsControllerProtocol.h; sourceTree = "<group>"; };
 		D0F353561AC1A369007B9E2E /* MGSHybridUserDefaultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSHybridUserDefaultsController.h; sourceTree = "<group>"; };
 		D0F353571AC1A369007B9E2E /* MGSHybridUserDefaultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSHybridUserDefaultsController.m; sourceTree = "<group>"; };
@@ -908,24 +909,15 @@
 			name = "Syntax Definition Manager";
 			sourceTree = "<group>";
 		};
-		01BB1BE81A795E58006C0056 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				018CFA0C1AE46B8F00334011 /* main.m */,
-				D0E520F21A88E577005CB80B /* Fragaria_Document-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		01BB1BEB1A79620E006C0056 /* Text Editing UI */ = {
 			isa = PBXGroup;
 			children = (
 				AB472BF51299BBBA00202CB5 /* MGSExtraInterfaceController.h */,
 				AB472BF31299BBB100202CB5 /* MGSExtraInterfaceController.m */,
-				01098F1F1AA7BD0D00ED4CFD /* SMLDetab.xib */,
-				01098F1C1AA7BD0900ED4CFD /* SMLEntab.xib */,
-				01098F191AA7BD0400ED4CFD /* SMLGoToLine.xib */,
-				013A791B1AA8C715008ADFA1 /* MGSContextMenu.xib */,
+				D00BB04D213876A3007E5FA6 /* MGSContextMenu.xib */,
+				D00BB04F213876A3007E5FA6 /* SMLDetab.xib */,
+				D00BB051213876A3007E5FA6 /* SMLEntab.xib */,
+				D00BB04B213876A3007E5FA6 /* SMLGoToLine.xib */,
 			);
 			name = "Text Editing UI";
 			sourceTree = "<group>";
@@ -972,26 +964,17 @@
 			path = TestCaseData;
 			sourceTree = "<group>";
 		};
-		01F0D6FD1C120F7D000A08B6 /* Swift Example */ = {
+		01F0D6FD1C120F7D000A08B6 /* Fragaria Swift */ = {
 			isa = PBXGroup;
 			children = (
 				01F0D6FE1C120F7D000A08B6 /* AppDelegate.swift */,
 				01F0D7001C120F7D000A08B6 /* Document.swift */,
-				01F0D7021C120F7D000A08B6 /* Document.xib */,
-				01F0D7071C120F7D000A08B6 /* MainMenu.xib */,
-				01FA8AE71C1316BE00CBC97C /* Supporting Files */,
-			);
-			name = "Swift Example";
-			path = "Fragaria Swift";
-			sourceTree = "<group>";
-		};
-		01FA8AE71C1316BE00CBC97C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
+				D00BB06E213878AF007E5FA6 /* Document.xib */,
+				D00BB06D213878AF007E5FA6 /* MainMenu.xib */,
 				01F0D7161C1269A2000A08B6 /* Fragaria-Swift-Bridging-Header.h */,
 				01F0D70A1C120F7D000A08B6 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Fragaria Swift";
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -1031,7 +1014,7 @@
 				ABA1C12116144D3F00C8723F /* README.md */,
 				AB8387CC171D7F1D004408F4 /* TODO.md */,
 				AB92A4151192B66A0055A3E7 /* Applications */,
-				AB69B752118B82DF00903D1D /* Framework */,
+				D05533632138522B00199788 /* MGSFragaria Framework */,
 				D0E5210E1A90E34F005CB80B /* MGSFragaria Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -1040,16 +1023,6 @@
 			name = KosmicEditor;
 			sourceTree = "<group>";
 			tabWidth = 4;
-		};
-		29B97317FDCFA39411CA2CEA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				018CFA0E1AE46B9800334011 /* main.m */,
-				8D1107310486CEB800E47090 /* Fragaria-Info.plist */,
-				01281838206FD3E5004D2C3B /* example.txt */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
@@ -1063,18 +1036,17 @@
 		AB3972FC118C2A5D00AEF388 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D00BB067213876F3007E5FA6 /* Localizable.strings */,
 				01AC7E711AA341AA00DF7620 /* Images.xcassets */,
 				ABA812DB11B6855200A29990 /* LICENSE-2.0.txt */,
-				AB69B62C118B745700903D1D /* MGSFragaria-Info.plist */,
 				AB3971E6118C27E700AEF388 /* SyntaxDefinitions.plist */,
-				016E31111B0324D3000D3497 /* Localizable.strings */,
 				010870A01C99E24F00C335DA /* Colour Schemes */,
 				01086F991C99E16D00C335DA /* Syntax Definitions */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		AB648E2211FB37AF00AEF7BD /* Simple Example */ = {
+		AB648E2211FB37AF00AEF7BD /* Fragaria Simple */ = {
 			isa = PBXGroup;
 			children = (
 				256AC3D80F4B6AC300CF3369 /* FragariaAppDelegate.h */,
@@ -1082,13 +1054,14 @@
 				01BB1BF11A79AA15006C0056 /* MGSSimpleBreakpointDelegate.h */,
 				01BB1BF21A79AA15006C0056 /* MGSSimpleBreakpointDelegate.m */,
 				D034C8071A997FA8003D3A41 /* MainMenu.xib */,
-				29B97317FDCFA39411CA2CEA /* Supporting Files */,
+				018CFA0E1AE46B9800334011 /* main.m */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				01281838206FD3E5004D2C3B /* example.txt */,
 			);
-			name = "Simple Example";
-			path = Simple;
+			path = "Fragaria Simple";
 			sourceTree = "<group>";
 		};
-		AB648E2311FB37D200AEF7BD /* Document Based Example */ = {
+		AB648E2311FB37D200AEF7BD /* Fragaria Doc */ = {
 			isa = PBXGroup;
 			children = (
 				01D39A411B19DA690072F43F /* ApplicationDelegate.h */,
@@ -1097,19 +1070,10 @@
 				AB648E3F11FB38E700AEF7BD /* MyDocument.m */,
 				D034C8091A99807F003D3A41 /* MainMenu-Document.xib */,
 				D034C80A1A99807F003D3A41 /* MyDocument.xib */,
-				01BB1BE81A795E58006C0056 /* Supporting Files */,
+				018CFA0C1AE46B8F00334011 /* main.m */,
+				D0E520F21A88E577005CB80B /* Info.plist */,
 			);
-			name = "Document Based Example";
-			path = Doc;
-			sourceTree = "<group>";
-		};
-		AB69B752118B82DF00903D1D /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				ABDED9B6128AB144002EE039 /* Fragaria */,
-				AB3972FC118C2A5D00AEF388 /* Resources */,
-			);
-			name = Framework;
+			path = "Fragaria Doc";
 			sourceTree = "<group>";
 		};
 		AB83887D171E94C5004408F4 /* Miscellaneous */ = {
@@ -1136,17 +1100,17 @@
 		AB92A4151192B66A0055A3E7 /* Applications */ = {
 			isa = PBXGroup;
 			children = (
-				AB648E2311FB37D200AEF7BD /* Document Based Example */,
-				AB648E2211FB37AF00AEF7BD /* Simple Example */,
-				D0E521001A90B899005CB80B /* Complex Example */,
-				D0718B511AB551460073493A /* Preferences Example */,
-				01F0D6FD1C120F7D000A08B6 /* Swift Example */,
+				D0E521001A90B899005CB80B /* Fragaria Complex */,
+				AB648E2311FB37D200AEF7BD /* Fragaria Doc */,
+				D0718B511AB551460073493A /* Fragaria Prefs */,
+				AB648E2211FB37AF00AEF7BD /* Fragaria Simple */,
+				01F0D6FD1C120F7D000A08B6 /* Fragaria Swift */,
 				D0718B7D1AB553A20073493A /* MASPreferences */,
 			);
 			path = Applications;
 			sourceTree = SOURCE_ROOT;
 		};
-		ABDED9B6128AB144002EE039 /* Fragaria */ = {
+		ABDED9B6128AB144002EE039 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				AB69B753118B830700903D1D /* Fragaria.h */,
@@ -1165,7 +1129,17 @@
 				01BB1BEB1A79620E006C0056 /* Text Editing UI */,
 				D07188401AB3CE020073493A /* Defaults Coordinator */,
 			);
-			name = Fragaria;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D05533632138522B00199788 /* MGSFragaria Framework */ = {
+			isa = PBXGroup;
+			children = (
+				ABDED9B6128AB144002EE039 /* Source */,
+				AB3972FC118C2A5D00AEF388 /* Resources */,
+				AB69B62C118B745700903D1D /* MGSFragaria-Info.plist */,
+			);
+			path = "MGSFragaria Framework";
 			sourceTree = "<group>";
 		};
 		D07188401AB3CE020073493A /* Defaults Coordinator */ = {
@@ -1187,28 +1161,19 @@
 			name = "Defaults Coordinator";
 			sourceTree = "<group>";
 		};
-		D0718B511AB551460073493A /* Preferences Example */ = {
+		D0718B511AB551460073493A /* Fragaria Prefs */ = {
 			isa = PBXGroup;
 			children = (
 				D0718B951AB556990073493A /* AppDelegate.h */,
 				D0718B961AB556990073493A /* AppDelegate.m */,
 				D07717B21AC2670500B23867 /* MGSSampleBreakpointDelegate.h */,
 				D07717B31AC2670500B23867 /* MGSSampleBreakpointDelegate.m */,
-				D0718B901AB556280073493A /* MainMenu.xib */,
+				D0ED3ABB21387C160042FCEE /* MainMenu.xib */,
 				D0718B881AB553E80073493A /* README.html */,
-				D0718B521AB551460073493A /* Supporting Files */,
-			);
-			name = "Preferences Example";
-			path = MGSFragariaViewModern;
-			sourceTree = "<group>";
-		};
-		D0718B521AB551460073493A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				D0718B931AB5566F0073493A /* main.m */,
 				D0718B531AB551460073493A /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Fragaria Prefs";
 			sourceTree = "<group>";
 		};
 		D0718B7D1AB553A20073493A /* MASPreferences */ = {
@@ -1219,9 +1184,8 @@
 				D0718B811AB553A20073493A /* MASPreferencesWindowController.h */,
 				D0718B821AB553A20073493A /* MASPreferencesWindowController.m */,
 			);
-			name = MASPreferences;
-			path = Applications/MASPreferences;
-			sourceTree = SOURCE_ROOT;
+			path = MASPreferences;
+			sourceTree = "<group>";
 		};
 		D0718BA41AB7062A0073493A /* User Interface */ = {
 			isa = PBXGroup;
@@ -1230,20 +1194,21 @@
 				01684A861B15FBD9008A900D /* MGSFontWell.m */,
 				D071884D1AB54CCA0073493A /* MGSPrefsViewController.h */,
 				D071884E1AB54CCA0073493A /* MGSPrefsViewController.m */,
-				01D97A621C49ADE300CCEE97 /* MGSPrefsCommonViews.xib */,
+				D00BB05D213876D3007E5FA6 /* MGSPrefsCommonViews.xib */,
 				D0718B461AB54EA70073493A /* MGSPrefsColourPropertiesViewController.h */,
 				D0718B471AB54EA70073493A /* MGSPrefsColourPropertiesViewController.m */,
-				D07188491AB428570073493A /* MGSPrefsColourProperties.xib */,
+				D00BB05B213876D3007E5FA6 /* MGSPrefsColourProperties.xib */,
 				D0718B421AB54E8C0073493A /* MGSPrefsEditorPropertiesViewController.h */,
 				D0718B431AB54E8C0073493A /* MGSPrefsEditorPropertiesViewController.m */,
-				D07188461AB423830073493A /* MGSPrefsEditorProperties.xib */,
+				D00BB05F213876D3007E5FA6 /* MGSPrefsEditorProperties.xib */,
+				D00BB061213876D3007E5FA6 /* MGSColourSchemeSave.xib */,
 				D0F64EC51AC148C800693C52 /* Scheme Controller */,
 				D0F64EC41AC148A900693C52 /* Categories and Transformers */,
 			);
 			name = "User Interface";
 			sourceTree = "<group>";
 		};
-		D0E521001A90B899005CB80B /* Complex Example */ = {
+		D0E521001A90B899005CB80B /* Fragaria Complex */ = {
 			isa = PBXGroup;
 			children = (
 				D0C146501A87196200DDE90A /* AppDelegate.h */,
@@ -1253,19 +1218,10 @@
 				01D81ACF1AA7E37E006DF8B8 /* Features.xib */,
 				01D81AD11AA7E37E006DF8B8 /* MainMenu.xib */,
 				01D81AD01AA7E37E006DF8B8 /* Lorem.html */,
-				D0E521011A90B8B7005CB80B /* Supporting Files */,
-			);
-			name = "Complex Example";
-			path = MGSFragariaView;
-			sourceTree = "<group>";
-		};
-		D0E521011A90B8B7005CB80B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D0C1464F1A87196200DDE90A /* Info.plist */,
 				D0C146531A87196200DDE90A /* main.m */,
+				D0C1464F1A87196200DDE90A /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Fragaria Complex";
 			sourceTree = "<group>";
 		};
 		D0E521021A90BAC1005CB80B /* Syntax Error Components */ = {
@@ -1335,7 +1291,6 @@
 				0193C1D31F9A861000638B38 /* MGSColourSchemeOption.m */,
 				D0C13BB91ABD12A400E191A9 /* MGSColourSchemeSaveController.h */,
 				D0C13BBA1ABD12A400E191A9 /* MGSColourSchemeSaveController.m */,
-				D0C13BBD1ABD246900E191A9 /* MGSColourSchemeSave.xib */,
 			);
 			name = "Scheme Controller";
 			sourceTree = "<group>";
@@ -1541,7 +1496,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Fragaria" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1552,10 +1507,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB648E2911FB385700AEF7BD /* Fragaria Doc */,
-				ABCA4D9816137FC000E4849B /* Fragaria Simple */,
 				D0C1464B1A87196200DDE90A /* Fragaria Complex */,
+				AB648E2911FB385700AEF7BD /* Fragaria Doc */,
 				D0718B4F1AB551460073493A /* Fragaria Prefs */,
+				ABCA4D9816137FC000E4849B /* Fragaria Simple */,
 				01F0D6FB1C120F7D000A08B6 /* Fragaria Swift */,
 				AB69B62A118B745700903D1D /* Fragaria */,
 				D0E520EC1A88DC73005CB80B /* Documentation */,
@@ -1569,9 +1524,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D00BB070213878AF007E5FA6 /* Document.xib in Resources */,
 				01F0D7171C126E04000A08B6 /* MASPreferencesWindow.xib in Resources */,
-				01F0D7041C120F7D000A08B6 /* Document.xib in Resources */,
-				01F0D7091C120F7D000A08B6 /* MainMenu.xib in Resources */,
+				D00BB06F213878AF007E5FA6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,19 +1544,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D07188481AB423830073493A /* MGSPrefsEditorProperties.xib in Resources */,
-				AB39723A118C27E700AEF388 /* SyntaxDefinitions.plist in Resources */,
-				016E310F1B0324D3000D3497 /* Localizable.strings in Resources */,
-				ABA1C12316144EFD00C8723F /* README.md in Resources */,
-				ABA812DC11B6855200A29990 /* LICENSE-2.0.txt in Resources */,
-				01098F171AA7BD0400ED4CFD /* SMLGoToLine.xib in Resources */,
-				01098F1D1AA7BD0D00ED4CFD /* SMLDetab.xib in Resources */,
+				D00BB064213876D3007E5FA6 /* MGSPrefsCommonViews.xib in Resources */,
 				01AC7E721AA341AA00DF7620 /* Images.xcassets in Resources */,
-				01D97A601C49ADE300CCEE97 /* MGSPrefsCommonViews.xib in Resources */,
-				01098F1A1AA7BD0900ED4CFD /* SMLEntab.xib in Resources */,
-				013A79191AA8C715008ADFA1 /* MGSContextMenu.xib in Resources */,
-				D071884B1AB428570073493A /* MGSPrefsColourProperties.xib in Resources */,
-				D0C13BBF1ABD246900E191A9 /* MGSColourSchemeSave.xib in Resources */,
+				D00BB055213876A3007E5FA6 /* SMLDetab.xib in Resources */,
+				ABA812DC11B6855200A29990 /* LICENSE-2.0.txt in Resources */,
+				D00BB056213876A3007E5FA6 /* SMLEntab.xib in Resources */,
+				D00BB063213876D3007E5FA6 /* MGSPrefsColourProperties.xib in Resources */,
+				D00BB065213876D3007E5FA6 /* MGSPrefsEditorProperties.xib in Resources */,
+				D00BB054213876A3007E5FA6 /* MGSContextMenu.xib in Resources */,
+				D00BB053213876A3007E5FA6 /* SMLGoToLine.xib in Resources */,
+				D00BB069213876F3007E5FA6 /* Localizable.strings in Resources */,
+				ABA1C12316144EFD00C8723F /* README.md in Resources */,
+				AB39723A118C27E700AEF388 /* SyntaxDefinitions.plist in Resources */,
+				D00BB066213876D3007E5FA6 /* MGSColourSchemeSave.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1620,7 +1575,7 @@
 			files = (
 				D0718B851AB553A20073493A /* MASPreferencesWindow.xib in Resources */,
 				D0718B8D1AB553E80073493A /* README.html in Resources */,
-				D0718B921AB556280073493A /* MainMenu.xib in Resources */,
+				D0ED3ABC21387C160042FCEE /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,104 +1785,81 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		01098F191AA7BD0400ED4CFD /* SMLGoToLine.xib */ = {
+		D00BB04B213876A3007E5FA6 /* SMLGoToLine.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01098F181AA7BD0400ED4CFD /* en */,
-				01BEF2A51AA7E761005F11B4 /* en-GB */,
+				D00BB04C213876A3007E5FA6 /* en */,
+				D00BB058213876AE007E5FA6 /* en-GB */,
 			);
 			name = SMLGoToLine.xib;
 			sourceTree = "<group>";
 		};
-		01098F1C1AA7BD0900ED4CFD /* SMLEntab.xib */ = {
+		D00BB04D213876A3007E5FA6 /* MGSContextMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01098F1B1AA7BD0900ED4CFD /* en */,
-				01BEF2A41AA7E761005F11B4 /* en-GB */,
-			);
-			name = SMLEntab.xib;
-			sourceTree = "<group>";
-		};
-		01098F1F1AA7BD0D00ED4CFD /* SMLDetab.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01098F1E1AA7BD0D00ED4CFD /* en */,
-				01BEF2A31AA7E761005F11B4 /* en-GB */,
-			);
-			name = SMLDetab.xib;
-			sourceTree = "<group>";
-		};
-		013A791B1AA8C715008ADFA1 /* MGSContextMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				013A791A1AA8C715008ADFA1 /* en */,
-				013A791C1AA8C719008ADFA1 /* en-GB */,
+				D00BB04E213876A3007E5FA6 /* en */,
+				D00BB057213876AE007E5FA6 /* en-GB */,
 			);
 			name = MGSContextMenu.xib;
 			sourceTree = "<group>";
 		};
-		016E31111B0324D3000D3497 /* Localizable.strings */ = {
+		D00BB04F213876A3007E5FA6 /* SMLDetab.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				016E31101B0324D3000D3497 /* en */,
+				D00BB050213876A3007E5FA6 /* en */,
+				D00BB059213876AE007E5FA6 /* en-GB */,
 			);
-			name = Localizable.strings;
+			name = SMLDetab.xib;
 			sourceTree = "<group>";
 		};
-		01D97A621C49ADE300CCEE97 /* MGSPrefsCommonViews.xib */ = {
+		D00BB051213876A3007E5FA6 /* SMLEntab.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01D97A611C49ADE300CCEE97 /* en */,
+				D00BB052213876A3007E5FA6 /* en */,
+				D00BB05A213876AE007E5FA6 /* en-GB */,
 			);
-			name = MGSPrefsCommonViews.xib;
+			name = SMLEntab.xib;
 			sourceTree = "<group>";
 		};
-		01F0D7021C120F7D000A08B6 /* Document.xib */ = {
+		D00BB05B213876D3007E5FA6 /* MGSPrefsColourProperties.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01D97A641C49AE1B00CCEE97 /* en */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
-		01F0D7071C120F7D000A08B6 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01D97A631C49AE1B00CCEE97 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		D07188461AB423830073493A /* MGSPrefsEditorProperties.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D07188471AB423830073493A /* en */,
-			);
-			name = MGSPrefsEditorProperties.xib;
-			sourceTree = "<group>";
-		};
-		D07188491AB428570073493A /* MGSPrefsColourProperties.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D071884A1AB428570073493A /* en */,
+				D00BB05C213876D3007E5FA6 /* en */,
 			);
 			name = MGSPrefsColourProperties.xib;
 			sourceTree = "<group>";
 		};
-		D0718B901AB556280073493A /* MainMenu.xib */ = {
+		D00BB05D213876D3007E5FA6 /* MGSPrefsCommonViews.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D0718B911AB556280073493A /* en */,
+				D00BB05E213876D3007E5FA6 /* en */,
 			);
-			name = MainMenu.xib;
+			name = MGSPrefsCommonViews.xib;
 			sourceTree = "<group>";
 		};
-		D0C13BBD1ABD246900E191A9 /* MGSColourSchemeSave.xib */ = {
+		D00BB05F213876D3007E5FA6 /* MGSPrefsEditorProperties.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D0C13BBE1ABD246900E191A9 /* en */,
+				D00BB060213876D3007E5FA6 /* en */,
+			);
+			name = MGSPrefsEditorProperties.xib;
+			sourceTree = "<group>";
+		};
+		D00BB061213876D3007E5FA6 /* MGSColourSchemeSave.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D00BB062213876D3007E5FA6 /* en */,
 			);
 			name = MGSColourSchemeSave.xib;
+			sourceTree = "<group>";
+		};
+		D00BB067213876F3007E5FA6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D00BB068213876F3007E5FA6 /* en */,
+				D00BB06A213876FC007E5FA6 /* en-GB */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2101,7 +2033,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Doc/Fragaria_Document-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Doc/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -2123,7 +2055,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Simple/Fragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Simple/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mugginsoft.${PRODUCT_NAME:rfc1034identifier}";
@@ -2146,7 +2078,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "MGSFragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MGSFragaria Framework/MGSFragaria-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -2172,7 +2104,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Doc/Fragaria_Document-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Doc/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -2194,7 +2126,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Doc/Fragaria_Document-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Doc/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				OTHER_LDFLAGS = (
@@ -2224,7 +2156,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "MGSFragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MGSFragaria Framework/MGSFragaria-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).$(WRAPPER_EXTENSION)/$(PRODUCT_NAME)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2257,7 +2189,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "MGSFragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MGSFragaria Framework/MGSFragaria-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).$(WRAPPER_EXTENSION)/$(PRODUCT_NAME)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2283,7 +2215,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Simple/Fragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Simple/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mugginsoft.${PRODUCT_NAME:rfc1034identifier}";
@@ -2298,7 +2230,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/Simple/Fragaria-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Simple/Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mugginsoft.${PRODUCT_NAME:rfc1034identifier}";
@@ -2426,7 +2358,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaViewModern/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Prefs/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2459,7 +2391,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaViewModern/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Prefs/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2492,7 +2424,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaViewModern/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Prefs/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2528,7 +2460,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaView/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Complex/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2560,7 +2492,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaView/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Complex/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2592,7 +2524,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "$(SRCROOT)/Applications/MGSFragariaView/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Applications/Fragaria Complex/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
