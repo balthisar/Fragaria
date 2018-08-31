@@ -144,6 +144,7 @@
     {
         _values = [[MGSHybridValuesProxy alloc] initWithController:self];
         _groupID = groupID;
+        _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
     }
     
     return self;

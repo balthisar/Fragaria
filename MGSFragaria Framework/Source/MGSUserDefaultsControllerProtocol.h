@@ -11,6 +11,15 @@
 @class MGSFragariaView;
 
 
+typedef NS_OPTIONS(NSInteger, MGSSupportedAppearance)
+{
+    MGSAppearanceNameAqua                              = 0,
+    MGSAppearanceNameAccessibilityHighContrastAqua     = 1 << 0,
+    MGSAppearanceNameDarkAqua                          = 1 << 1,
+    MGSAppearanceNameAccessibilityHighContrastDarkAqua = 1 << 2
+};
+
+
 /**
  *  The MGSUserDefaultsController protocol defines the properties and methods
  *  that are required for objects to be used with the Defaults Coordinator
@@ -49,6 +58,11 @@
  *      object. In general you have no reason to manually manipulate values
  *      with this structure. Simply set MGSFragariaView properties instead. */
 @property (nonatomic,strong,readonly) id values;
+
+
+/** Specifies the additional appearance(s) supported by this controllers' group.
+ */
+@property (nonatomic,assign) MGSSupportedAppearance appearanceSubgroups;
 
 
 @end

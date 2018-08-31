@@ -267,6 +267,8 @@ static NSCountedSet *allNonGlobalProperties;
     
     self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
       dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
+    
+    _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
 	
 	return self;
 }

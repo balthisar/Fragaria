@@ -12,7 +12,6 @@
 
 @class MGSFragariaView;
 
-
 /**
  *  MGSUserDefaultsController and its related class are alternatives to
  *  NSUserDefaults and NSUserDefaultsController, which support being able to
@@ -115,6 +114,21 @@
 
 /** Returns the unique identifier for this controller's group. */
 @property (nonatomic,strong,readonly) NSString *groupID;
+
+
+#pragma mark - Appearance Support
+/// @name Appearance Support
+
+
+/** Specifies the additional appearance(s) supported by this controllers' group.
+ *  @discussion Only applicable when macOS is 10.14+. The default value is
+ *      MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua, which will store
+ *      and retrieve MGSFragariaView properties according to the effective
+ *      appearance of one of the managedInstances. Which managed instance
+ *      is random, but a well behaved application will be consistent and
+ *      they would all have the same appearance.
+ */
+@property (nonatomic,assign) MGSSupportedAppearance appearanceSubgroups;
 
 
 @end
