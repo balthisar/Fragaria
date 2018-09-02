@@ -207,6 +207,8 @@ static NSCountedSet *allNonGlobalProperties;
 }
 - (NSString *)groupID
 {
+    return [NSString stringWithFormat:@"%@ (test)", _groupID ];
+
     if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
         return _groupID;
 
