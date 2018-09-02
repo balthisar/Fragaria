@@ -13,7 +13,9 @@
 
 /**
  *  An NSMutableDictionary subclass implemented by MGSUserDefaultsController so
- *  that it can persist keys in the user defaults system, if desired.
+ *  that it can persist keys in the user defaults system, if desired. Supports
+ *  storage of multiple sets of options based on the controller's `groupID`
+ *  property in the event that it changes.
  */
 @interface MGSPreferencesProxyDictionary : NSMutableDictionary
 

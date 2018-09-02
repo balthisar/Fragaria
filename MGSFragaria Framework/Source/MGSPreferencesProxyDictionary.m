@@ -71,16 +71,16 @@
 {
     if ((self = [super init]))
     {
+        self.controller = controller;
+
         if (dictionary)
         {
-            self.storage = [[NSMutableDictionary alloc] initWithDictionary:dictionary];
+            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.controller.groupID : [[NSMutableDictionary alloc] initWithDictionary:dictionary] }];
         }
         else
         {
             self.storage = [[NSMutableDictionary alloc] initWithCapacity:numItems];
         }
-
-        self.controller = controller;
     }
 
     return self;
@@ -143,7 +143,8 @@
  */
 - (NSUInteger)count
 {
-    return self.storage.count;
+    NSDictionary *subdict = self.storage[self.controller.groupID];
+    return subdict.count;
 }
 
 
@@ -152,7 +153,8 @@
  */
 - (NSEnumerator *)keyEnumerator
 {
-    return self.storage.keyEnumerator;
+    NSDictionary *subdict = self.storage[self.controller.groupID];
+    return subdict.keyEnumerator;
 }
 
 
@@ -161,7 +163,7 @@
  */
 - (id)objectForKey:(id)aKey
 {
-    id object = [self.storage objectForKey:aKey];
+    id object = [self.storage[self.controller.groupID] objectForKey:aKey];
     if ([object isKindOfClass:[NSData class]])
     {
         object = [NSUnarchiver unarchiveObjectWithData:object];
@@ -176,7 +178,7 @@
  */
 - (void)removeObjectForKey:(id)aKey
 {
-    [self.storage removeObjectForKey:aKey];
+    [self.storage[self.controller.groupID] removeObjectForKey:aKey];
 }
 
 
@@ -185,16 +187,20 @@
  */
 - (void)setObject:(id)anObject forKey:(id)aKey
 {
+    if (!self.storage[self.controller.groupID])
+    {
+        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
+    }
+
     if ([anObject isKindOfClass:[NSFont class]] || [anObject isKindOfClass:[NSColor class]])
     {
-        [self.storage setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
+        [self.storage[self.controller.groupID] setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
     }
     else
     {
-        [self.storage setObject:anObject forKey:aKey];
+        [self.storage[self.controller.groupID] setObject:anObject forKey:aKey];
     }
 }
 
 
 @end
-

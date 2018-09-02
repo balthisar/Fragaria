@@ -60,6 +60,7 @@ static NSCountedSet *allNonGlobalProperties;
     NSHashTable *_managedInstances;
 }
 
+@synthesize groupID = _groupID;
 
 #pragma mark - Class Methods - Singleton Controllers
 
@@ -100,6 +101,9 @@ static NSCountedSet *allNonGlobalProperties;
 #pragma mark - Property Accessors
 
 
+/*
+ *  @property isGlobal
+ */
 - (BOOL)isGlobal
 {
     return [self.groupID isEqual:MGSUSERDEFAULTS_GLOBAL_ID];
@@ -121,6 +125,114 @@ static NSCountedSet *allNonGlobalProperties;
         return allManagedInstances;
     return _managedInstances;
 }
+
+
+/*
+ *  @property managedProperties
+ */
+- (void)setManagedProperties:(NSSet *)new
+{
+    NSSet *old = _managedProperties;
+    NSMutableSet *added, *removed, *diag, *glob;
+
+    added = [new mutableCopy];
+    [added minusSet:old];
+    removed = [old mutableCopy];
+    [removed minusSet:new];
+
+    if ([self isGlobal]) {
+        if ([allNonGlobalProperties intersectsSet:new]) {
+            diag = [NSMutableSet setWithSet:allNonGlobalProperties];
+            [diag intersectSet:new];
+            [NSException raise:@"MGSUserDefaultsControllerPropertyClash" format:
+             @"Tried to manage globally properties which are already managed "
+             "locally.\nConflicting properties: %@", diag];
+        }
+    } else {
+        if (!allNonGlobalProperties)
+            allNonGlobalProperties = [NSCountedSet set];
+        [allNonGlobalProperties minusSet:old];
+        [allNonGlobalProperties unionSet:new];
+        glob = [[[[self class] sharedController] managedProperties] mutableCopy];
+        [glob minusSet:new];
+        [[[self class] sharedController] setManagedProperties:glob];
+    }
+
+    [self unregisterBindings:removed];
+    _managedProperties = new;
+    [self registerBindings:added];
+}
+
+
+/*
+ *  @property persistent
+ */
+- (void)setPersistent:(BOOL)persistent
+{
+    NSDictionary *defaultsDict, *currentDict, *defaultsValues;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *groupKeyPath;
+
+    if (_persistent == persistent) return;
+    _persistent = persistent;
+
+    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.groupID];
+    if (persistent) {
+        // We weren't persistent, so make sure our current values are added
+        // to user defaults, and then KVO on values to capture changes.
+        defaultsDict = [self archiveForDefaultsDictionary:self.values];
+        [ud setObject:defaultsDict forKey:self.groupID];
+        [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    } else {
+        // We're no longer persistent, so stop observing self.values
+        // changes, and ensure values reflects last user defaults state.
+        [udc removeObserver:self forKeyPath:groupKeyPath context:nil];
+        currentDict = [ud objectForKey:self.groupID];
+        defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
+        for (NSString *key in self.values) {
+            if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
+                [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
+        }
+    }
+}
+
+
+/**
+ * @property groupID
+ */
++ (NSSet *)keyPathsForValuesAffectingGroupID
+{
+    return [NSSet setWithArray:@[@"self.appearanceSubgroups"]];
+}
+- (NSString *)groupID
+{
+    if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
+        return _groupID;
+
+    if ( @available(macos 10.14, *))
+    {
+        NSMutableArray *appearances = [[NSMutableArray alloc] init];
+
+        if (self.appearanceSubgroups & MGSAppearanceNameAqua)
+            [appearances addObject:NSAppearanceNameAqua];
+        if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastAqua)
+            [appearances addObject:NSAppearanceNameAccessibilityHighContrastAqua];
+        if (self.appearanceSubgroups & MGSAppearanceNameDarkAqua)
+            [appearances addObject:NSAppearanceNameDarkAqua];
+        if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastDarkAqua)
+            [appearances addObject:NSAppearanceNameAccessibilityHighContrastDarkAqua];
+
+        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
+
+        return [NSString stringWithFormat:@"%@ (%@)", _groupID, [current bestMatchFromAppearancesWithNames:appearances]];
+    }
+
+    return _groupID;
+}
+
+
+#pragma mark - Instance Methods
 
 
 /*
@@ -172,75 +284,6 @@ static NSCountedSet *allNonGlobalProperties;
 }
 
 
-/*
- *  @property managedProperties
- */
-- (void)setManagedProperties:(NSSet *)new
-{
-    NSSet *old = _managedProperties;
-    NSMutableSet *added, *removed, *diag, *glob;
-    
-    added = [new mutableCopy];
-    [added minusSet:old];
-    removed = [old mutableCopy];
-    [removed minusSet:new];
-    
-    if ([self isGlobal]) {
-        if ([allNonGlobalProperties intersectsSet:new]) {
-            diag = [NSMutableSet setWithSet:allNonGlobalProperties];
-            [diag intersectSet:new];
-            [NSException raise:@"MGSUserDefaultsControllerPropertyClash" format:
-             @"Tried to manage globally properties which are already managed "
-             "locally.\nConflicting properties: %@", diag];
-        }
-    } else {
-        if (!allNonGlobalProperties)
-            allNonGlobalProperties = [NSCountedSet set];
-        [allNonGlobalProperties minusSet:old];
-        [allNonGlobalProperties unionSet:new];
-        glob = [[[[self class] sharedController] managedProperties] mutableCopy];
-        [glob minusSet:new];
-        [[[self class] sharedController] setManagedProperties:glob];
-    }
-    
-    [self unregisterBindings:removed];
-    _managedProperties = new;
-	[self registerBindings:added];
-}
-
-
-/*
- *  @property persistent
- */
-- (void)setPersistent:(BOOL)persistent
-{
-    NSDictionary *defaultsDict, *currentDict, *defaultsValues;
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
-    NSString *groupKeyPath;
-    
-	if (_persistent == persistent) return;
-    _persistent = persistent;
-
-    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.groupID];
-	if (persistent) {
-        defaultsDict = [self archiveForDefaultsDictionary:self.values];
-        [ud setObject:defaultsDict forKey:self.groupID];
-        
-		[udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
-	} else {
-		[udc removeObserver:self forKeyPath:groupKeyPath context:nil];
-
-        currentDict = [ud objectForKey:self.groupID];
-        defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
-        for (NSString *key in self.values) {
-            if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
-                [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
-        }
-	}
-}
-
-
 #pragma mark - Initializers (not exposed)
 
 /*
@@ -267,9 +310,12 @@ static NSCountedSet *allNonGlobalProperties;
     
     self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
       dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
-    
-    _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
-	
+
+    if ( @available(macos 10.14, *) )
+        _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
+    else
+        _appearanceSubgroups = MGSAppearanceNameUnmanaged;
+
 	return self;
 }
 
@@ -346,7 +392,7 @@ static NSCountedSet *allNonGlobalProperties;
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         
         for (NSString *key in defaultsValues) {
-            // If we use self.value valueForKey: here, we will get the value from defaults.
+            // If we use self.values valueForKey: here, we will get the value from defaults.
             if (![[defaultsValues valueForKey:key] isEqual:[self.values objectForKey:key]])
                 [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
         }
