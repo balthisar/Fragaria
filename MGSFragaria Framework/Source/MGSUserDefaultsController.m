@@ -106,7 +106,7 @@ static NSCountedSet *allNonGlobalProperties;
  */
 - (BOOL)isGlobal
 {
-    return [self.groupID isEqual:MGSUSERDEFAULTS_GLOBAL_ID];
+    return [_groupID isEqual:MGSUSERDEFAULTS_GLOBAL_ID];
 }
 
 
@@ -212,6 +212,7 @@ static NSCountedSet *allNonGlobalProperties;
 
     if ( @available(macos 10.14, *))
     {
+        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
         NSMutableArray *appearances = [[NSMutableArray alloc] init];
 
         if (self.appearanceSubgroups & MGSAppearanceNameAqua)
@@ -223,9 +224,12 @@ static NSCountedSet *allNonGlobalProperties;
         if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastDarkAqua)
             [appearances addObject:NSAppearanceNameAccessibilityHighContrastDarkAqua];
 
-        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
-
-        return [NSString stringWithFormat:@"%@ (%@)", _groupID, [current bestMatchFromAppearancesWithNames:appearances]];
+        if (current) {
+            NSString *result = [NSString stringWithFormat:@"%@ (%@)", _groupID, [current bestMatchFromAppearancesWithNames:appearances]];
+            return result;
+        } else {
+            return _groupID;
+        }
     }
 
     return _groupID;
