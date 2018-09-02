@@ -316,6 +316,11 @@ static NSCountedSet *allNonGlobalProperties;
     else
         _appearanceSubgroups = MGSAppearanceNameUnmanaged;
 
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(appearanceChanged:)
+                                                            name:@"AppleInterfaceThemeChangedNotification"
+                                                          object:nil];
+
 	return self;
 }
 
@@ -330,6 +335,16 @@ static NSCountedSet *allNonGlobalProperties;
 	return [self initWithGroupID:MGSUSERDEFAULTS_GLOBAL_ID];
 }
 
+
+/*
+ *  - dealloc
+ */
+- (void)dealloc
+{
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self
+                                                               name:@"AppleInterfaceThemeChangedNotification"
+                                                             object:nil];
+}
 
 #pragma mark - Binding Registration/Unregistration and KVO Handling
 
@@ -397,6 +412,12 @@ static NSCountedSet *allNonGlobalProperties;
                 [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
         }
 	}
+}
+
+
+- (void)appearanceChanged:(NSNotification *)notif
+{
+    NSLog(@"appearanceChanged");
 }
 
 
