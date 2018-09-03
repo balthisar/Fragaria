@@ -14,6 +14,7 @@
 @interface MGSPreferencesProxyDictionary ()
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
+@property (nonatomic, strong) NSString *groupAndSubgroupID;
 
 @end
 
@@ -40,7 +41,7 @@
     
     if (self.controller.persistent)
     {
-        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.controller.groupID] setObject:value forKey:key];
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.groupAndSubgroupID] setObject:value forKey:key];
     }
     [self didChangeValueForKey:key];
 }
@@ -53,7 +54,7 @@
 {
     if (self.controller.persistent)
     {
-        return [[MGSUserDefaults sharedUserDefaultsForGroupID:self.controller.groupID] objectForKey:key];
+        return [[MGSUserDefaults sharedUserDefaultsForGroupID:self.groupAndSubgroupID] objectForKey:key];
     }
 
     return [self objectForKey:key];
@@ -114,6 +115,34 @@
 }
 
 
+#pragma mark - Property Accessors
+
+
+/**
+ *  @property groupAndSubgroupID
+ */
+- (NSString *)groupAndSubgroupID
+{
+    if (self.controller.subgroupID) {
+        // It's possible/likely that we've not been configured for the current
+        // subgroup; if this subgroup doesn't exist, take new defaults and
+        // values from the current settings.
+        NSString *fullID = [NSString stringWithFormat:@"%@_%@", self.controller.groupID, self.controller.subgroupID];
+
+        if (!self.storage[fullID])
+        {
+            NSMutableDictionary *newdict = [NSMutableDictionary dictionaryWithDictionary:self.storage[self.controller.groupID]];  // [self.storage[self.controller.groupID] copy];
+            [self.storage setObject:newdict forKey:fullID];
+            NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.controller.groupID];
+            [[MGSUserDefaults sharedUserDefaultsForGroupID:fullID] registerDefaults:defaults];
+        }
+        return [NSString stringWithFormat:@"%@_%@", self.controller.groupID, self.controller.subgroupID];
+    } else {
+        return self.controller.groupID;
+    }
+}
+
+
 #pragma mark - Archiving
 
 
@@ -143,7 +172,7 @@
  */
 - (NSUInteger)count
 {
-    NSDictionary *subdict = self.storage[self.controller.groupID];
+    NSDictionary *subdict = self.storage[self.groupAndSubgroupID];
     return subdict.count;
 }
 
@@ -153,7 +182,7 @@
  */
 - (NSEnumerator *)keyEnumerator
 {
-    NSDictionary *subdict = self.storage[self.controller.groupID];
+    NSDictionary *subdict = self.storage[self.groupAndSubgroupID];
     return subdict.keyEnumerator;
 }
 
@@ -163,12 +192,7 @@
  */
 - (id)objectForKey:(id)aKey
 {
-    if (!self.storage[self.controller.groupID])
-    {
-        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
-    }
-
-    id object = [self.storage[self.controller.groupID] objectForKey:aKey];
+    id object = [self.storage[self.groupAndSubgroupID] objectForKey:aKey];
     if ([object isKindOfClass:[NSData class]])
     {
         object = [NSUnarchiver unarchiveObjectWithData:object];
@@ -183,12 +207,7 @@
  */
 - (void)removeObjectForKey:(id)aKey
 {
-    if (!self.storage[self.controller.groupID])
-    {
-        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
-    }
-
-    [self.storage[self.controller.groupID] removeObjectForKey:aKey];
+    [self.storage[self.groupAndSubgroupID] removeObjectForKey:aKey];
 }
 
 
@@ -197,18 +216,13 @@
  */
 - (void)setObject:(id)anObject forKey:(id)aKey
 {
-    if (!self.storage[self.controller.groupID])
-    {
-        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
-    }
-
     if ([anObject isKindOfClass:[NSFont class]] || [anObject isKindOfClass:[NSColor class]])
     {
-        [self.storage[self.controller.groupID] setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
+        [self.storage[self.groupAndSubgroupID] setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
     }
     else
     {
-        [self.storage[self.controller.groupID] setObject:anObject forKey:aKey];
+        [self.storage[self.groupAndSubgroupID] setObject:anObject forKey:aKey];
     }
 }
 

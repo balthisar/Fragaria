@@ -19,7 +19,6 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
-@property (nonatomic, assign, readonly) NSString *subgroupID;
 
 @end
 
@@ -183,22 +182,7 @@ static NSCountedSet *allNonGlobalProperties;
 }
 - (NSString *)groupID
 {
-    // Temporary but just to change groupID once items are added.
-    if ([self.managedInstances anyObject])
-    {
-        NSDictionary *defaults = [MGSFragariaView defaultsDictionary];
-        NSString *newGroup = [NSString stringWithFormat:@"%@ (test)", _groupID];
-
-        [[MGSUserDefaults sharedUserDefaultsForGroupID:newGroup] registerDefaults:defaults];
-        return newGroup;
-    }
-    else
-    {
-        return _groupID;
-    }
-
-    // The real bit here.
-    return [NSString stringWithFormat:@"%@%@", _groupID, self.subgroupID];
+    return _groupID;
 }
 
 
@@ -207,10 +191,20 @@ static NSCountedSet *allNonGlobalProperties;
  */
 + (NSSet *)keyPathsForValuesAffectingSubroupID
 {
-    return [NSSet setWithArray:@[@"self.appearanceSubgroups", @"self.values.count"]];
+    return [NSSet setWithArray:@[@"self.appearanceSubgroups", @"self.mangedInstances.count"]];
 }
 - (NSString *)subgroupID
 {
+    return nil;
+    // TEMPORARY for changing groupID once things are added.
+    if ([self.managedInstances anyObject])
+    {
+        return @"test";
+    } else {
+        return nil;
+    }
+
+    // REAL stuff right here
     if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
         return nil;
 
@@ -237,7 +231,6 @@ static NSCountedSet *allNonGlobalProperties;
     }
 
     return nil;
-
 }
 
 
@@ -305,26 +298,40 @@ static NSCountedSet *allNonGlobalProperties;
 	if (!(self = [super init]))
         return self;
     
-    defaults = [MGSFragariaView defaultsDictionary];
-    
     _groupID = groupID;
-    if ([self isGlobal])
-        _managedProperties = [NSSet setWithArray:[defaults allKeys]];
-    else
-        _managedProperties = [NSSet set];
-    _managedInstances = [NSHashTable weakObjectsHashTable];
-		
-    [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
-    
-    self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
-      dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
 
     if ( @available(macos 10.14, *) )
         _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
     else
         _appearanceSubgroups = MGSAppearanceNameUnmanaged;
 
+    defaults = [MGSFragariaView defaultsDictionary];
+
+    if ([self isGlobal])
+        _managedProperties = [NSSet setWithArray:[defaults allKeys]];
+    else
+        _managedProperties = [NSSet set];
+
+    _managedInstances = [NSHashTable weakObjectsHashTable];
+
+    // Even if this item is not persistent, register with defaults system.
+    [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
+
+    // If this item *is* persistent, get the state of the defaults. If the
+    // controller isn't persistent, it will be identical to what was just
+    // registered.
+    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
+
+    // Populate self.values with the current user defaults. This proxy object
+    // keeps values in memory, and if persistent writes them to defaults.
+    // However as we are a new instance and haven't set persistent yet,
+    // these values won't be re-written to defaults.
+    self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
+                                                                 dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
+
+    // We probably should observe one of our managed fragarias for state
+    // change, but they should only be changing based on the OS anyway, so
+    // this is a good hook into knowing when their appearance might change.
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self
                                                         selector:@selector(appearanceChanged:)
                                                             name:@"AppleInterfaceThemeChangedNotification"
@@ -354,6 +361,7 @@ static NSCountedSet *allNonGlobalProperties;
                                                                name:@"AppleInterfaceThemeChangedNotification"
                                                              object:nil];
 }
+
 
 #pragma mark - Binding Registration/Unregistration and KVO Handling
 
