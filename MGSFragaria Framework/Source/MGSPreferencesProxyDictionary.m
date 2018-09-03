@@ -163,6 +163,11 @@
  */
 - (id)objectForKey:(id)aKey
 {
+    if (!self.storage[self.controller.groupID])
+    {
+        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
+    }
+
     id object = [self.storage[self.controller.groupID] objectForKey:aKey];
     if ([object isKindOfClass:[NSData class]])
     {
@@ -178,6 +183,11 @@
  */
 - (void)removeObjectForKey:(id)aKey
 {
+    if (!self.storage[self.controller.groupID])
+    {
+        [self.storage setObject:[NSMutableDictionary dictionary] forKey:aKey];
+    }
+
     [self.storage[self.controller.groupID] removeObjectForKey:aKey];
 }
 

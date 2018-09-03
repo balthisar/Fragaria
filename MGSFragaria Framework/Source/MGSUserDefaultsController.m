@@ -13,37 +13,13 @@
 #import "MGSFragariaView.h"
 
 
-/* This method exists only because Apple added +weakObjectsHashTable in 10.8,
- * but we still want to support 10.7 */
-static NSHashTable *MGSWeakOrUnretainedHashTable(void)
-{
-    NSPointerFunctions *pf;
-    
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_8) {
-        /* 
-         * NSPointerFunctionsOpaqueMemory is not reccommended for objects, but
-         * the main thing we want here is that the hash table won't mess with
-         * retaining and releasing the Fragarias we put in. Since Fragarias
-         * are NSViews, we can also use NSPointerFunctionsObjectPointerPersonality
-         * because it implements object equality and hashing like the default
-         * implementation of NSObject, and views never override equality
-         * and hashing methods. 
-         */
-        pf = [NSPointerFunctions pointerFunctionsWithOptions:
-          NSPointerFunctionsObjectPointerPersonality |
-          NSPointerFunctionsOpaqueMemory];
-        return [[NSHashTable alloc] initWithPointerFunctions:pf capacity:0];
-    }
-    return [NSHashTable weakObjectsHashTable];
-}
-
-
 #pragma mark - CATEGORY MGSUserDefaultsController
 
 
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
+@property (nonatomic, assign, readonly) NSString *subgroupID;
 
 @end
 
@@ -203,14 +179,40 @@ static NSCountedSet *allNonGlobalProperties;
  */
 + (NSSet *)keyPathsForValuesAffectingGroupID
 {
-    return [NSSet setWithArray:@[@"self.appearanceSubgroups"]];
+    return [NSSet setWithArray:@[@"self.subgroupID"]];
 }
 - (NSString *)groupID
 {
-    return [NSString stringWithFormat:@"%@ (test)", _groupID ];
+    // Temporary but just to change groupID once items are added.
+    if ([self.managedInstances anyObject])
+    {
+        NSDictionary *defaults = [MGSFragariaView defaultsDictionary];
+        NSString *newGroup = [NSString stringWithFormat:@"%@ (test)", _groupID];
 
-    if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:newGroup] registerDefaults:defaults];
+        return newGroup;
+    }
+    else
+    {
         return _groupID;
+    }
+
+    // The real bit here.
+    return [NSString stringWithFormat:@"%@%@", _groupID, self.subgroupID];
+}
+
+
+/**
+ *  @property subgroupID
+ */
++ (NSSet *)keyPathsForValuesAffectingSubroupID
+{
+    return [NSSet setWithArray:@[@"self.appearanceSubgroups", @"self.values.count"]];
+}
+- (NSString *)subgroupID
+{
+    if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
+        return nil;
 
     if ( @available(macos 10.14, *))
     {
@@ -227,14 +229,15 @@ static NSCountedSet *allNonGlobalProperties;
             [appearances addObject:NSAppearanceNameAccessibilityHighContrastDarkAqua];
 
         if (current) {
-            NSString *result = [NSString stringWithFormat:@"%@ (%@)", _groupID, [current bestMatchFromAppearancesWithNames:appearances]];
+            NSString *result = [current bestMatchFromAppearancesWithNames:appearances];
             return result;
         } else {
-            return _groupID;
+            return nil;
         }
     }
 
-    return _groupID;
+    return nil;
+
 }
 
 
@@ -249,7 +252,7 @@ static NSCountedSet *allNonGlobalProperties;
     MGSUserDefaultsController *shc;
     
     if (!allManagedInstances)
-        allManagedInstances = MGSWeakOrUnretainedHashTable();
+        allManagedInstances = [NSHashTable weakObjectsHashTable];
     if ([allManagedInstances containsObject:object])
         [NSException raise:@"MGSUserDefaultsControllerClash" format:@"Trying "
       "to manage Fragaria %@ with more than one MGSUserDefaultsController!", object];
@@ -309,7 +312,7 @@ static NSCountedSet *allNonGlobalProperties;
         _managedProperties = [NSSet setWithArray:[defaults allKeys]];
     else
         _managedProperties = [NSSet set];
-    _managedInstances = MGSWeakOrUnretainedHashTable();
+    _managedInstances = [NSHashTable weakObjectsHashTable];
 		
     [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
     defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
