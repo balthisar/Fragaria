@@ -193,7 +193,6 @@ NSString * const KMGSColourSchemeExt = @"plist";
         NSAlert *panel = self.saveController.alertPanel;
         
         [panel beginSheetModalForWindow:senderWindow completionHandler:^(NSModalResponse returnCode) {
-            NSLog(@"modalResponse=%ld", (long)returnCode);
             if (returnCode == NSAlertFirstButtonReturn) {
                 NSError *error;
                 [[NSFileManager defaultManager] removeItemAtPath:self.currentScheme.sourceFile error:&error];
