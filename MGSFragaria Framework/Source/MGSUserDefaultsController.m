@@ -19,6 +19,7 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
+@property (nonatomic, assign, readonly) NSArray <NSString *> *validAppearances;
 
 @end
 
@@ -35,7 +36,6 @@ static NSCountedSet *allNonGlobalProperties;
     NSHashTable *_managedInstances;
 }
 
-@synthesize groupID = _groupID;
 
 #pragma mark - Class Methods - Singleton Controllers
 
@@ -81,7 +81,7 @@ static NSCountedSet *allNonGlobalProperties;
  */
 - (BOOL)isGlobal
 {
-    return [_groupID isEqual:MGSUSERDEFAULTS_GLOBAL_ID];
+    return [self.groupID isEqual:MGSUSERDEFAULTS_GLOBAL_ID];
 }
 
 
@@ -152,18 +152,18 @@ static NSCountedSet *allNonGlobalProperties;
     if (_persistent == persistent) return;
     _persistent = persistent;
 
-    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.groupID];
+    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
     if (persistent) {
         // We weren't persistent, so make sure our current values are added
         // to user defaults, and then KVO on values to capture changes.
         defaultsDict = [self archiveForDefaultsDictionary:self.values];
-        [ud setObject:defaultsDict forKey:self.groupID];
+        [ud setObject:defaultsDict forKey:self.workingID];
         [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
     } else {
         // We're no longer persistent, so stop observing self.values
         // changes, and ensure values reflects last user defaults state.
         [udc removeObserver:self forKeyPath:groupKeyPath context:nil];
-        currentDict = [ud objectForKey:self.groupID];
+        currentDict = [ud objectForKey:self.workingID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         for (NSString *key in self.values) {
             if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
@@ -174,63 +174,40 @@ static NSCountedSet *allNonGlobalProperties;
 
 
 /**
- * @property groupID
+ *  @property validAppearances
  */
-+ (NSSet *)keyPathsForValuesAffectingGroupID
+- (NSArray <NSString *> *)validAppearances
 {
-    return [NSSet setWithArray:@[@"self.subgroupID"]];
-}
-- (NSString *)groupID
-{
-    return _groupID;
-}
+    NSMutableArray *appearances = [NSMutableArray arrayWithObject:NSAppearanceNameAqua];
 
-
-/**
- *  @property subgroupID
- */
-+ (NSSet *)keyPathsForValuesAffectingSubroupID
-{
-    return [NSSet setWithArray:@[@"self.appearanceSubgroups", @"self.mangedInstances.count"]];
-}
-- (NSString *)subgroupID
-{
-    return nil;
-    // TEMPORARY for changing groupID once things are added.
-    if ([self.managedInstances anyObject])
+    if (@available(macos 10.14, *))
     {
-        return @"test";
-    } else {
-        return nil;
-    }
-
-    // REAL stuff right here
-    if (self.appearanceSubgroups == MGSAppearanceNameUnmanaged)
-        return nil;
-
-    if ( @available(macos 10.14, *))
-    {
-        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
-        NSMutableArray *appearances = [[NSMutableArray alloc] init];
-
-        if (self.appearanceSubgroups & MGSAppearanceNameAqua)
-            [appearances addObject:NSAppearanceNameAqua];
         if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastAqua)
             [appearances addObject:NSAppearanceNameAccessibilityHighContrastAqua];
         if (self.appearanceSubgroups & MGSAppearanceNameDarkAqua)
             [appearances addObject:NSAppearanceNameDarkAqua];
         if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastDarkAqua)
             [appearances addObject:NSAppearanceNameAccessibilityHighContrastDarkAqua];
-
-        if (current) {
-            NSString *result = [current bestMatchFromAppearancesWithNames:appearances];
-            return result;
-        } else {
-            return nil;
-        }
     }
+    
+    return appearances;
+}
 
-    return nil;
+
+/**
+ *  @property workingID
+ */
+- (NSString *)workingID
+{
+    NSString *workingGroup = NSAppearanceNameAqua;
+    
+    if (@available(macos 10.14, *))
+    {
+        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
+        workingGroup = [current bestMatchFromAppearancesWithNames:self.validAppearances];
+    }
+    
+    return [NSString stringWithFormat:@"%@-%@", self.groupID, workingGroup];
 }
 
 
@@ -303,7 +280,7 @@ static NSCountedSet *allNonGlobalProperties;
     if ( @available(macos 10.14, *) )
         _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
     else
-        _appearanceSubgroups = MGSAppearanceNameUnmanaged;
+        _appearanceSubgroups = MGSAppearanceNameAqua;
 
     defaults = [MGSFragariaView defaultsDictionary];
 
@@ -315,12 +292,12 @@ static NSCountedSet *allNonGlobalProperties;
     _managedInstances = [NSHashTable weakObjectsHashTable];
 
     // Even if this item is not persistent, register with defaults system.
-    [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
+    [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] registerDefaults:defaults];
 
     // If this item *is* persistent, get the state of the defaults. If the
     // controller isn't persistent, it will be identical to what was just
     // registered.
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
+    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.workingID];
 
     // Populate self.values with the current user defaults. This proxy object
     // keeps values in memory, and if persistent writes them to defaults.
@@ -418,9 +395,9 @@ static NSCountedSet *allNonGlobalProperties;
     NSDictionary *currentDict, *defaultsValues;
     
 	// The only keypath we've registered, but let's check in case we accidentally something.
-	if ([[NSString stringWithFormat:@"values.%@", self.groupID] isEqual:keyPath])
+	if ([[NSString stringWithFormat:@"values.%@", self.workingID] isEqual:keyPath])
 	{
-        currentDict = [[NSUserDefaults standardUserDefaults] objectForKey:self.groupID];
+        currentDict = [[NSUserDefaults standardUserDefaults] objectForKey:self.workingID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         
         for (NSString *key in defaultsValues) {

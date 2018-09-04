@@ -15,15 +15,14 @@
  *  A bit field indicating which appearances a user defaults controller
  *  provides automatic support for. Although these are available to
  *  choose on macOS < 10.14, setting anything other than
- *  MGSAppearanceNameUnmanaged will have no effect on such systems.
+ *  MGSAppearanceNameAqua will have no effect on such systems.
  */
 typedef NS_OPTIONS(NSInteger, MGSSupportedAppearance)
 {
-    MGSAppearanceNameUnmanaged                         = 0,
-    MGSAppearanceNameAqua                              = 1 << 0,
-    MGSAppearanceNameAccessibilityHighContrastAqua     = 1 << 1,
-    MGSAppearanceNameDarkAqua                          = 1 << 2,
-    MGSAppearanceNameAccessibilityHighContrastDarkAqua = 1 << 3
+    MGSAppearanceNameAqua                              = 0,
+    MGSAppearanceNameAccessibilityHighContrastAqua     = 1 << 0,
+    MGSAppearanceNameDarkAqua                          = 1 << 1,
+    MGSAppearanceNameAccessibilityHighContrastDarkAqua = 1 << 2
 };
 
 

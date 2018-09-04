@@ -114,7 +114,11 @@
 
 /** Returns the unique identifier for this controller's group. */
 @property (nonatomic,strong,readonly) NSString *groupID;
-@property (nonatomic, assign, readonly) NSString *subgroupID;
+
+/** Returns the full, working ID for this controller's group, taking into
+ *  account the current appearance, if used.
+ */
+@property (nonatomic, assign, readonly) NSString *workingID;
 
 
 #pragma mark - Appearance Support

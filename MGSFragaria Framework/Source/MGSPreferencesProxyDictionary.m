@@ -14,14 +14,14 @@
 @interface MGSPreferencesProxyDictionary ()
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
-
-@property (nonatomic, assign) NSString *groupID;
-@property (nonatomic, assign) NSString *groupAndSubgroupID;
+@property (nonatomic, assign) NSString *workingID;
 
 @end
 
 
-@implementation MGSPreferencesProxyDictionary
+@implementation MGSPreferencesProxyDictionary {
+    NSString *_previousWorkingID;
+}
 
 
 #pragma mark - KVC
@@ -43,7 +43,7 @@
     
     if (self.controller.persistent)
     {
-        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.groupAndSubgroupID] setObject:value forKey:key];
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] setObject:value forKey:key];
     }
     [self didChangeValueForKey:key];
 }
@@ -56,7 +56,7 @@
 {
     if (self.controller.persistent)
     {
-        return [[MGSUserDefaults sharedUserDefaultsForGroupID:self.groupAndSubgroupID] objectForKey:key];
+        return [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] objectForKey:key];
     }
 
     return [self objectForKey:key];
@@ -75,14 +75,15 @@
     if ((self = [super init]))
     {
         self.controller = controller;
+        _previousWorkingID = nil;
 
         if (dictionary)
         {
-            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.groupID : [[NSMutableDictionary alloc] initWithDictionary:dictionary] }];
+            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.workingID : [[NSMutableDictionary alloc] initWithDictionary:dictionary] }];
         }
         else
         {
-            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.groupID : [NSMutableDictionary dictionaryWithCapacity:numItems] }];
+            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.workingID : [NSMutableDictionary dictionaryWithCapacity:numItems] }];
         }
     }
 
@@ -121,40 +122,28 @@
 
 
 /**
- *  @property groupID
+ *  @property workingID
  */
-- (NSString *)groupID
+- (NSString *)workingID
 {
-    return self.controller.groupID ?: MGSPREFERENCES_DEFAULT_ID;
-}
-
-
-/**
- *  @property groupAndSubgroupID
- */
-- (NSString *)groupAndSubgroupID
-{
-    NSString *fullID;
+    NSString *workingID = self.controller.workingID ?: MGSPREFERENCES_DEFAULT_ID;
     
-    if (self.controller.subgroupID)
-        fullID = [NSString stringWithFormat:@"%@_%@", self.groupID, self.controller.subgroupID];
-    else
-        fullID = self.groupID;
-    
-    if (!self.storage[fullID])
+    if (!self.storage[workingID] && _previousWorkingID)
     {
-        // If this key doesn't exist yet, take the settings from the current
+        // If this key doesn't exist yet, take the settings from the previous
         // key, and create the new key using these copied values.
-        NSMutableDictionary *newdict = [NSMutableDictionary dictionaryWithDictionary:self.storage[self.groupID]];
-        [self.storage setObject:newdict forKey:fullID];
+        NSMutableDictionary *newdict = [NSMutableDictionary dictionaryWithDictionary:self.storage[_previousWorkingID]];
+        [self.storage setObject:newdict forKey:workingID];
 
         // We will also register them as user defaults, in case our controller
         // is using us in persistent mode.
-        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.groupID];
-        [[MGSUserDefaults sharedUserDefaultsForGroupID:fullID] registerDefaults:defaults];
+        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] valueForKey:_previousWorkingID];
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:workingID] registerDefaults:defaults];
     }
     
-    return fullID;
+    _previousWorkingID = workingID;
+    
+    return workingID;
 }
 
 
@@ -187,7 +176,7 @@
  */
 - (NSUInteger)count
 {
-    NSDictionary *subdict = self.storage[self.groupAndSubgroupID];
+    NSDictionary *subdict = self.storage[self.workingID];
     return subdict.count;
 }
 
@@ -197,7 +186,7 @@
  */
 - (NSEnumerator *)keyEnumerator
 {
-    NSDictionary *subdict = self.storage[self.groupAndSubgroupID];
+    NSDictionary *subdict = self.storage[self.workingID];
     return subdict.keyEnumerator;
 }
 
@@ -207,7 +196,7 @@
  */
 - (id)objectForKey:(id)aKey
 {
-    id object = [self.storage[self.groupAndSubgroupID] objectForKey:aKey];
+    id object = [self.storage[self.workingID] objectForKey:aKey];
     if ([object isKindOfClass:[NSData class]])
     {
         object = [NSUnarchiver unarchiveObjectWithData:object];
@@ -222,7 +211,7 @@
  */
 - (void)removeObjectForKey:(id)aKey
 {
-    [self.storage[self.groupAndSubgroupID] removeObjectForKey:aKey];
+    [self.storage[self.workingID] removeObjectForKey:aKey];
 }
 
 
@@ -233,11 +222,11 @@
 {
     if ([anObject isKindOfClass:[NSFont class]] || [anObject isKindOfClass:[NSColor class]])
     {
-        [self.storage[self.groupAndSubgroupID] setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
+        [self.storage[self.workingID] setObject:[NSArchiver archivedDataWithRootObject:anObject] forKey:aKey];
     }
     else
     {
-        [self.storage[self.groupAndSubgroupID] setObject:anObject forKey:aKey];
+        [self.storage[self.workingID] setObject:anObject forKey:aKey];
     }
 }
 
