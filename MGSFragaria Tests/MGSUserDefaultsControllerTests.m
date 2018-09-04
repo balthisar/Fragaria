@@ -168,7 +168,11 @@
 	NSUInteger result1, result2, result3;
 	
 	MGSUserDefaultsController *controller = [MGSUserDefaultsController sharedControllerForGroupID:@"UnitTest"];
-	MGSUserDefaults *defaults = [MGSUserDefaults sharedUserDefaultsForGroupID:@"UnitTest"];
+    // MGSUserDefaultsController selects a MGSUserDefaultsController based on
+    // system appearance, so we can't assume that the groupID is the same.
+    // Instead, let's ask it what the workingID is, and get the MGSUserDefaults
+    // for that.
+	MGSUserDefaults *defaults = [MGSUserDefaults sharedUserDefaultsForGroupID:[controller workingID]];
 
     [controller addFragariaToManagedSet:self.view1];
     [controller addFragariaToManagedSet:self.view2];
