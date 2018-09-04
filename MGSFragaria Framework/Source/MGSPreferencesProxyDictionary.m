@@ -14,7 +14,9 @@
 @interface MGSPreferencesProxyDictionary ()
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
-@property (nonatomic, strong) NSString *groupAndSubgroupID;
+
+@property (nonatomic, assign) NSString *groupID;
+@property (nonatomic, assign) NSString *groupAndSubgroupID;
 
 @end
 
@@ -76,11 +78,11 @@
 
         if (dictionary)
         {
-            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.controller.groupID : [[NSMutableDictionary alloc] initWithDictionary:dictionary] }];
+            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.groupID : [[NSMutableDictionary alloc] initWithDictionary:dictionary] }];
         }
         else
         {
-            self.storage = [[NSMutableDictionary alloc] initWithCapacity:numItems];
+            self.storage = [[NSMutableDictionary alloc] initWithDictionary:@{ self.groupID : [NSMutableDictionary dictionaryWithCapacity:numItems] }];
         }
     }
 
@@ -107,7 +109,7 @@
 
 
 /*
- *  - initWithCapacity:
+ *  - initWithCapacity: (designated initializer)
  */
 - (instancetype)initWithCapacity:(NSUInteger)numItems
 {
@@ -119,27 +121,40 @@
 
 
 /**
+ *  @property groupID
+ */
+- (NSString *)groupID
+{
+    return self.controller.groupID ?: MGSPREFERENCES_DEFAULT_ID;
+}
+
+
+/**
  *  @property groupAndSubgroupID
  */
 - (NSString *)groupAndSubgroupID
 {
-    if (self.controller.subgroupID) {
-        // It's possible/likely that we've not been configured for the current
-        // subgroup; if this subgroup doesn't exist, take new defaults and
-        // values from the current settings.
-        NSString *fullID = [NSString stringWithFormat:@"%@_%@", self.controller.groupID, self.controller.subgroupID];
+    NSString *fullID;
+    
+    if (self.controller.subgroupID)
+        fullID = [NSString stringWithFormat:@"%@_%@", self.groupID, self.controller.subgroupID];
+    else
+        fullID = self.groupID;
+    
+    if (!self.storage[fullID])
+    {
+        // If this key doesn't exist yet, take the settings from the current
+        // key, and create the new key using these copied values.
+        NSMutableDictionary *newdict = [NSMutableDictionary dictionaryWithDictionary:self.storage[self.groupID]];
+        [self.storage setObject:newdict forKey:fullID];
 
-        if (!self.storage[fullID])
-        {
-            NSMutableDictionary *newdict = [NSMutableDictionary dictionaryWithDictionary:self.storage[self.controller.groupID]];  // [self.storage[self.controller.groupID] copy];
-            [self.storage setObject:newdict forKey:fullID];
-            NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.controller.groupID];
-            [[MGSUserDefaults sharedUserDefaultsForGroupID:fullID] registerDefaults:defaults];
-        }
-        return [NSString stringWithFormat:@"%@_%@", self.controller.groupID, self.controller.subgroupID];
-    } else {
-        return self.controller.groupID;
+        // We will also register them as user defaults, in case our controller
+        // is using us in persistent mode.
+        NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.groupID];
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:fullID] registerDefaults:defaults];
     }
+    
+    return fullID;
 }
 
 

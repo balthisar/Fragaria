@@ -11,11 +11,16 @@
 @class MGSUserDefaultsController;
 
 
+/** This macro defines the groupID that should correspond to the global group
+ *  for MGSUserDefaults and, by extension, MGSUserDefaultsController. */
+#define MGSPREFERENCES_DEFAULT_ID @"Uninitialized"
+
 /**
- *  An NSMutableDictionary subclass implemented by MGSUserDefaultsController so
- *  that it can persist keys in the user defaults system, if desired. Supports
- *  storage of multiple sets of options based on the controller's `subgroupID`
- *  property in the event that it changes.
+ *  An NSMutableDictionary subclass used by MGSUserDefaultsController that:
+ *  - can persist keys in the user defaults system, if desired.
+ *  - store multiple set of properties, controlled by the owning controller's
+ *    `subgroupID` property. For example, different sets of colors might be
+ *    stored for multiple view appearance modes.
  */
 @interface MGSPreferencesProxyDictionary : NSMutableDictionary
 
