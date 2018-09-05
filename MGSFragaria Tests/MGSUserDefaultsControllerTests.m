@@ -168,7 +168,7 @@
 	NSUInteger result1, result2, result3;
 	
 	MGSUserDefaultsController *controller = [MGSUserDefaultsController sharedControllerForGroupID:@"UnitTest"];
-	MGSUserDefaults *defaults = [MGSUserDefaults sharedUserDefaultsForGroupID:@"UnitTest"];
+    MGSUserDefaults *defaults = [MGSUserDefaults sharedUserDefaultsForGroupID:controller.workingID];
 
     [controller addFragariaToManagedSet:self.view1];
     [controller addFragariaToManagedSet:self.view2];
