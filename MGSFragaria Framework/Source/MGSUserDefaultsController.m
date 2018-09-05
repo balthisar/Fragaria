@@ -19,7 +19,9 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
+@property (nonatomic, strong, readwrite) id valuesStore;
 @property (nonatomic, strong, readonly) NSArray <NSString *> *validAppearances;
+@property (nonatomic, assign, readonly) NSString *workingID;
 
 @end
 
@@ -191,6 +193,24 @@ static NSCountedSet *allNonGlobalProperties;
 }
 
 
+/**
+ *  @property workingID
+ */
+- (NSString *)workingID
+{
+    NSString *workingGroup = NSAppearanceNameAqua;
+
+    if (@available(macos 10.14, *))
+    {
+        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
+        workingGroup = [current bestMatchFromAppearancesWithNames:self.validAppearances];
+    }
+
+    return [NSString stringWithFormat:@"%@-%@", self.groupID, workingGroup];
+}
+
+
+
 #pragma mark - Instance Methods
 
 
@@ -272,19 +292,20 @@ static NSCountedSet *allNonGlobalProperties;
     _managedInstances = [NSHashTable weakObjectsHashTable];
 
     // Even if this item is not persistent, register with defaults system.
-    [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
+    [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] registerDefaults:defaults];
 
     // If this item *is* persistent, get the state of the defaults. If the
     // controller isn't persistent, it will be identical to what was just
     // registered.
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
+    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.workingID];
     
     // Populate self.values with the current user defaults. This proxy object
     // keeps values in memory, and if persistent writes them to defaults.
     // However as we are a new instance and haven't set persistent yet,
     // these values won't be re-written to defaults.
     self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
-                                                                 dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
+                                                                 dictionary:[self unarchiveFromDefaultsDictionary:defaults]
+                                                              preferencesID:self.workingID];
 	
     // We probably should observe one of our managed fragarias for state
     // change, but they should only be changing based on the OS anyway, so
