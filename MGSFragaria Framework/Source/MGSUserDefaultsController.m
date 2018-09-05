@@ -19,9 +19,8 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
-@property (nonatomic, strong, readwrite) id valuesStore;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *valuesStore;
 @property (nonatomic, strong, readonly) NSArray <NSString *> *validAppearances;
-@property (nonatomic, assign, readonly) NSString *workingID;
 
 @end
 
@@ -151,18 +150,18 @@ static NSCountedSet *allNonGlobalProperties;
 	if (_persistent == persistent) return;
     _persistent = persistent;
 
-    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.groupID];
+    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
 	if (persistent) {
         // We weren't persistent, so make sure our current values are added
         // to user defaults, and then KVO on values to capture changes.
         defaultsDict = [self archiveForDefaultsDictionary:self.values];
-        [ud setObject:defaultsDict forKey:self.groupID];
+        [ud setObject:defaultsDict forKey:self.workingID];
 		[udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
 	} else {
         // We're no longer persistent, so stop observing self.values
         // changes, and ensure values reflects last user defaults state.
 		[udc removeObserver:self forKeyPath:groupKeyPath context:nil];
-        currentDict = [ud objectForKey:self.groupID];
+        currentDict = [ud objectForKey:self.workingID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         for (NSString *key in self.values) {
             if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
@@ -291,6 +290,8 @@ static NSCountedSet *allNonGlobalProperties;
 
     _managedInstances = [NSHashTable weakObjectsHashTable];
 
+    _valuesStore = [[NSMutableDictionary alloc] initWithCapacity:self.validAppearances.count];
+
     // Even if this item is not persistent, register with defaults system.
     [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] registerDefaults:defaults];
 
@@ -385,9 +386,9 @@ static NSCountedSet *allNonGlobalProperties;
     NSDictionary *currentDict, *defaultsValues;
     
 	// The only keypath we've registered, but let's check in case we accidentally something.
-	if ([[NSString stringWithFormat:@"values.%@", self.groupID] isEqual:keyPath])
+	if ([[NSString stringWithFormat:@"values.%@", self.workingID] isEqual:keyPath])
 	{
-        currentDict = [[NSUserDefaults standardUserDefaults] objectForKey:self.groupID];
+        currentDict = [[NSUserDefaults standardUserDefaults] objectForKey:self.workingID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         
         for (NSString *key in defaultsValues) {
@@ -453,6 +454,42 @@ static NSCountedSet *allNonGlobalProperties;
     }
 
     return destination;
+}
+
+
+/*
+ * - valuesStoreForWorkingID:
+ *   Get the values dictionary for the given workingID. If it doesn't exist,
+ *   it will be created.
+ */
+- (id)valuesStoreForWorkingID:(NSString *)workingID
+{
+    // Already exists, so return it as is.
+    if (self.valuesStore[workingID])
+        return self.valuesStore[workingID];
+
+    // Otherwise, create the new values instance from Fragaria's defaults.
+
+    id newValues;
+    NSDictionary *defaults = [MGSFragariaView defaultsDictionary];
+
+    // Even if this item is not persistent, register with defaults system.
+    [[MGSUserDefaults sharedUserDefaultsForGroupID:workingID] registerDefaults:defaults];
+
+    // If this item *is* persistent, get the state of the defaults. If the
+    // controller isn't persistent, it will be identical to what was just
+    // registered.
+    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:workingID];
+
+    // Populate values with the user defaults.
+    newValues = [[MGSPreferencesProxyDictionary alloc] initWithController:self
+                                                               dictionary:[self unarchiveFromDefaultsDictionary:defaults]
+                                                            preferencesID:self.workingID];
+
+    // Keep it around.
+    [self.valuesStore setObject:newValues forKey:workingID];
+
+    return newValues;
 }
 
 

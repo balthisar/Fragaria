@@ -116,6 +116,11 @@
 /** Returns the unique identifier for this controller's group. */
 @property (nonatomic,strong,readonly) NSString *groupID;
 
+/** Returns the current working ID, which takes into account the current
+    appearance.
+ */
+@property (nonatomic, assign, readonly) NSString *workingID;
+
 
 #pragma mark - Appearance Support
 
