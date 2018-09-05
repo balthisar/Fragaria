@@ -19,6 +19,7 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
+@property (nonatomic, strong, readonly) NSArray <NSString *> *validAppearances;
 
 @end
 
@@ -99,55 +100,6 @@ static NSCountedSet *allNonGlobalProperties;
 
 
 /*
- * - addFragariaToManagedSet:
- */
-- (void)addFragariaToManagedSet:(MGSFragariaView *)object
-{
-    MGSUserDefaultsController *shc;
-    
-    if (!allManagedInstances)
-        allManagedInstances = [NSHashTable weakObjectsHashTable];
-    if ([allManagedInstances containsObject:object])
-        [NSException raise:@"MGSUserDefaultsControllerClash" format:@"Trying "
-      "to manage Fragaria %@ with more than one MGSUserDefaultsController!", object];
-    
-    [self registerBindings:_managedProperties forFragaria:object];
-    
-    if (![self isGlobal]) {
-        shc = [MGSUserDefaultsController sharedController];
-        [shc registerBindings:shc.managedProperties forFragaria:object];
-    }
-    
-    [_managedInstances addObject:object];
-    [allManagedInstances addObject:object];
-}
-
-
-/*
- * - removeFragariaFromManagedSet:
- */
-- (void)removeFragariaFromManagedSet:(MGSFragariaView *)object
-{
-    MGSUserDefaultsController *shc;
-    
-    if (![_managedInstances containsObject:object]) {
-        NSLog(@"Attempted to remove Fragaria %@ from %@ but it was not "
-              "registered in the first place!", object, self);
-        return;
-    }
-    
-    [self unregisterBindings:_managedProperties forFragaria:object];
-    if (![self isGlobal]) {
-        shc = [MGSUserDefaultsController sharedController];
-        [shc unregisterBindings:shc.managedProperties forFragaria:object];
-    }
-    
-    [_managedInstances removeObject:object];
-    [allManagedInstances addObject:object];
-}
-
-
-/*
  *  @property managedProperties
  */
 - (void)setManagedProperties:(NSSet *)new
@@ -199,13 +151,15 @@ static NSCountedSet *allNonGlobalProperties;
 
     groupKeyPath = [NSString stringWithFormat:@"values.%@", self.groupID];
 	if (persistent) {
+        // We weren't persistent, so make sure our current values are added
+        // to user defaults, and then KVO on values to capture changes.
         defaultsDict = [self archiveForDefaultsDictionary:self.values];
         [ud setObject:defaultsDict forKey:self.groupID];
-        
 		[udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
 	} else {
+        // We're no longer persistent, so stop observing self.values
+        // changes, and ensure values reflects last user defaults state.
 		[udc removeObserver:self forKeyPath:groupKeyPath context:nil];
-
         currentDict = [ud objectForKey:self.groupID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         for (NSString *key in self.values) {
@@ -213,6 +167,79 @@ static NSCountedSet *allNonGlobalProperties;
                 [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
         }
 	}
+}
+
+
+/**
+ *  @property validAppearances
+ */
+- (NSArray <NSString *> *)validAppearances
+{
+    NSMutableArray *appearances = [NSMutableArray arrayWithObject:NSAppearanceNameAqua];
+
+    if (@available(macos 10.14, *))
+    {
+        if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastAqua)
+            [appearances addObject:NSAppearanceNameAccessibilityHighContrastAqua];
+        if (self.appearanceSubgroups & MGSAppearanceNameDarkAqua)
+            [appearances addObject:NSAppearanceNameDarkAqua];
+        if (self.appearanceSubgroups & MGSAppearanceNameAccessibilityHighContrastDarkAqua)
+            [appearances addObject:NSAppearanceNameAccessibilityHighContrastDarkAqua];
+    }
+
+    return appearances;
+}
+
+
+#pragma mark - Instance Methods
+
+
+/*
+ * - addFragariaToManagedSet:
+ */
+- (void)addFragariaToManagedSet:(MGSFragariaView *)object
+{
+    MGSUserDefaultsController *shc;
+
+    if (!allManagedInstances)
+        allManagedInstances = [NSHashTable weakObjectsHashTable];
+    if ([allManagedInstances containsObject:object])
+        [NSException raise:@"MGSUserDefaultsControllerClash" format:@"Trying "
+         "to manage Fragaria %@ with more than one MGSUserDefaultsController!", object];
+
+    [self registerBindings:_managedProperties forFragaria:object];
+
+    if (![self isGlobal]) {
+        shc = [MGSUserDefaultsController sharedController];
+        [shc registerBindings:shc.managedProperties forFragaria:object];
+    }
+
+    [_managedInstances addObject:object];
+    [allManagedInstances addObject:object];
+}
+
+
+/*
+ * - removeFragariaFromManagedSet:
+ */
+- (void)removeFragariaFromManagedSet:(MGSFragariaView *)object
+{
+    MGSUserDefaultsController *shc;
+
+    if (![_managedInstances containsObject:object]) {
+        NSLog(@"Attempted to remove Fragaria %@ from %@ but it was not "
+              "registered in the first place!", object, self);
+        return;
+    }
+
+    [self unregisterBindings:_managedProperties forFragaria:object];
+    if (![self isGlobal]) {
+        shc = [MGSUserDefaultsController sharedController];
+        [shc unregisterBindings:shc.managedProperties forFragaria:object];
+    }
+
+    [_managedInstances removeObject:object];
+    [allManagedInstances addObject:object];
 }
 
 
@@ -228,22 +255,46 @@ static NSCountedSet *allNonGlobalProperties;
 	if (!(self = [super init]))
         return self;
     
+    _groupID = groupID;
+
+    if ( @available(macos 10.14, *) )
+        _appearanceSubgroups = MGSAppearanceNameAqua|MGSAppearanceNameDarkAqua;
+    else
+        _appearanceSubgroups = MGSAppearanceNameAqua;
+
     defaults = [MGSFragariaView defaultsDictionary];
     
-    _groupID = groupID;
     if ([self isGlobal])
         _managedProperties = [NSSet setWithArray:[defaults allKeys]];
     else
         _managedProperties = [NSSet set];
+
     _managedInstances = [NSHashTable weakObjectsHashTable];
-		
+
+    // Even if this item is not persistent, register with defaults system.
     [[MGSUserDefaults sharedUserDefaultsForGroupID:groupID] registerDefaults:defaults];
+
+    // If this item *is* persistent, get the state of the defaults. If the
+    // controller isn't persistent, it will be identical to what was just
+    // registered.
     defaults = [[NSUserDefaults standardUserDefaults] valueForKey:groupID];
     
+    // Populate self.values with the current user defaults. This proxy object
+    // keeps values in memory, and if persistent writes them to defaults.
+    // However as we are a new instance and haven't set persistent yet,
+    // these values won't be re-written to defaults.
     self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
-      dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
+                                                                 dictionary:[self unarchiveFromDefaultsDictionary:defaults]];
 	
-	return self;
+    // We probably should observe one of our managed fragarias for state
+    // change, but they should only be changing based on the OS anyway, so
+    // this is a good hook into knowing when their appearance might change.
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(appearanceChanged:)
+                                                            name:@"AppleInterfaceThemeChangedNotification"
+                                                          object:nil];
+
+    return self;
 }
 
 
@@ -324,6 +375,15 @@ static NSCountedSet *allNonGlobalProperties;
                 [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
         }
 	}
+}
+
+
+/*
+ *  -appearanceChanged:
+ */
+- (void)appearanceChanged:(NSNotification *)notif
+{
+    NSLog(@"appearanceChanged");
 }
 
 
