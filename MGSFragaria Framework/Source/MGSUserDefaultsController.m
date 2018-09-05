@@ -19,6 +19,7 @@
 @interface MGSUserDefaultsController ()
 
 @property (nonatomic, strong, readwrite) id values;
+@property (nonatomic, strong, readwrite) NSString *observerKeyPath;
 @property (nonatomic, assign, readonly) NSArray <NSString *> *validAppearances;
 
 @end
@@ -147,22 +148,21 @@ static NSCountedSet *allNonGlobalProperties;
     NSDictionary *defaultsDict, *currentDict, *defaultsValues;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
-    NSString *groupKeyPath;
 
     if (_persistent == persistent) return;
     _persistent = persistent;
 
-    groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
+    self.observerKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
     if (persistent) {
         // We weren't persistent, so make sure our current values are added
         // to user defaults, and then KVO on values to capture changes.
         defaultsDict = [self archiveForDefaultsDictionary:self.values];
         [ud setObject:defaultsDict forKey:self.workingID];
-        [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
+        [udc addObserver:self forKeyPath:self.observerKeyPath options:NSKeyValueObservingOptionNew context:nil];
     } else {
         // We're no longer persistent, so stop observing self.values
         // changes, and ensure values reflects last user defaults state.
-        [udc removeObserver:self forKeyPath:groupKeyPath context:nil];
+        [udc removeObserver:self forKeyPath:self.observerKeyPath context:nil];
         currentDict = [ud objectForKey:self.workingID];
         defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
         for (NSString *key in self.values) {
@@ -409,9 +409,82 @@ static NSCountedSet *allNonGlobalProperties;
 }
 
 
+/*
+ *  - observeCorrectDefaultsControllerPath
+ *      Ensure that correct self.values are stored in NSUserDefaults, and then
+ *      begin observing the NSUserDefaultsController for changes to defaults
+ *      values.
+ *
+ */
+- (void)observeCorrectDefaultsControllerPath
+{
+    NSDictionary *defaultsDict = [self archiveForDefaultsDictionary:self.values];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
+
+    [ud setObject:defaultsDict forKey:self.workingID];
+    [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
+}
+
+
+/*
+ *  - unObserveCorrectDefaultsControllerPath
+ *
+ */
+- (void)unObserveCorrectDefaultsControllerPath
+{
+    NSDictionary *defaultsDict, *currentDict, *defaultsValues;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
+
+    if (self.persistent)
+    {
+        // We weren't persistent, so make sure our current values are added
+        // to user defaults, and then KVO on defaults controller to capture
+        // changes.
+        defaultsDict = [self archiveForDefaultsDictionary:self.values];
+        [ud setObject:defaultsDict forKey:self.workingID];
+        [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    }
+    else
+    {
+        // We're no longer persistent, so stop observing defaults changes,
+        // and ensure values reflects last user defaults state.
+        [udc removeObserver:self forKeyPath:groupKeyPath context:nil];
+        currentDict = [ud objectForKey:self.workingID];
+        defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
+        for (NSString *key in self.values)
+        {
+            if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
+                [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
+        }
+    }
+}
+
+
+/*
+ *  -appearanceChanged:
+ */
 - (void)appearanceChanged:(NSNotification *)notif
 {
     NSLog(@"appearanceChanged");
+
+    // When the appearance changes, my workingID will change. However, I need
+    // to tell the world. If I'm persistent, I have to stop observing defaults
+    // changes, then observe the new path. If not persistent, I need to
+    // do nothing, really, as the  proxy will point to new values. Do I have
+    // to redraw the views?
+
+    // Actually, we want to KVO our workingID. BEFORE the working ID changes,
+    // we want to stop observing the defaults, if observing. AFTER the change,
+    // we want to re-observe the defaults, if observing.
+
+    // OR, we start to tell our proxy its working ID, instead of letting the
+    // proxy poll us. Then WE have control over timing, and don't have to
+    // play KVO games to defeat it.
+
 }
 
 
