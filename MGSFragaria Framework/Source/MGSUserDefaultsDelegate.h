@@ -9,6 +9,7 @@
 
 @protocol MGSUserDefaultsDelegate
 
+@optional
 /** Ask the delegate to provide a dictionary of MGSFragariaView properties
  *  to be used for the given appearance. Properties not supplied by this
  *  delegate method will use the built-in defaults, so a complete list is
