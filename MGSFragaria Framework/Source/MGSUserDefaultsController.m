@@ -282,22 +282,8 @@ static NSCountedSet *allNonGlobalProperties;
     _managedInstances = [NSHashTable weakObjectsHashTable];
 
     _valuesStore = [[NSMutableDictionary alloc] initWithCapacity:self.validAppearances.count];
-
-    // Even if this item is not persistent, register with defaults system.
-    [[MGSUserDefaults sharedUserDefaultsForGroupID:self.workingID] registerDefaults:defaults];
-
-    // If this item *is* persistent, get the state of the defaults. If the
-    // controller isn't persistent, it will be identical to what was just
-    // registered.
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:self.workingID];
     
-    // Populate self.values with the current user defaults. This proxy object
-    // keeps values in memory, and if persistent writes them to defaults.
-    // However as we are a new instance and haven't set persistent yet,
-    // these values won't be re-written to defaults.
-    self.values = [[MGSPreferencesProxyDictionary alloc] initWithController:self
-                                                                 dictionary:[self unarchiveFromDefaultsDictionary:defaults]
-                                                              preferencesID:self.workingID];
+    self.values = [self valuesForGroupID:self.groupID appearanceName:[self currentAppearanceName]];
 	
     // We probably should observe one of our managed fragarias for state
     // change, but they should only be changing based on the OS anyway, so
