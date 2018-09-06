@@ -481,7 +481,7 @@ static NSCountedSet *allNonGlobalProperties;
     
     if (@available(macos 10.14, *))
     {
-        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
+        NSAppearance *current = [[NSApplication sharedApplication] effectiveAppearance];
         appearanceName = [current bestMatchFromAppearancesWithNames:self.validAppearances];
     }
     
