@@ -278,14 +278,17 @@ static NSCountedSet *allNonGlobalProperties;
     
     self.values = [self valuesForGroupID:self.groupID appearanceName:[self currentAppearanceName]];
 	
-    // We probably should observe one of our managed fragarias for state
-    // change, but they should only be changing based on the OS anyway, so
-    // this is a good hook into knowing when their appearance might change.
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                        selector:@selector(appearanceChanged:)
-                                                            name:@"AppleInterfaceThemeChangedNotification"
-                                                          object:nil];
-
+    // We probably should observe one of the managed Fragarias for state
+    // change, as it might be using other than the application appearance.
+    // However that's bad practice, and we may not have any Fragarias to
+    // observe, and the user might do something stupid like set up different
+    // appearances for different managed Fragarias. Instead, we'll be sane
+    // and follow the application appearance at all times.
+    if (@available(macos 10.14, *))
+    {
+        [NSApp addObserver:self forKeyPath:@"effectiveAppearance" options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionNew context:nil];
+    }
+    
     return self;
 }
 
@@ -298,6 +301,24 @@ static NSCountedSet *allNonGlobalProperties;
 - (instancetype)init
 {
 	return [self initWithGroupID:MGSUSERDEFAULTS_GLOBAL_ID];
+}
+
+
+/*
+ *  - dealloc
+ */
+- (void)dealloc
+{
+    if (@available(macos 10.14, *))
+    {
+        [NSApp removeObserver:self forKeyPath:@"effectiveAppearance"];
+    }
+    
+    if (_persistent)
+    {
+        NSString *groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
+        [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:groupKeyPath];
+    }
 }
 
 
@@ -355,7 +376,7 @@ static NSCountedSet *allNonGlobalProperties;
 {
     NSDictionary *currentDict, *defaultsValues;
     
-	// The only keypath we've registered, but let's check in case we accidentally something.
+	// KVO on the NSUserDefaultsController.
 	if ([[NSString stringWithFormat:@"values.%@", self.workingID] isEqual:keyPath])
 	{
         currentDict = [[NSUserDefaults standardUserDefaults] objectForKey:self.workingID];
@@ -367,15 +388,39 @@ static NSCountedSet *allNonGlobalProperties;
                 [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
         }
 	}
-}
+    
+    // KVO on NSApp.effectiveAppearance (macOS 10.14+)
+    if ([keyPath isEqualToString:@"effectiveAppearance"])
+    {
+        if (@available(macos 10.14, *))
+        {
+            NSString *groupKeyPath = [NSString stringWithFormat:@"values.%@", self.workingID];
+            NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
 
+            if (change[NSKeyValueChangeNotificationIsPriorKey])
+            {
+                NSLog(@"effectiveAppearance will change.");
+                
+                if (_persistent)
+                    [udc removeObserver:self forKeyPath:groupKeyPath];
+            }
+            else
+            {
+                NSLog(@"effectiveAppearance did change.");
+                
+                self.values = [self valuesForGroupID:self.groupID appearanceName:[self currentAppearanceName]];
 
-/*
- *  -appearanceChanged:
- */
-- (void)appearanceChanged:(NSNotification *)notif
-{
-    NSLog(@"appearanceChanged");
+                if (_persistent)
+                    [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
+                
+                for (MGSFragariaView *instance in self.managedInstances)
+                {
+                    [instance setNeedsDisplay:YES];
+                }
+            }
+        }
+    }
+    
 }
 
 
