@@ -14,8 +14,13 @@
  *  to be used for the given appearance. Properties not supplied by this
  *  delegate method will use the built-in defaults, so a complete list is
  *  not required.
+ *
+ *  Informally, the AppDelegate can adopt this method without setting the
+ *  controller's delegate. This can be useful for overriding initial
+ *  defaults that are applied during instantiation before a delegate can
+ *  be set.
  */
-- (NSDictionary *)defaultsForAppearanceName:(NSString *)appearanceName;
+- (NSDictionary *)defaultsForGroupID:(NSString*)groupID AppearanceName:(NSString *)appearanceName;
 
 
 @end

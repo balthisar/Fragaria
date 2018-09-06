@@ -471,9 +471,14 @@ static NSCountedSet *allNonGlobalProperties;
     MGSPreferencesProxyDictionary *newValues;
     NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDictionary]];
 
-    if (self.delegate && [self.delegate respondsToSelector:@selector(defaultsForAppearanceName:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(defaultsForGroupID:AppearanceName:)])
     {
-        [defaults addEntriesFromDictionary:[self.delegate defaultsForAppearanceName:appearanceName]];
+        [defaults addEntriesFromDictionary:[self.delegate defaultsForGroupID:groupID AppearanceName:appearanceName]];
+    }
+    else if ([NSApp delegate] && [[NSApp delegate] respondsToSelector:@selector(defaultsForGroupID:AppearanceName:)] )
+    {
+        NSObject <MGSUserDefaultsDelegate> *appDelegate = (NSObject <MGSUserDefaultsDelegate> *)[NSApp delegate];
+        [defaults addEntriesFromDictionary:[appDelegate defaultsForGroupID:groupID AppearanceName:appearanceName]];
     }
     
     // Even if this item is not persistent, register with defaults system.
