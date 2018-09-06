@@ -6,6 +6,7 @@
 //
 //
 #include <Cocoa/Cocoa.h>
+#include "MGSUserDefaultsDelegate.h"
 
 
 @class MGSFragariaView;
@@ -71,5 +72,13 @@ typedef NS_OPTIONS(NSInteger, MGSSupportedAppearance)
 @property (nonatomic,assign) MGSSupportedAppearance appearanceSubgroups;
 
 
-@end
+#pragma mark - Optional Properties and Methods
+/// @name Optional Properties and Methods
+@optional
 
+/** Specifies a delegate for this controller.
+ */
+@property (nonatomic,assign) NSObject <MGSUserDefaultsDelegate> *delegate;
+
+
+@end

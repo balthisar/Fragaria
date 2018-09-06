@@ -197,17 +197,8 @@ static NSCountedSet *allNonGlobalProperties;
  */
 - (NSString *)workingID
 {
-    NSString *workingGroup = NSAppearanceNameAqua;
-
-    if (@available(macos 10.14, *))
-    {
-        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
-        workingGroup = [current bestMatchFromAppearancesWithNames:self.validAppearances];
-    }
-
-    return [NSString stringWithFormat:@"%@-%@", self.groupID, workingGroup];
+    return [self workingIDforGroupID:self.groupID appearanceName:[self currentAppearanceName]];
 }
-
 
 
 #pragma mark - Instance Methods
@@ -458,36 +449,69 @@ static NSCountedSet *allNonGlobalProperties;
 
 
 /*
- * - valuesStoreForWorkingID:
- *   Get the values dictionary for the given workingID. If it doesn't exist,
- *   it will be created.
+ * - currentAppearanceName
  */
-- (id)valuesStoreForWorkingID:(NSString *)workingID
+- (NSString *)currentAppearanceName
 {
-    // Already exists, so return it as is.
-    if (self.valuesStore[workingID])
-        return self.valuesStore[workingID];
+    NSString *appearanceName = NSAppearanceNameAqua;
+    
+    if (@available(macos 10.14, *))
+    {
+        NSAppearance *current = [self.managedInstances anyObject].effectiveAppearance;
+        appearanceName = [current bestMatchFromAppearancesWithNames:self.validAppearances];
+    }
+    
+    return appearanceName;
+}
 
-    // Otherwise, create the new values instance from Fragaria's defaults.
+/*
+ * - workingIDforGroupID:appearanceName
+ */
+- (NSString *)workingIDforGroupID:(NSString *)groupID appearanceName:(NSString *)appearanceName
+{
+    return [NSString stringWithFormat:@"%@_%@", groupID, appearanceName];
+}
 
-    id newValues;
-    NSDictionary *defaults = [MGSFragariaView defaultsDictionary];
+/*
+ * - valuesForGroupID:appearanceName:
+ *   Get the values dictionary for the given workingID.
+ *   - If it doesn't exist, then it will be created.
+ *   - If there's a delegate adopting `defaultsForAppearanceName`, then it
+ *     can supply default properties;
+ *   - otherwise the MGSFragariaView defaults will be used.
+ *   - In either case, if user defaults exist, they will be applied on top
+ *     of default values.
+ */
+- (id)valuesForGroupID:(NSString *)groupID appearanceName:(NSString *)appearanceName
+{
+    NSString *newWorkingID = [self workingIDforGroupID:groupID appearanceName:appearanceName];
+    
+    if (self.valuesStore[newWorkingID])
+        return self.valuesStore[newWorkingID];
 
+    MGSPreferencesProxyDictionary *newValues;
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDictionary]];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(defaultsForAppearanceName:)])
+    {
+        [defaults addEntriesFromDictionary:[self.delegate defaultsForAppearanceName:appearanceName]];
+    }
+    
     // Even if this item is not persistent, register with defaults system.
-    [[MGSUserDefaults sharedUserDefaultsForGroupID:workingID] registerDefaults:defaults];
+    [[MGSUserDefaults sharedUserDefaultsForGroupID:newWorkingID] registerDefaults:defaults];
 
     // If this item *is* persistent, get the state of the defaults. If the
     // controller isn't persistent, it will be identical to what was just
     // registered.
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:workingID];
+    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:newWorkingID];
 
     // Populate values with the user defaults.
     newValues = [[MGSPreferencesProxyDictionary alloc] initWithController:self
                                                                dictionary:[self unarchiveFromDefaultsDictionary:defaults]
-                                                            preferencesID:self.workingID];
+                                                            preferencesID:newWorkingID];
 
     // Keep it around.
-    [self.valuesStore setObject:newValues forKey:workingID];
+    [self.valuesStore setObject:newValues forKey:newWorkingID];
 
     return newValues;
 }

@@ -119,7 +119,15 @@
 /** Returns the current working ID, which takes into account the current
     appearance.
  */
-@property (nonatomic, assign, readonly) NSString *workingID;
+@property (nonatomic,assign,readonly) NSString *workingID;
+
+
+#pragma mark - Delegate Support
+
+
+/** Specify a delegate for this controller.
+ */
+@property (nonatomic,assign) NSObject <MGSUserDefaultsDelegate> *delegate;
 
 
 #pragma mark - Appearance Support
