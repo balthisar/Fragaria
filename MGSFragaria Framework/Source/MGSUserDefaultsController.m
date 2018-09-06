@@ -432,7 +432,7 @@ static NSCountedSet *allNonGlobalProperties;
  */
 - (NSString *)currentAppearanceName
 {
-    NSString *appearanceName = NSAppearanceNameAqua;
+    NSString *appearanceName;
     
     if (@available(macos 10.14, *))
     {
@@ -440,7 +440,7 @@ static NSCountedSet *allNonGlobalProperties;
         appearanceName = [current bestMatchFromAppearancesWithNames:self.validAppearances];
     }
     
-    return appearanceName;
+    return appearanceName ?: NSAppearanceNameAqua;
 }
 
 /*
