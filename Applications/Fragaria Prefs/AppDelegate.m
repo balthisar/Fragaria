@@ -369,7 +369,7 @@
 
 
 /*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
-	makeSyntaxErrors
+    makeSyntaxErrors
         Demonstrate several different means of creating and adding
         syntax errors to Fragaria. Obviously these syntax errors are
         static, and they only make real sense when used with the
@@ -428,5 +428,27 @@
     NSBeep();
 }
 
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*
+    defaultsForGroupID:appearanceName:
+        Informally adopt <MGSUserDefaultsDelegate>. Although we can
+        formally register a delegate, we create the initial instance
+        before we can set a delegate, so the controller will default
+        to asking the AppDelegate anyway.
+ *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+- (NSDictionary *)defaultsForGroupID:(NSString *)groupID AppearanceName:(NSString *)appearanceName {
+    
+    NSDictionary *result = nil;
+    
+    if ([groupID isEqualToString:@"bottomWindowGroup"])
+    {
+    // The normal default is to soft-wrap text. Let's override that.
+        result = @{
+                   MGSFragariaDefaultsLineWrap : @(NO)
+                   };
+    }
+    
+    return result;
+}
 
 @end
