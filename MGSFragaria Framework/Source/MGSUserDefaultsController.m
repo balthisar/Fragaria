@@ -142,7 +142,7 @@ static NSCountedSet *allNonGlobalProperties;
  */
 - (void)setPersistent:(BOOL)persistent
 {
-    NSDictionary *defaultsDict, *currentDict, *defaultsValues;
+    NSDictionary *defaultsDict;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
     NSString *groupKeyPath;
@@ -158,15 +158,8 @@ static NSCountedSet *allNonGlobalProperties;
         [ud setObject:defaultsDict forKey:self.workingID];
 		[udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
 	} else {
-        // We're no longer persistent, so stop observing self.values
-        // changes, and ensure values reflects last user defaults state.
+        // We're no longer persistent, so stop observing self.values.
 		[udc removeObserver:self forKeyPath:groupKeyPath context:nil];
-        currentDict = [ud objectForKey:self.workingID];
-        defaultsValues = [self unarchiveFromDefaultsDictionary:currentDict];
-        for (NSString *key in self.values) {
-            if (![[self.values valueForKey:key] isEqual:[defaultsValues valueForKey:key]])
-                [self.values setValue:[defaultsValues valueForKey:key] forKey:key];
-        }
 	}
 }
 
