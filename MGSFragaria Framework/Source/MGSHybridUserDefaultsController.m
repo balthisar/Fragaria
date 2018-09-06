@@ -174,4 +174,19 @@
 }
 
 
+/*
+ * @property appearanceSubgroups
+ */
+- (MGSSupportedAppearance)appearanceSubgroups
+{
+    return [[MGSUserDefaultsController sharedControllerForGroupID:self.groupID] appearanceSubgroups];
+}
+
+- (void)setAppearanceSubgroups:(MGSSupportedAppearance)appearanceSubgroups
+{
+    [[MGSUserDefaultsController sharedControllerForGroupID:self.groupID] setAppearanceSubgroups:appearanceSubgroups];
+    [[MGSUserDefaultsController sharedController] setAppearanceSubgroups:appearanceSubgroups];
+}
+
+
 @end

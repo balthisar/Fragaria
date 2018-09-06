@@ -18,6 +18,11 @@
  *  All of the properties are read-only, and consist of the union of the
  *  respective properties of the current global sharedController and the
  *  specified groupID.
+ *
+ *  Delegate and Protocol Adoption
+ *  Note that this controller does NOT support a delegate directly. If you
+ *  wish to adopt <MGSUserDefaultsDelegate>, then set a delegate directly on
+ *  the underlying sharedControllerForGroupID: and/or sharedController.
  **/
 
 @interface MGSHybridUserDefaultsController : NSObject <MGSUserDefaultsController>
