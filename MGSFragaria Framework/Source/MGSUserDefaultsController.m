@@ -342,7 +342,7 @@ static NSCountedSet *allNonGlobalProperties;
 - (void)registerBindings:(NSSet *)propertySet forFragaria:(MGSFragariaView *)fragaria
 {
     for (NSString *key in propertySet) {
-        [fragaria bind:key toObject:self.values withKeyPath:key options:nil];
+        [fragaria bind:key toObject:self withKeyPath:[NSString stringWithFormat:@"values.%@", key] options:nil];
     }
 }
 
@@ -364,7 +364,7 @@ static NSCountedSet *allNonGlobalProperties;
 - (void)unregisterBindings:(NSSet *)propertySet forFragaria:(MGSFragariaView *)fragaria
 {
     for (NSString *key in propertySet) {
-        [fragaria unbind:key];
+        [fragaria unbind:[NSString stringWithFormat:@"values.%@", key]];
     }
 }
 
