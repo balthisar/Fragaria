@@ -51,7 +51,7 @@
     {
         if ([group.managedProperties containsObject:key])
         {
-            [group.values setValue:value forKey:key];
+            [group setValue:value forKeyPath:[NSString stringWithFormat:@"values.%@", key]];
         }
         if ([global.managedProperties containsObject:key])
         {
@@ -76,7 +76,7 @@
     {
         if ([group.managedProperties containsObject:key])
         {
-            return [group.values valueForKey:key];
+            return [group valueForKeyPath:[NSString stringWithFormat:@"values.%@",key]];
         }
         if ([global.managedProperties containsObject:key])
         {
