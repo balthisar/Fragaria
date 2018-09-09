@@ -399,24 +399,15 @@ static NSCountedSet *allNonGlobalProperties;
 
             if (change[NSKeyValueChangeNotificationIsPriorKey])
             {
-                NSLog(@"effectiveAppearance will change.");
-                
                 if (_persistent)
                     [udc removeObserver:self forKeyPath:groupKeyPath];
             }
             else
             {
-                NSLog(@"effectiveAppearance did change.");
-                
                 self.values = [self valuesForGroupID:self.groupID appearanceName:[self currentAppearanceName]];
 
                 if (_persistent)
                     [udc addObserver:self forKeyPath:groupKeyPath options:NSKeyValueObservingOptionNew context:nil];
-                
-                for (MGSFragariaView *instance in self.managedInstances)
-                {
-                    [instance setNeedsDisplay:YES];
-                }
             }
         }
     }
