@@ -14,6 +14,7 @@
 @interface MGSPreferencesProxyDictionary ()
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
+@property (nonatomic,strong,readwrite) NSString *preferencesID;
 
 @end
 
@@ -40,7 +41,7 @@
     
     if (self.controller.persistent)
     {
-        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.controller.groupID] setObject:value forKey:key];
+        [[MGSUserDefaults sharedUserDefaultsForGroupID:self.preferencesID] setObject:value forKey:key];
     }
     [self didChangeValueForKey:key];
 }
@@ -51,12 +52,18 @@
  */
 - (id)valueForKey:(NSString *)key
 {
+    id result;
     if (self.controller.persistent)
     {
-        return [[MGSUserDefaults sharedUserDefaultsForGroupID:self.controller.groupID] objectForKey:key];
+        result = [[MGSUserDefaults sharedUserDefaultsForGroupID:self.preferencesID] objectForKey:key];
+        [self setObject:result forKey:key]; // Keep consistent with preferences.
+    }
+    else
+    {
+        result = [self objectForKey:key];
     }
 
-    return [self objectForKey:key];
+    return result;
 }
 
 
@@ -64,10 +71,13 @@
 
 
 /*
- *  - initWithController:dictionary:capacity
+ *  - initWithController:dictionary:capacity:preferencesID:
  *    The pseudo-designated initializer for the subclass.
  */
-- (instancetype)initWithController:(MGSUserDefaultsController *)controller dictionary:(NSDictionary *)dictionary capacity:(NSUInteger)numItems
+- (instancetype)initWithController:(MGSUserDefaultsController *)controller
+                        dictionary:(NSDictionary *)dictionary
+                          capacity:(NSUInteger)numItems
+                     preferencesID:(NSString *)preferencesID
 {
     if ((self = [super init]))
     {
@@ -80,10 +90,30 @@
             self.storage = [[NSMutableDictionary alloc] initWithCapacity:numItems];
         }
 
-        self.controller = controller;
+        _controller = controller;
+        _preferencesID = preferencesID;
     }
 
     return self;
+}
+
+/*
+ *  - initWithController:dictionary:preferencesID:
+ */
+- (instancetype)initWithController:(MGSUserDefaultsController *)controller
+                        dictionary:(NSDictionary *)dictionary
+                     preferencesID:(NSString *)preferencesID
+{
+    return [self initWithController:controller dictionary:dictionary capacity:1 preferencesID:preferencesID ?: controller.groupID];
+}
+
+
+/*
+ *  - initWithController:dictionary:capacity
+ */
+- (instancetype)initWithController:(MGSUserDefaultsController *)controller dictionary:(NSDictionary *)dictionary capacity:(NSUInteger)numItems
+{
+    return [self initWithController:controller dictionary:dictionary capacity:numItems preferencesID:controller.groupID];
 }
 
 
@@ -107,6 +137,7 @@
 
 /*
  *  - initWithCapacity:
+ *    The actual designated initializer for this class.
  */
 - (instancetype)initWithCapacity:(NSUInteger)numItems
 {

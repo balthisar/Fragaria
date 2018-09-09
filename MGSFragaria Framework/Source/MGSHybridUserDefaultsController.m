@@ -51,7 +51,7 @@
     {
         if ([group.managedProperties containsObject:key])
         {
-            [group.values setValue:value forKey:key];
+            [group setValue:value forKeyPath:[NSString stringWithFormat:@"values.%@", key]];
         }
         if ([global.managedProperties containsObject:key])
         {
@@ -76,7 +76,7 @@
     {
         if ([group.managedProperties containsObject:key])
         {
-            return [group.values valueForKey:key];
+            return [group valueForKeyPath:[NSString stringWithFormat:@"values.%@",key]];
         }
         if ([global.managedProperties containsObject:key])
         {
@@ -171,6 +171,21 @@
     NSSet *groupSet = [[MGSUserDefaultsController sharedControllerForGroupID:self.groupID] managedProperties];
     NSSet *globalSet = [[MGSUserDefaultsController sharedController] managedProperties];
     return [groupSet setByAddingObjectsFromSet:globalSet];
+}
+
+
+/*
+ * @property appearanceSubgroups
+ */
+- (MGSSupportedAppearance)appearanceSubgroups
+{
+    return [[MGSUserDefaultsController sharedControllerForGroupID:self.groupID] appearanceSubgroups];
+}
+
+- (void)setAppearanceSubgroups:(MGSSupportedAppearance)appearanceSubgroups
+{
+    [[MGSUserDefaultsController sharedControllerForGroupID:self.groupID] setAppearanceSubgroups:appearanceSubgroups];
+    [[MGSUserDefaultsController sharedController] setAppearanceSubgroups:appearanceSubgroups];
 }
 
 

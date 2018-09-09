@@ -478,7 +478,7 @@ NSString * const KMGSColourSchemeExt = @"plist";
     NSError *e;
     NSArray *fileArray = [fileManager contentsOfDirectoryAtURL:directory includingPropertiesForKeys:@[] options:0 error:&e];
     if (!fileArray) {
-        NSLog(@"failed to add color schemes from %@; error %@", path, e);
+//        NSLog(@"failed to add color schemes from %@; error %@", path, e);
         return;
     }
 
