@@ -30,6 +30,7 @@
 - (void)setValue:(id)value forKey:(NSString *)key
 {
     [self willChangeValueForKey:key];
+    [self.controller willChangeValueForKey:@"values"];
     if (value)
     {
         [self setObject:value forKey:key];
@@ -44,6 +45,7 @@
         [[MGSUserDefaults sharedUserDefaultsForGroupID:self.preferencesID] setObject:value forKey:key];
     }
     [self didChangeValueForKey:key];
+    [self.controller didChangeValueForKey:@"values"];
 }
 
 
