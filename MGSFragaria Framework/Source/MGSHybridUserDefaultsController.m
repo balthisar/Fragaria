@@ -35,9 +35,33 @@
     {
         self.controller = controller;
     }
+    MGSUserDefaultsController *group = [MGSUserDefaultsController sharedControllerForGroupID:self.controller.groupID];
+    MGSUserDefaultsController *global = [MGSUserDefaultsController sharedController];
+
+    for (NSString *property in group.managedProperties)
+        [group addObserver:self forKeyPath:[NSString stringWithFormat:@"values.%@", property] options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionNew context:@"values_context"];
+
+    for (NSString *property in global.managedProperties)
+        [global addObserver:self forKeyPath:[NSString stringWithFormat:@"values.%@", property] options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionNew context:@"values_context"];
 
     return self;
 }
+
+
+/*
+ * - dealloc
+ */
+- (void)dealloc
+{
+    MGSUserDefaultsController *group = [MGSUserDefaultsController sharedControllerForGroupID:self.controller.groupID];
+    MGSUserDefaultsController *global = [MGSUserDefaultsController sharedController];
+    for (NSString *property in group.managedProperties)
+        [group removeObserver:self forKeyPath:[NSString stringWithFormat:@"values.%@", property]];
+    
+    for (NSString *property in global.managedProperties)
+        [global removeObserver:self forKeyPath:[NSString stringWithFormat:@"values.%@", property]];
+}
+
 
 /*
  * - setValue:forKey:
@@ -55,7 +79,7 @@
         }
         if ([global.managedProperties containsObject:key])
         {
-            [global.values setValue:value forKey:key];
+            [global setValue:value forKeyPath:[NSString stringWithFormat:@"values.%@", key]];
         }
         return;
     }
@@ -80,7 +104,7 @@
         }
         if ([global.managedProperties containsObject:key])
         {
-            return [global.values valueForKey:key];
+            return [global valueForKeyPath:[NSString stringWithFormat:@"values.%@",key]];
         }
     }
 
@@ -96,6 +120,23 @@
     return [self.controller.managedProperties allObjects];
 }
 
+
+/*
+ * - observeValueForKeyPath:ofObject:change:context:
+ *   We must monitor our nested controllers for changes to their properties,
+ *   so that we can report that we've changed, too.
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if (context == @"values_context")
+    {
+        NSString *path = [keyPath componentsSeparatedByString:@"."][1];
+        if (change[NSKeyValueChangeNotificationIsPriorKey])
+            [self.controller.values willChangeValueForKey:path];
+        else
+            [self.controller.values didChangeValueForKey:path];
+    }
+}
 
 
 @end
