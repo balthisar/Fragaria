@@ -113,7 +113,7 @@ NSString * const MGSFragariaDefaultsColoursVariables =    @"coloursVariables";
 #define ARCHIVED_OBJECT(obj) [NSArchiver archivedDataWithRootObject:obj]
 
 /*
- *  + fragariaDefaultsDictionary
+ *  + defaultsDictionary
  */
 + (NSDictionary *)defaultsDictionary
 {
@@ -190,6 +190,87 @@ NSString * const MGSFragariaDefaultsColoursVariables =    @"coloursVariables";
 		 MGSFragariaDefaultsColoursVariables : @YES,
     };
 }
+
+
+/*
+ *  + defaultsDictionary
+ */
++ (NSDictionary *)defaultsDarkDictionary
+{
+    return @{
+             MGSFragariaDefaultsIsSyntaxColoured : @YES,
+             MGSFragariaDefaultsSyntaxDefinitionName : [[MGSSyntaxController class] standardSyntaxDefinitionName],
+             MGSFragariaDefaultsColoursMultiLineStrings : @NO,
+             MGSFragariaDefaultsColoursOnlyUntilEndOfLine : @YES,
+             
+             MGSFragariaDefaultsAutoCompleteDelay : @1.0f,
+             MGSFragariaDefaultsAutoCompleteEnabled : @NO,
+             MGSFragariaDefaultsAutoCompleteWithKeywords : @YES,
+             MGSFragariaDefaultsAutoCompleteDisableSpaceEnter : @NO,
+             
+             MGSFragariaDefaultsCurrentLineHighlightColour : ARCHIVED_COLOR(0.0f,0.0f,0.0f),
+             MGSFragariaDefaultsHighlightsCurrentLine : @NO,
+             
+             MGSFragariaDefaultsShowsGutter : @YES,
+             MGSFragariaDefaultsMinimumGutterWidth : @40,
+             MGSFragariaDefaultsShowsLineNumbers : @YES,
+             MGSFragariaDefaultsStartingLineNumber : @1,
+             MGSFragariaDefaultsGutterFont : ARCHIVED_OBJECT([NSFont userFixedPitchFontOfSize:11]),
+             MGSFragariaDefaultsGutterTextColour : ARCHIVED_OBJECT([NSColor disabledControlTextColor]),
+             
+             MGSFragariaDefaultsShowsSyntaxErrors : @YES,
+             MGSFragariaDefaultsShowsIndividualErrors : @NO,
+             MGSFragariaDefaultsDefaultErrorHighlightingColor : ARCHIVED_COLOR(0.4f, 0.4f, 0.4f),
+             
+             MGSFragariaDefaultsTabWidth : @4,
+             MGSFragariaDefaultsIndentWidth : @4,
+             MGSFragariaDefaultsUseTabStops : @YES,
+             MGSFragariaDefaultsIndentWithSpaces : @NO,
+             MGSFragariaDefaultsIndentBracesAutomatically : @YES,
+             MGSFragariaDefaultsIndentNewLinesAutomatically : @YES,
+             MGSFragariaDefaultsLineHeightMultiple : @(0.0),
+             
+             MGSFragariaDefaultsInsertClosingBraceAutomatically : @NO,
+             MGSFragariaDefaultsInsertClosingParenthesisAutomatically : @NO,
+             MGSFragariaDefaultsShowsMatchingBraces : @YES,
+             
+             MGSFragariaDefaultsPageGuideColumn : @80,
+             MGSFragariaDefaultsShowsPageGuide : @NO,
+             MGSFragariaDefaultsLineWrap : @YES,
+             MGSFragariaDefaultsLineWrapsAtPageGuide : @NO,
+             MGSFragariaDefaultsShowsInvisibleCharacters : @NO,
+             MGSFragariaDefaultsTextInvisibleCharactersColour : ARCHIVED_COLOR(0.905882f,0.905882f,0.905882f),
+             
+             MGSFragariaDefaultsTextColor : ARCHIVED_COLOR(1.0f,1.0f,1.0f),
+             MGSFragariaDefaultsBackgroundColor : ARCHIVED_COLOR(0.0f,0.0f,0.0f),
+             MGSFragariaDefaultsTextFont : ARCHIVED_OBJECT([NSFont userFixedPitchFontOfSize:11]),
+             
+             MGSFragariaDefaultsHasVerticalScroller : @YES,
+             MGSFragariaDefaultsInsertionPointColor : ARCHIVED_COLOR(1.0f,1.0f,1.0f),
+             MGSFragariaDefaultsScrollElasticityDisabled : @NO,
+             
+             MGSFragariaDefaultsColourForAutocomplete : ARCHIVED_COLOR(0.84f,0.41f,0.006f),
+             MGSFragariaDefaultsColourForAttributes : ARCHIVED_COLOR(0.5f,0.5f,0.2f),
+             MGSFragariaDefaultsColourForCommands : ARCHIVED_COLOR(0.031f,0.0f,0.855f),
+             MGSFragariaDefaultsColourForComments : ARCHIVED_COLOR(0.254902f,0.8f,0.270588f),
+             MGSFragariaDefaultsColourForInstructions : ARCHIVED_COLOR(0.737f,0.0f,0.647f),
+             MGSFragariaDefaultsColourForKeywords : ARCHIVED_COLOR(0.827451f,0.094118f,0.580392f),
+             MGSFragariaDefaultsColourForNumbers : ARCHIVED_COLOR(0.466667f,0.427451f,1.0f),
+             MGSFragariaDefaultsColourForStrings : ARCHIVED_COLOR(1.0f,0.172549f,0.219608f),
+             MGSFragariaDefaultsColourForVariables : ARCHIVED_COLOR(0.73f,0.0f,0.74f),
+             
+             MGSFragariaDefaultsColoursAttributes : @YES,
+             MGSFragariaDefaultsColoursAutocomplete : @NO,
+             MGSFragariaDefaultsColoursCommands : @YES,
+             MGSFragariaDefaultsColoursComments : @YES,
+             MGSFragariaDefaultsColoursInstructions : @YES,
+             MGSFragariaDefaultsColoursKeywords : @YES,
+             MGSFragariaDefaultsColoursNumbers : @YES,
+             MGSFragariaDefaultsColoursStrings : @YES,
+             MGSFragariaDefaultsColoursVariables : @YES,
+             };
+}
+
 
 
 #pragma mark - Manual Management Support

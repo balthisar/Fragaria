@@ -507,6 +507,12 @@ static NSCountedSet *allNonGlobalProperties;
     MGSPreferencesProxyDictionary *newValues;
     NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDictionary]];
 
+    if (@available(macos 10.14, *))
+    {
+        if ([@[NSAppearanceNameDarkAqua, NSAppearanceNameAccessibilityHighContrastDarkAqua] containsObject:appearanceName])
+            defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDarkDictionary]];
+    }
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(defaultsForGroupID:AppearanceName:)])
     {
         [defaults addEntriesFromDictionary:[self.delegate defaultsForGroupID:groupID AppearanceName:appearanceName]];
