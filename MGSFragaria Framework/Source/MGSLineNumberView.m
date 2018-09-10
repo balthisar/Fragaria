@@ -84,7 +84,7 @@ typedef enum {
         _fragaria = fragaria;
         
         _showsLineNumbers = YES;
-        _backgroundColor = [NSColor controlColor];
+        _backgroundColor = [NSColor controlBackgroundColor];
         _minimumWidth = 40;
         
         _font = [NSFont userFixedPitchFontOfSize:11];
@@ -437,7 +437,7 @@ typedef enum {
     NSRectFill(bounds);
     
     borderColor = [self.backgroundColor blendedColorWithFraction:.5 ofColor:self.clientView.backgroundColor];
-    dotColor = [borderColor blendedColorWithFraction:(2.0*2.0/3.0)-.94 ofColor:[NSColor blackColor]];
+    dotColor = [NSColor darkGrayColor];
     
     dottedLine = [NSBezierPath bezierPath];
     [dottedLine moveToPoint:NSMakePoint(bounds.size.width-0.5, 0)];
