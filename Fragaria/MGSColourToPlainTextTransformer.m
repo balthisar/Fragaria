@@ -36,18 +36,20 @@
 - (id)transformedValue:(id)col
 {
     NSColor *nc;
-    NSMutableString *tmp;
+    NSMutableString *tmp = [NSMutableString string];
     
-    nc = [col colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-    if (!nc) {
+    if ((nc = [col colorUsingColorSpaceName:NSNamedColorSpace])) {
+        [tmp appendFormat:@"%@ %@", [col catalogNameComponent], [col colorNameComponent]];
+        
+    } else if ((nc = [col colorUsingColorSpaceName:NSCalibratedRGBColorSpace])) {
+        [tmp appendFormat:@"%lf %lf %lf", nc.redComponent, nc.greenComponent, nc.blueComponent];
+        if (nc.alphaComponent != 1.0)
+            [tmp appendFormat:@" %lf", nc.alphaComponent];
+            
+    } else {
         NSLog(@"MGSStringFromColor: can't convert %@, returning red", col);
         return @"1.0 0.0 0.0";
     }
-    
-    tmp = [NSMutableString string];
-    [tmp appendFormat:@"%lf %lf %lf", nc.redComponent, nc.greenComponent, nc.blueComponent];
-    if (nc.alphaComponent != 1.0)
-        [tmp appendFormat:@" %lf", nc.alphaComponent];
     
     return [tmp copy];
 }
@@ -58,19 +60,25 @@
  */
 -(id)reverseTransformedValue:(id)str
 {
-    NSScanner *scan;
-    CGFloat r, g, b, a;
+    NSScanner *scan = [NSScanner scannerWithString:str];
     
-    scan = [NSScanner scannerWithString:str];
-    
-    a = 1.0;
-    if (!([scan scanDouble:&r] && [scan scanDouble:&g] && [scan scanDouble:&b])) {
-        NSLog(@"MGSColorFromString: can't parse %@, returning red", str);
-        return [NSColor redColor];
+    CGFloat r, g, b, a = 1.0;
+    if (([scan scanDouble:&r] && [scan scanDouble:&g] && [scan scanDouble:&b])) {
+        [scan scanDouble:&a];
+        return [NSColor colorWithCalibratedRed:r green:g blue:b alpha:a];
     }
-    [scan scanDouble:&a];
     
-    return [NSColor colorWithCalibratedRed:r green:g blue:b alpha:a];
+    [scan setScanLocation:0];
+    NSString *catalog, *color;
+    if ([scan scanUpToCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:&catalog] &&
+            [scan scanUpToCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:&color]) {
+        NSColor *res = [NSColor colorWithCatalogName:catalog colorName:color];
+        if (res)
+            return res;
+    }
+    
+    NSLog(@"MGSColorFromString: can't parse %@, returning red", str);
+    return [NSColor redColor];
 }
 
 
