@@ -10,6 +10,8 @@
 #import <Fragaria/Fragaria.h>
 #import "MGSUserDefaultsControllerProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class MGSFragariaView;
 
 
@@ -127,7 +129,7 @@
 
 /** Specify a delegate for this controller.
  */
-@property (nonatomic,assign) NSObject <MGSUserDefaultsDelegate> *delegate;
+@property (nonatomic,assign, nullable) NSObject <MGSUserDefaultsDelegate> *delegate;
 
 
 #pragma mark - Appearance Support
@@ -145,3 +147,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END
