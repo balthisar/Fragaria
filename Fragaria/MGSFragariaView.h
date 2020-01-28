@@ -204,10 +204,6 @@ IB_DESIGNABLE
 
 /** Specifies the standard font for the line numbers in the gutter.*/
 @property (nonatomic, assign) IBInspectable NSFont *gutterFont;
-/** Specifies the standard color of the line numbers in the gutter.*/
-@property (nonatomic, assign) IBInspectable NSColor *gutterTextColour;
-/** Specifies the background colour of the gutter view */
-@property (nonatomic, assign) IBInspectable NSColor *gutterBackgroundColour;
 
 
 #pragma mark - Showing Syntax Errors
@@ -366,6 +362,11 @@ IB_DESIGNABLE
 @property (nonatomic, assign) NSColor *textInvisibleCharactersColour FRAGARIA_DEPRECATED_MSG("use colourScheme instead");
 @property (nonatomic, assign) NSColor *currentLineHighlightColour FRAGARIA_DEPRECATED_MSG("use colourScheme instead");
 @property (nonatomic, assign) NSColor *insertionPointColor FRAGARIA_DEPRECATED_MSG("use colourScheme instead");
+
+/** Specifies the standard color of the line numbers in the gutter.*/
+@property (nonatomic, assign) NSColor *gutterTextColour FRAGARIA_DEPRECATED_MSG("use colourScheme instead");
+/** Specifies the background colour of the gutter view */
+@property (nonatomic, assign) NSColor *gutterBackgroundColour FRAGARIA_DEPRECATED_MSG("use colourScheme instead");
 
 
 @end

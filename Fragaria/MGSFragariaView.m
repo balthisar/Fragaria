@@ -451,34 +451,6 @@
     return self.gutterView.font;
 }
 
-/*
- * @property gutterTextColour
- */
-- (void)setGutterTextColour:(NSColor *)gutterTextColour
-{
-    self.gutterView.textColor = gutterTextColour;
-	[self mgs_propagateValue:gutterTextColour forBinding:NSStringFromSelector(@selector(gutterTextColour))];
-}
-
-- (NSColor *)gutterTextColour
-{
-    return self.gutterView.textColor;
-}
-
-/*
- * @property gutterBackgroundColour
- */
-- (void)setGutterBackgroundColour:(NSColor *)gutterBackgroundColour
-{
-    self.gutterView.backgroundColor = gutterBackgroundColour;
-    [self mgs_propagateValue:gutterBackgroundColour forBinding:NSStringFromSelector(@selector(gutterBackgroundColour))];
-}
-
-- (NSColor *)gutterBackgroundColour
-{
-    return self.gutterView.backgroundColor;
-}
-
 
 #pragma mark - Showing Syntax Errors
 
@@ -840,6 +812,8 @@
     self.textView.colourScheme = _colourScheme;
     self.textView.syntaxColouring.colourScheme = [_colourScheme copy];
     self.syntaxErrorController.defaultSyntaxErrorHighlightingColour = _colourScheme.defaultSyntaxErrorHighlightingColour;
+    self.gutterView.textColor = _colourScheme.gutterTextColor;
+    self.gutterView.backgroundColor = _colourScheme.gutterBackgroundColor;
 }
 
 
@@ -999,7 +973,7 @@
 
 - (NSColor *)defaultSyntaxErrorHighlightingColour
 {
-    return self.colourScheme.defaultSyntaxErrorHighlightingColour;
+    return _colourScheme.defaultSyntaxErrorHighlightingColour;
 }
 
 
@@ -1060,6 +1034,37 @@
 - (NSColor *)insertionPointColor
 {
     return self.textView.insertionPointColor;
+}
+
+
+/*
+ * @property gutterTextColour
+ */
+- (void)setGutterTextColour:(NSColor *)gutterTextColour
+{
+    _colourScheme.gutterTextColor = gutterTextColour;
+    [self colourSchemeHasChanged];
+    [self mgs_propagateValue:gutterTextColour forBinding:NSStringFromSelector(@selector(gutterTextColour))];
+}
+
+- (NSColor *)gutterTextColour
+{
+    return _colourScheme.gutterTextColor;
+}
+
+/*
+ * @property gutterBackgroundColour
+ */
+- (void)setGutterBackgroundColour:(NSColor *)gutterBackgroundColour
+{
+    _colourScheme.gutterBackgroundColor = gutterBackgroundColour;
+    [self colourSchemeHasChanged];
+    [self mgs_propagateValue:gutterBackgroundColour forBinding:NSStringFromSelector(@selector(gutterBackgroundColour))];
+}
+
+- (NSColor *)gutterBackgroundColour
+{
+    return _colourScheme.gutterBackgroundColor;
 }
 
 

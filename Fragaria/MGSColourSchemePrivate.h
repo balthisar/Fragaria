@@ -43,6 +43,8 @@ extern NSString * const MGSColourSchemeKeySyntaxGroupOptions;
 @property (nonatomic, strong) NSColor *textInvisibleCharactersColour;
 @property (nonatomic, strong) NSColor *currentLineHighlightColour;
 @property (nonatomic, strong) NSColor *insertionPointColor;
+@property (nonatomic, strong) NSColor *gutterTextColor;
+@property (nonatomic, strong) NSColor *gutterBackgroundColor;
 
 @property (nonatomic, copy) NSDictionary<MGSSyntaxGroup, NSDictionary<MGSColourSchemeGroupOptionKey, id> *> *syntaxGroupOptions;
 

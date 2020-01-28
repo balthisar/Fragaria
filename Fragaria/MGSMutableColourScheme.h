@@ -47,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSColor *currentLineHighlightColour;
 /** Editor insertion point color. */
 @property (nonatomic, strong) NSColor *insertionPointColor;
+/** Gutter text color. */
+@property (nonatomic, strong) NSColor *gutterTextColor;
+/** Gutter background color */
+@property (nonatomic, strong) NSColor *gutterBackgroundColor;
 
 
 /** Sets if the specified syntax group will be coloured.
