@@ -174,7 +174,9 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             @"Custom Settings", nil, [NSBundle bundleForClass:[self class]],
             @"Name for Custom Settings scheme.");
     NSMutableDictionary *common = [@{
-            MGSColourSchemeKeyDisplayName  : dispName}
+            MGSColourSchemeKeyDisplayName           : dispName,
+            MGSColourSchemeKeyGutterTextColor       : [NSColor disabledControlTextColor],
+            MGSColourSchemeKeyGutterBackgroundColor : [NSColor controlBackgroundColor]}
         mutableCopy];
     NSDictionary *commonEnabled = @{
         MGSSyntaxGroupAttribute     : @YES,
@@ -201,8 +203,6 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             MGSColourSchemeKeyTextInvisibleCharactersColour : [NSColor blackColor],
             MGSColourSchemeKeyTextColor                     : [NSColor blackColor],
             MGSColourSchemeKeyBackgroundColor               : [NSColor whiteColor],
-            MGSColourSchemeKeyGutterTextColor               : [NSColor colorWithWhite:0.75f alpha:1.0],
-            MGSColourSchemeKeyGutterBackgroundColor         : [NSColor whiteColor],
             MGSColourSchemeKeyInsertionPointColor           : [NSColor blackColor],
             MGSColourSchemeKeyCurrentLineHighlightColour    : [NSColor colorWithCalibratedRed:0.96f green:0.96f blue:0.71f alpha:1.0]};
         groupColors = @{
@@ -221,8 +221,6 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             MGSColourSchemeKeyTextInvisibleCharactersColour : [NSColor colorWithCalibratedRed:0.905882f green:0.905882f blue:0.905882f alpha:1.0],
             MGSColourSchemeKeyTextColor                     : [NSColor whiteColor],
             MGSColourSchemeKeyBackgroundColor               : [NSColor blackColor],
-            MGSColourSchemeKeyGutterTextColor               : [NSColor colorWithWhite:0.325f alpha:1.0],
-            MGSColourSchemeKeyGutterBackgroundColor         : [NSColor colorWithWhite:0.125f alpha:1.0],
             MGSColourSchemeKeyInsertionPointColor           : [NSColor whiteColor],
             MGSColourSchemeKeyCurrentLineHighlightColour    : [NSColor blackColor]};
         groupColors = @{
