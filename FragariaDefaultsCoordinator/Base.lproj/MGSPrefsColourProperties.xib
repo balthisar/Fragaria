@@ -107,11 +107,42 @@
             <point key="canvasLocation" x="153" y="-68"/>
         </customView>
         <customView id="RcN-cf-clt" userLabel="Editor Colors View">
-            <rect key="frame" x="0.0" y="0.0" width="500" height="211"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="227"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-uf-4pJ">
+                    <rect key="frame" x="18" y="201" width="83" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Editor Colors" id="naY-hv-yh1">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="430" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-hL-JOT">
+                    <rect key="frame" x="48" y="165" width="418" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="414" id="43L-ic-JDv"/>
+                    </constraints>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="These colors determine the overall appearance of the text editor. These colors are always used and cannot be disabled." id="SOX-V5-eX0">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YDf-yh-NPb">
+                    <rect key="frame" x="50" y="133" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="7wP-RD-2Mq"/>
+                        <constraint firstAttribute="height" constant="24" id="Fnv-g6-hQU"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.textColor" id="wgI-BB-vJm"/>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="SgL-B8-W72"/>
+                    </connections>
+                </colorWell>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="x1g-me-5AE">
-                    <rect key="frame" x="110" y="120" width="30" height="16"/>
+                    <rect key="frame" x="106" y="137" width="30" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Text" id="i7d-74-IV1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -132,10 +163,10 @@
                     </connections>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="26C-X9-giG">
-                    <rect key="frame" x="268" y="115" width="54" height="26"/>
+                    <rect key="frame" x="268" y="133" width="50" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="54" id="AYe-uI-CoK"/>
-                        <constraint firstAttribute="height" constant="26" id="mfw-jS-7zu"/>
+                        <constraint firstAttribute="width" constant="50" id="AYe-uI-CoK"/>
+                        <constraint firstAttribute="height" constant="24" id="mfw-jS-7zu"/>
                     </constraints>
                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -148,7 +179,7 @@
                     </connections>
                 </colorWell>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Xq7-24-fYB">
-                    <rect key="frame" x="328" y="120" width="77" height="16"/>
+                    <rect key="frame" x="324" y="137" width="77" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Background" id="yof-vd-C5K">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -168,32 +199,11 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ohg-cE-z0V">
-                    <rect key="frame" x="328" y="18" width="124" height="16"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Invisible Characters" id="IxP-xz-9xk">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="92z-34-ilB">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="KWB-4n-Sg5"/>
-                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="UR7-gx-fvJ">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="b5F-Us-gsv">
-                    <rect key="frame" x="50" y="81" width="54" height="26"/>
+                    <rect key="frame" x="50" y="103" width="50" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="54" id="38h-ev-0qU"/>
-                        <constraint firstAttribute="height" constant="26" id="5uN-Dl-az0"/>
+                        <constraint firstAttribute="width" constant="50" id="38h-ev-0qU"/>
+                        <constraint firstAttribute="height" constant="24" id="5uN-Dl-az0"/>
                     </constraints>
                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -206,7 +216,7 @@
                     </connections>
                 </colorWell>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W0x-0N-9kD">
-                    <rect key="frame" x="110" y="86" width="92" height="16"/>
+                    <rect key="frame" x="106" y="107" width="92" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Point" id="FS4-kc-HlF">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -226,166 +236,8 @@
                         </binding>
                     </connections>
                 </textField>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gwB-1T-w5e">
-                    <rect key="frame" x="268" y="81" width="54" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="54" id="TiM-Vb-al3"/>
-                        <constraint firstAttribute="height" constant="26" id="jYv-Ge-jLZ"/>
-                    </constraints>
-                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.currentLineHighlightColour" id="pkh-t9-FVy">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="uaV-7n-5ZF"/>
-                    </connections>
-                </colorWell>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="430" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-hL-JOT">
-                    <rect key="frame" x="48" y="149" width="418" height="28"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="414" id="43L-ic-JDv"/>
-                    </constraints>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="These colors determine the overall appearance of the text editor. These colors are always used and cannot be disabled." id="SOX-V5-eX0">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-uf-4pJ">
-                    <rect key="frame" x="18" y="185" width="83" height="16"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Editor Colors" id="naY-hv-yh1">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YDf-yh-NPb">
-                    <rect key="frame" x="50" y="115" width="54" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="54" id="7wP-RD-2Mq"/>
-                        <constraint firstAttribute="height" constant="26" id="Fnv-g6-hQU"/>
-                    </constraints>
-                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.textColor" id="wgI-BB-vJm"/>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="SgL-B8-W72"/>
-                    </connections>
-                </colorWell>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="V8C-Iz-4On">
-                    <rect key="frame" x="268" y="13" width="54" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="26" id="dgP-Zj-kcR"/>
-                        <constraint firstAttribute="width" constant="54" id="oXL-7d-Epj"/>
-                    </constraints>
-                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.textInvisibleCharactersColour" id="ufP-3x-Cju">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="Yo3-PS-F8w"/>
-                    </connections>
-                </colorWell>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-L7-LzE">
-                    <rect key="frame" x="110" y="18" width="111" height="16"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Error Highlighting" id="Asd-2O-2uG">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="DIW-8R-pD5">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="lll-jZ-Yji"/>
-                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="dAr-fi-0gz">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Osf-UD-vVZ">
-                    <rect key="frame" x="50" y="47" width="54" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="26" id="skv-bO-ChC"/>
-                        <constraint firstAttribute="width" constant="54" id="zw1-2C-WaI"/>
-                    </constraints>
-                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="Je6-Ao-VsN"/>
-                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.gutterTextColor" id="r9x-3X-Sab">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </colorWell>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bsu-bk-Yrl">
-                    <rect key="frame" x="328" y="52" width="119" height="16"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter Background" id="DSP-HI-w5V">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="Elj-qX-4nn"/>
-                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="ini-jh-VKC">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="bV0-qG-kjo">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TRf-8q-Bzv">
-                    <rect key="frame" x="268" y="47" width="54" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="26" id="7y9-QR-dL2"/>
-                        <constraint firstAttribute="width" constant="54" id="fGP-Q8-OIJ"/>
-                    </constraints>
-                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="mQi-bG-R56"/>
-                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.gutterBackgroundColor" id="xy2-MZ-wX4">
-                            <dictionary key="options">
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </colorWell>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tmV-b2-nVJ">
-                    <rect key="frame" x="110" y="52" width="72" height="16"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter Text" id="UIp-WO-i1C">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="hN2-6S-tQn"/>
-                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="o4h-pK-yFI">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="9EU-hj-gjN">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dNx-bb-167">
-                    <rect key="frame" x="328" y="86" width="138" height="16"/>
+                    <rect key="frame" x="324" y="77" width="138" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Current Line Highlight" id="qb0-Fj-0v1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -405,11 +257,106 @@
                         </binding>
                     </connections>
                 </textField>
-                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0ws-Xa-iLK">
-                    <rect key="frame" x="50" y="13" width="54" height="26"/>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="xCA-3L-4Tg">
+                    <rect key="frame" x="268" y="103" width="50" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="54" id="Yyu-mK-gYg"/>
-                        <constraint firstAttribute="height" constant="26" id="xHD-Le-tdX"/>
+                        <constraint firstAttribute="width" constant="50" id="YY9-ne-koi"/>
+                        <constraint firstAttribute="height" constant="24" id="iFU-ru-qHp"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="5CW-kg-fpT"/>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.selectionBackgroundColor" id="1Ok-Ub-GsF">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </colorWell>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ugn-jV-zU2">
+                    <rect key="frame" x="324" y="107" width="137" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Selection Background" id="oC9-yG-sdu">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="tWU-7y-H9H"/>
+                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="wHq-HB-lff">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="O1O-Ff-5Oi">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Osf-UD-vVZ">
+                    <rect key="frame" x="50" y="43" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="skv-bO-ChC"/>
+                        <constraint firstAttribute="width" constant="50" id="zw1-2C-WaI"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.gutterTextColor" id="r9x-3X-Sab">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="Je6-Ao-VsN"/>
+                    </connections>
+                </colorWell>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tmV-b2-nVJ">
+                    <rect key="frame" x="106" y="47" width="72" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter Text" id="UIp-WO-i1C">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="9EU-hj-gjN">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="hN2-6S-tQn"/>
+                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="o4h-pK-yFI">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bsu-bk-Yrl">
+                    <rect key="frame" x="324" y="47" width="119" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Gutter Background" id="DSP-HI-w5V">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="Elj-qX-4nn"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="bV0-qG-kjo">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="ini-jh-VKC">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="0ws-Xa-iLK">
+                    <rect key="frame" x="50" y="13" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="Yyu-mK-gYg"/>
+                        <constraint firstAttribute="height" constant="24" id="xHD-Le-tdX"/>
                     </constraints>
                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -421,39 +368,131 @@
                         <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="iJa-UH-kof"/>
                     </connections>
                 </colorWell>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-L7-LzE">
+                    <rect key="frame" x="106" y="17" width="111" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Error Highlighting" id="Asd-2O-2uG">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="DIW-8R-pD5">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="lll-jZ-Yji"/>
+                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="dAr-fi-0gz">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="V8C-Iz-4On">
+                    <rect key="frame" x="50" y="73" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="dgP-Zj-kcR"/>
+                        <constraint firstAttribute="width" constant="50" id="oXL-7d-Epj"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.textInvisibleCharactersColour" id="ufP-3x-Cju">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="Yo3-PS-F8w"/>
+                    </connections>
+                </colorWell>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ohg-cE-z0V">
+                    <rect key="frame" x="106" y="77" width="124" height="16"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Invisible Characters" id="IxP-xz-9xk">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="92z-34-ilB">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="KWB-4n-Sg5"/>
+                        <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="UR7-gx-fvJ">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gwB-1T-w5e">
+                    <rect key="frame" x="268" y="73" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="TiM-Vb-al3"/>
+                        <constraint firstAttribute="height" constant="24" id="jYv-Ge-jLZ"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.currentLineHighlightColour" id="pkh-t9-FVy">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="uaV-7n-5ZF"/>
+                    </connections>
+                </colorWell>
+                <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TRf-8q-Bzv">
+                    <rect key="frame" x="268" y="43" width="50" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="7y9-QR-dL2"/>
+                        <constraint firstAttribute="width" constant="50" id="fGP-Q8-OIJ"/>
+                    </constraints>
+                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <binding destination="POX-Qr-aHg" name="value" keyPath="selection.gutterBackgroundColor" id="xy2-MZ-wX4">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="mQi-bG-R56"/>
+                    </connections>
+                </colorWell>
             </subviews>
             <constraints>
                 <constraint firstItem="RVW-uf-4pJ" firstAttribute="top" secondItem="RcN-cf-clt" secondAttribute="top" constant="10" id="0io-gk-EzA"/>
+                <constraint firstItem="TRf-8q-Bzv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tmV-b2-nVJ" secondAttribute="trailing" constant="8" symbolic="YES" id="1ze-6T-xM0"/>
                 <constraint firstItem="W0x-0N-9kD" firstAttribute="leading" secondItem="b5F-Us-gsv" secondAttribute="trailing" constant="8" id="2cz-07-6ow"/>
                 <constraint firstItem="x1g-me-5AE" firstAttribute="centerY" secondItem="YDf-yh-NPb" secondAttribute="centerY" id="3Ig-pl-Nci"/>
-                <constraint firstItem="V8C-Iz-4On" firstAttribute="top" secondItem="TRf-8q-Bzv" secondAttribute="bottom" constant="8" id="5Q8-4u-IBc"/>
+                <constraint firstItem="gwB-1T-w5e" firstAttribute="top" secondItem="xCA-3L-4Tg" secondAttribute="bottom" constant="6" id="5AC-en-1lK"/>
+                <constraint firstItem="xCA-3L-4Tg" firstAttribute="top" secondItem="26C-X9-giG" secondAttribute="bottom" constant="6" id="622-uJ-c1D"/>
                 <constraint firstItem="bsu-bk-Yrl" firstAttribute="centerY" secondItem="TRf-8q-Bzv" secondAttribute="centerY" id="7Qq-ZU-1fA"/>
-                <constraint firstItem="V8C-Iz-4On" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nw5-L7-LzE" secondAttribute="trailing" constant="8" symbolic="YES" id="7nk-K4-F5i"/>
                 <constraint firstItem="dNx-bb-167" firstAttribute="leading" secondItem="gwB-1T-w5e" secondAttribute="trailing" constant="8" id="ALu-Mx-pmw"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nw5-L7-LzE" secondAttribute="trailing" constant="20" symbolic="YES" id="Ard-jx-hj6"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bx6-hL-JOT" secondAttribute="trailing" constant="20" symbolic="YES" id="Ayd-PA-voh"/>
+                <constraint firstItem="V8C-Iz-4On" firstAttribute="leading" secondItem="b5F-Us-gsv" secondAttribute="leading" id="CSE-ZZ-hL0"/>
                 <constraint firstItem="W0x-0N-9kD" firstAttribute="centerY" secondItem="b5F-Us-gsv" secondAttribute="centerY" id="CZF-a4-5uq"/>
                 <constraint firstItem="Xq7-24-fYB" firstAttribute="leading" secondItem="26C-X9-giG" secondAttribute="trailing" constant="8" id="D3Q-bS-VNK"/>
                 <constraint firstItem="RVW-uf-4pJ" firstAttribute="leading" secondItem="RcN-cf-clt" secondAttribute="leading" constant="20" id="EsL-o0-9FB"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bsu-bk-Yrl" secondAttribute="trailing" constant="20" symbolic="YES" id="F4K-Je-N0f"/>
-                <constraint firstItem="TRf-8q-Bzv" firstAttribute="top" secondItem="gwB-1T-w5e" secondAttribute="bottom" constant="8" id="IW6-N9-OFQ"/>
+                <constraint firstItem="ugn-jV-zU2" firstAttribute="centerY" secondItem="xCA-3L-4Tg" secondAttribute="centerY" id="JSx-Sl-AnF"/>
                 <constraint firstItem="bsu-bk-Yrl" firstAttribute="leading" secondItem="TRf-8q-Bzv" secondAttribute="trailing" constant="8" id="JaE-Dy-FqU"/>
                 <constraint firstItem="tmV-b2-nVJ" firstAttribute="centerY" secondItem="Osf-UD-vVZ" secondAttribute="centerY" id="K9b-Vk-xda"/>
                 <constraint firstItem="26C-X9-giG" firstAttribute="top" secondItem="bx6-hL-JOT" secondAttribute="bottom" constant="8" id="KZM-XT-Siy"/>
                 <constraint firstItem="Xq7-24-fYB" firstAttribute="centerY" secondItem="26C-X9-giG" secondAttribute="centerY" id="OvD-XH-twl"/>
-                <constraint firstItem="TRf-8q-Bzv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tmV-b2-nVJ" secondAttribute="trailing" constant="8" symbolic="YES" id="Tkh-DN-vCi"/>
+                <constraint firstItem="TRf-8q-Bzv" firstAttribute="top" secondItem="gwB-1T-w5e" secondAttribute="bottom" constant="6" id="Qy1-Ns-1NX"/>
                 <constraint firstItem="gwB-1T-w5e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W0x-0N-9kD" secondAttribute="trailing" constant="8" symbolic="YES" id="UP4-jB-krr"/>
+                <constraint firstItem="gwB-1T-w5e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ohg-cE-z0V" secondAttribute="trailing" constant="8" symbolic="YES" id="VHc-hP-OSL"/>
                 <constraint firstItem="Ohg-cE-z0V" firstAttribute="leading" secondItem="V8C-Iz-4On" secondAttribute="trailing" constant="8" id="Ym3-Fb-CMo"/>
+                <constraint firstAttribute="bottom" secondItem="0ws-Xa-iLK" secondAttribute="bottom" constant="13" id="Z5v-fW-WMW"/>
                 <constraint firstItem="nw5-L7-LzE" firstAttribute="centerY" secondItem="0ws-Xa-iLK" secondAttribute="centerY" id="ZzH-2q-eVG"/>
                 <constraint firstItem="b5F-Us-gsv" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="leading" id="b6F-Le-Box"/>
-                <constraint firstItem="0ws-Xa-iLK" firstAttribute="top" secondItem="Osf-UD-vVZ" secondAttribute="bottom" constant="8" id="bbO-18-xoQ"/>
-                <constraint firstItem="26C-X9-giG" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="trailing" constant="164" id="ecg-d1-5Qi"/>
-                <constraint firstAttribute="bottom" secondItem="V8C-Iz-4On" secondAttribute="bottom" constant="13" id="fwo-Zz-U1f"/>
-                <constraint firstAttribute="bottom" secondItem="0ws-Xa-iLK" secondAttribute="bottom" constant="13" id="g8j-a6-TCo"/>
+                <constraint firstItem="V8C-Iz-4On" firstAttribute="top" secondItem="b5F-Us-gsv" secondAttribute="bottom" constant="6" id="eOg-mK-g2P"/>
+                <constraint firstItem="26C-X9-giG" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="trailing" constant="168" id="ecg-d1-5Qi"/>
+                <constraint firstItem="xCA-3L-4Tg" firstAttribute="leading" secondItem="26C-X9-giG" secondAttribute="leading" id="g8C-bD-9v1"/>
                 <constraint firstItem="Ohg-cE-z0V" firstAttribute="centerY" secondItem="V8C-Iz-4On" secondAttribute="centerY" id="hLt-JK-Gci"/>
-                <constraint firstItem="Osf-UD-vVZ" firstAttribute="top" secondItem="b5F-Us-gsv" secondAttribute="bottom" constant="8" id="hzt-OV-4Dw"/>
                 <constraint firstItem="0ws-Xa-iLK" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="leading" id="i8P-sX-tSo"/>
                 <constraint firstItem="bx6-hL-JOT" firstAttribute="top" secondItem="RVW-uf-4pJ" secondAttribute="bottom" constant="8" id="iZw-ag-dtu"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ohg-cE-z0V" secondAttribute="trailing" constant="20" symbolic="YES" id="jik-ZS-2xi"/>
                 <constraint firstItem="nw5-L7-LzE" firstAttribute="leading" secondItem="0ws-Xa-iLK" secondAttribute="trailing" constant="8" id="kqY-YA-1Wh"/>
                 <constraint firstItem="dNx-bb-167" firstAttribute="centerY" secondItem="gwB-1T-w5e" secondAttribute="centerY" id="lT4-mb-7k5"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dNx-bb-167" secondAttribute="trailing" constant="20" symbolic="YES" id="mKM-iE-eDQ"/>
@@ -461,17 +500,20 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xq7-24-fYB" secondAttribute="trailing" constant="20" symbolic="YES" id="p9T-nf-NRj"/>
                 <constraint firstItem="x1g-me-5AE" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="trailing" constant="8" id="pRC-cI-HrZ"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RVW-uf-4pJ" secondAttribute="trailing" constant="20" symbolic="YES" id="pV4-I4-yMQ"/>
-                <constraint firstItem="V8C-Iz-4On" firstAttribute="leading" secondItem="26C-X9-giG" secondAttribute="leading" id="sOE-UD-pOn"/>
                 <constraint firstItem="tmV-b2-nVJ" firstAttribute="leading" secondItem="Osf-UD-vVZ" secondAttribute="trailing" constant="8" id="sW5-cb-Zmv"/>
                 <constraint firstItem="Osf-UD-vVZ" firstAttribute="leading" secondItem="YDf-yh-NPb" secondAttribute="leading" id="txW-Pe-0K0"/>
+                <constraint firstItem="ugn-jV-zU2" firstAttribute="leading" secondItem="xCA-3L-4Tg" secondAttribute="trailing" constant="8" id="tzm-Ym-XCe"/>
                 <constraint firstItem="gwB-1T-w5e" firstAttribute="leading" secondItem="26C-X9-giG" secondAttribute="leading" id="uOc-Be-i57"/>
+                <constraint firstItem="0ws-Xa-iLK" firstAttribute="top" secondItem="Osf-UD-vVZ" secondAttribute="bottom" constant="6" id="v9i-ZO-eS2"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ugn-jV-zU2" secondAttribute="trailing" constant="20" symbolic="YES" id="vB6-hC-Zg4"/>
                 <constraint firstItem="26C-X9-giG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x1g-me-5AE" secondAttribute="trailing" constant="8" symbolic="YES" id="vpk-cv-lVI"/>
-                <constraint firstItem="gwB-1T-w5e" firstAttribute="top" secondItem="26C-X9-giG" secondAttribute="bottom" constant="8" id="vuR-w3-1lj"/>
+                <constraint firstItem="Osf-UD-vVZ" firstAttribute="top" secondItem="V8C-Iz-4On" secondAttribute="bottom" constant="6" id="wWt-qK-yrk"/>
                 <constraint firstItem="TRf-8q-Bzv" firstAttribute="leading" secondItem="26C-X9-giG" secondAttribute="leading" id="wdk-1U-fla"/>
-                <constraint firstItem="b5F-Us-gsv" firstAttribute="top" secondItem="YDf-yh-NPb" secondAttribute="bottom" constant="8" id="xcd-Dd-u6m"/>
+                <constraint firstItem="b5F-Us-gsv" firstAttribute="top" secondItem="YDf-yh-NPb" secondAttribute="bottom" constant="6" id="xcd-Dd-u6m"/>
                 <constraint firstItem="YDf-yh-NPb" firstAttribute="leading" secondItem="RcN-cf-clt" secondAttribute="leading" constant="50" id="yel-4k-44f"/>
+                <constraint firstItem="YDf-yh-NPb" firstAttribute="top" secondItem="bx6-hL-JOT" secondAttribute="bottom" constant="8" id="zka-gp-AnO"/>
             </constraints>
-            <point key="canvasLocation" x="133" y="402.5"/>
+            <point key="canvasLocation" x="133" y="425"/>
         </customView>
         <customView id="DgW-LA-ddL" userLabel="Syntax Colors View">
             <rect key="frame" x="0.0" y="0.0" width="500" height="242"/>
@@ -556,11 +598,11 @@
             <point key="canvasLocation" x="139" y="130.5"/>
         </customView>
         <customView id="8dm-4z-17A" userLabel="Color Options View">
-            <rect key="frame" x="0.0" y="0.0" width="500" height="74"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="94"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="tEB-mt-DKY">
-                    <rect key="frame" x="29" y="38" width="161" height="18"/>
+                    <rect key="frame" x="29" y="58" width="161" height="18"/>
                     <buttonCell key="cell" type="check" title="Color multi-line strings" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="VD0-tP-TG2">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -581,7 +623,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="5oR-v8-2jt">
-                    <rect key="frame" x="29" y="18" width="438" height="18"/>
+                    <rect key="frame" x="29" y="38" width="438" height="18"/>
                     <buttonCell key="cell" type="check" title="Only color until the end of the line if the closing tag cannot be found " bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mHo-tD-wMd">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -601,17 +643,42 @@
                         <binding destination="-2" name="enabled" keyPath="self.managedProperties.coloursOnlyUntilEndOfLine" id="Vnj-Gk-bYc"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-5n-TPN">
+                    <rect key="frame" x="29" y="18" width="328" height="18"/>
+                    <buttonCell key="cell" type="check" title="Always use the system selection background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bK4-he-pfe">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.useSystemSelectionColor" id="Ugg-Nb-GQB"/>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="zyg-2U-Cub"/>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="hKw-vO-oMW">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="x5m-Ak-VJo" name="value" keyPath="selection.useSystemSelectionColor" id="DjL-fh-zJS">
+                            <dictionary key="options">
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="tEB-mt-DKY" firstAttribute="leading" secondItem="8dm-4z-17A" secondAttribute="leading" constant="31" id="2gg-ux-vM3"/>
                 <constraint firstItem="tEB-mt-DKY" firstAttribute="top" secondItem="8dm-4z-17A" secondAttribute="top" constant="20" symbolic="YES" id="3lw-3F-gSk"/>
+                <constraint firstItem="9tm-5n-TPN" firstAttribute="top" secondItem="5oR-v8-2jt" secondAttribute="bottom" constant="6" symbolic="YES" id="6im-Se-sPO"/>
                 <constraint firstItem="5oR-v8-2jt" firstAttribute="top" secondItem="tEB-mt-DKY" secondAttribute="bottom" constant="6" symbolic="YES" id="8Vi-uh-40c"/>
+                <constraint firstItem="9tm-5n-TPN" firstAttribute="top" secondItem="5oR-v8-2jt" secondAttribute="bottom" constant="6" id="B8b-5V-qlq"/>
+                <constraint firstItem="5oR-v8-2jt" firstAttribute="top" secondItem="tEB-mt-DKY" secondAttribute="bottom" constant="6" id="DAR-Mr-qS3"/>
                 <constraint firstItem="5oR-v8-2jt" firstAttribute="leading" secondItem="tEB-mt-DKY" secondAttribute="leading" id="W0Q-Ea-LZZ"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tEB-mt-DKY" secondAttribute="trailing" constant="20" symbolic="YES" id="XCE-E5-3OR"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5oR-v8-2jt" secondAttribute="trailing" constant="20" symbolic="YES" id="cuF-2P-Ej9"/>
-                <constraint firstAttribute="bottom" secondItem="5oR-v8-2jt" secondAttribute="bottom" constant="20" symbolic="YES" id="s12-Y1-WeF"/>
+                <constraint firstAttribute="bottom" secondItem="9tm-5n-TPN" secondAttribute="bottom" constant="20" symbolic="YES" id="dhK-Th-aEc"/>
+                <constraint firstItem="9tm-5n-TPN" firstAttribute="leading" secondItem="5oR-v8-2jt" secondAttribute="leading" id="zMZ-XD-7An"/>
             </constraints>
-            <point key="canvasLocation" x="133" y="631"/>
+            <point key="canvasLocation" x="133" y="641"/>
         </customView>
         <customObject id="JvL-9o-knG" customClass="MGSManagedColourSchemeTableViewDataSource">
             <connections>

@@ -88,6 +88,8 @@ extern NSString * const MGSFragariaDefaultsScrollElasticityDisabled;            
 
 // Colour Scheme
 extern NSString * const MGSFragariaDefaultsColourScheme;  // MGSColourScheme  colourScheme
+extern NSString * const MGSFragariaDefaultsUseSystemSelectionColor;               // BOOL    useSystemSelectionColor
+
 
 
 /**

@@ -105,7 +105,9 @@ static unichar ClosingBraceForOpeningBrace(unichar c)
 
 - (void)setColourScheme:(MGSMutableColourScheme *)colourScheme
 {
+    [self willChangeValueForKey:NSStringFromSelector(@selector(selectedTextAttributes))];
     _colourScheme = colourScheme;
+    [self didChangeValueForKey:NSStringFromSelector(@selector(selectedTextAttributes))];
     [self colourSchemeHasChanged];
 }
 
@@ -119,6 +121,21 @@ static unichar ClosingBraceForOpeningBrace(unichar c)
     currentLineRect = [self lineHighlightingRect];
     [self setNeedsDisplayInRect:currentLineRect];
     [self configurePageGuide];
+}
+
+
+- (NSDictionary<NSAttributedStringKey,id> *)selectedTextAttributes
+{
+    if (self.useSystemSelectionColor)
+        return super.selectedTextAttributes;
+    return @{ NSBackgroundColorAttributeName: self.colourScheme.selectionBackgroundColor };
+}
+
+- (void)setUseSystemSelectionColor:(BOOL)useSystemSelectionColor
+{
+    [self willChangeValueForKey:NSStringFromSelector(@selector(selectedTextAttributes))];
+    _useSystemSelectionColor = useSystemSelectionColor;
+    [self didChangeValueForKey:NSStringFromSelector(@selector(selectedTextAttributes))];
 }
 
 

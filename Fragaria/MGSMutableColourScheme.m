@@ -20,6 +20,7 @@
 @dynamic textInvisibleCharactersColour;
 @dynamic currentLineHighlightColour;
 @dynamic insertionPointColor;
+@dynamic selectionBackgroundColor;
 @dynamic gutterTextColor;
 @dynamic gutterBackgroundColor;
 @dynamic syntaxGroupOptions;

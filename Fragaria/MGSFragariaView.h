@@ -325,6 +325,8 @@ IB_DESIGNABLE
  *  current font. */
 @property (nonatomic) CGFloat lineHeightMultiple;
 
+@property (nonatomic) BOOL useSystemSelectionColor;
+
 /** The current color scheme applied to Fragaria */
 @property (nonatomic, copy) MGSColourScheme *colourScheme;
 

@@ -23,15 +23,16 @@ NSString * const MGSColourSchemeErrorDomain = @"MGSColourSchemeErrorDomain";
  * Do not change!
  */
 
-NSString * const MGSColourSchemeKeyCurrentLineHighlightColour    = @"currentLineHighlightColour";
-NSString * const MGSColourSchemeKeyDefaultErrorHighlightingColor = @"defaultSyntaxErrorHighlightingColour";
-NSString * const MGSColourSchemeKeyTextInvisibleCharactersColour = @"textInvisibleCharactersColour";
-NSString * const MGSColourSchemeKeyTextColor                     = @"textColor";
-NSString * const MGSColourSchemeKeyBackgroundColor               = @"backgroundColor";
-NSString * const MGSColourSchemeKeyInsertionPointColor           = @"insertionPointColor";
-NSString * const MGSColourSchemeKeyGutterTextColor               = @"gutterTextColor";
-NSString * const MGSColourSchemeKeyGutterBackgroundColor         = @"gutterBackgroundColor";
-NSString * const MGSColourSchemeKeyDisplayName                   = @"displayName";
+NSString * const MGSColourSchemeKeyCurrentLineHighlightColour        = @"currentLineHighlightColour";
+NSString * const MGSColourSchemeKeyDefaultErrorHighlightingColor     = @"defaultSyntaxErrorHighlightingColour";
+NSString * const MGSColourSchemeKeyTextInvisibleCharactersColour     = @"textInvisibleCharactersColour";
+NSString * const MGSColourSchemeKeyTextColor                         = @"textColor";
+NSString * const MGSColourSchemeKeyBackgroundColor                   = @"backgroundColor";
+NSString * const MGSColourSchemeKeyInsertionPointColor               = @"insertionPointColor";
+NSString * const MGSColourSchemeKeySelectionBackgroundColor          = @"selectionBackgroundColor";
+NSString * const MGSColourSchemeKeyGutterTextColor                   = @"gutterTextColor";
+NSString * const MGSColourSchemeKeyGutterBackgroundColor             = @"gutterBackgroundColor";
+NSString * const MGSColourSchemeKeyDisplayName                       = @"displayName";
 
 
 /* New color options keys used in version 3+
@@ -174,9 +175,10 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             @"Custom Settings", nil, [NSBundle bundleForClass:[self class]],
             @"Name for Custom Settings scheme.");
     NSMutableDictionary *common = [@{
-            MGSColourSchemeKeyDisplayName           : dispName,
-            MGSColourSchemeKeyGutterTextColor       : [NSColor disabledControlTextColor],
-            MGSColourSchemeKeyGutterBackgroundColor : [NSColor controlBackgroundColor]}
+            MGSColourSchemeKeyDisplayName                        : dispName,
+            MGSColourSchemeKeySelectionBackgroundColor           : [NSColor selectedTextBackgroundColor],
+            MGSColourSchemeKeyGutterTextColor                    : [NSColor disabledControlTextColor],
+            MGSColourSchemeKeyGutterBackgroundColor              : [NSColor controlBackgroundColor]}
         mutableCopy];
     NSDictionary *commonEnabled = @{
         MGSSyntaxGroupAttribute     : @YES,
@@ -263,6 +265,7 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             NSStringFromSelector(@selector(defaultSyntaxErrorHighlightingColour)),
             NSStringFromSelector(@selector(textColor)),
             NSStringFromSelector(@selector(backgroundColor)),
+            NSStringFromSelector(@selector(selectionBackgroundColor)),
             NSStringFromSelector(@selector(gutterTextColor)),
             NSStringFromSelector(@selector(gutterBackgroundColor)),
             NSStringFromSelector(@selector(textInvisibleCharactersColour)),
@@ -276,16 +279,17 @@ static NSString * const KMGSColourSchemeExt = @"plist";
 - (NSDictionary *)dictionaryRepresentation
 {
     return @{
-        MGSColourSchemeKeyDisplayName:                   self.displayName,
-        MGSColourSchemeKeyInsertionPointColor:           self.insertionPointColor,
-        MGSColourSchemeKeyCurrentLineHighlightColour:    self.currentLineHighlightColour,
-        MGSColourSchemeKeyDefaultErrorHighlightingColor: self.defaultSyntaxErrorHighlightingColour,
-        MGSColourSchemeKeyTextColor:                     self.textColor,
-        MGSColourSchemeKeyBackgroundColor:               self.backgroundColor,
-        MGSColourSchemeKeyGutterTextColor:               self.gutterTextColor,
-        MGSColourSchemeKeyGutterBackgroundColor:         self.gutterBackgroundColor,
-        MGSColourSchemeKeyTextInvisibleCharactersColour: self.textInvisibleCharactersColour,
-        MGSColourSchemeKeySyntaxGroupOptions:            self.syntaxGroupOptions };
+        MGSColourSchemeKeyDisplayName:                       self.displayName,
+        MGSColourSchemeKeyInsertionPointColor:               self.insertionPointColor,
+        MGSColourSchemeKeyCurrentLineHighlightColour:        self.currentLineHighlightColour,
+        MGSColourSchemeKeyDefaultErrorHighlightingColor:     self.defaultSyntaxErrorHighlightingColour,
+        MGSColourSchemeKeyTextColor:                         self.textColor,
+        MGSColourSchemeKeyBackgroundColor:                   self.backgroundColor,
+        MGSColourSchemeKeySelectionBackgroundColor:          self.selectionBackgroundColor,
+        MGSColourSchemeKeyGutterTextColor:                   self.gutterTextColor,
+        MGSColourSchemeKeyGutterBackgroundColor:             self.gutterBackgroundColor,
+        MGSColourSchemeKeyTextInvisibleCharactersColour:     self.textInvisibleCharactersColour,
+        MGSColourSchemeKeySyntaxGroupOptions:                self.syntaxGroupOptions };
 }
 
 
@@ -298,6 +302,7 @@ static NSString * const KMGSColourSchemeExt = @"plist";
     self.defaultSyntaxErrorHighlightingColour = dict[MGSColourSchemeKeyDefaultErrorHighlightingColor];
     self.textColor                            = dict[MGSColourSchemeKeyTextColor];
     self.backgroundColor                      = dict[MGSColourSchemeKeyBackgroundColor];
+    self.selectionBackgroundColor             = dict[MGSColourSchemeKeySelectionBackgroundColor];
     self.gutterTextColor                      = dict[MGSColourSchemeKeyGutterTextColor];
     self.gutterBackgroundColor                = dict[MGSColourSchemeKeyGutterBackgroundColor];
     self.textInvisibleCharactersColour        = dict[MGSColourSchemeKeyTextInvisibleCharactersColour];
@@ -330,6 +335,8 @@ static NSString * const KMGSColourSchemeExt = @"plist";
             [xformer transformedValue:self.textColor],
         MGSColourSchemeKeyBackgroundColor:
             [xformer transformedValue:self.backgroundColor],
+        MGSColourSchemeKeySelectionBackgroundColor:
+            [xformer transformedValue:self.selectionBackgroundColor],
         MGSColourSchemeKeyGutterTextColor:
             [xformer transformedValue:self.gutterTextColor],
         MGSColourSchemeKeyGutterBackgroundColor:
@@ -372,16 +379,17 @@ static NSString * const KMGSColourSchemeExt = @"plist";
         return err;
     
     NSDictionary *rootKeyTypes = @{
-        MGSColourSchemeKeyDisplayName:                      [NSString class],
-        MGSColourSchemeKeyInsertionPointColor:              [NSString class],
-        MGSColourSchemeKeyCurrentLineHighlightColour:       [NSString class],
-        MGSColourSchemeKeyDefaultErrorHighlightingColor:    [NSString class],
-        MGSColourSchemeKeyTextColor:                        [NSString class],
-        MGSColourSchemeKeyBackgroundColor:                  [NSString class],
-        MGSColourSchemeKeyGutterTextColor:                  [NSString class],
-        MGSColourSchemeKeyGutterBackgroundColor:            [NSString class],
-        MGSColourSchemeKeyTextInvisibleCharactersColour:    [NSString class],
-        MGSColourSchemeKeySyntaxGroupOptions:               [NSDictionary class]};
+        MGSColourSchemeKeyDisplayName:                       [NSString class],
+        MGSColourSchemeKeyInsertionPointColor:               [NSString class],
+        MGSColourSchemeKeyCurrentLineHighlightColour:        [NSString class],
+        MGSColourSchemeKeyDefaultErrorHighlightingColor:     [NSString class],
+        MGSColourSchemeKeyTextColor:                         [NSString class],
+        MGSColourSchemeKeyBackgroundColor:                   [NSString class],
+        MGSColourSchemeKeySelectionBackgroundColor:          [NSString class],
+        MGSColourSchemeKeyGutterTextColor:                   [NSString class],
+        MGSColourSchemeKeyGutterBackgroundColor:             [NSString class],
+        MGSColourSchemeKeyTextInvisibleCharactersColour:     [NSString class],
+        MGSColourSchemeKeySyntaxGroupOptions:                [NSDictionary class]};
     if (![self checkObjectTypes:rootKeyTypes inDictionary:fileContents])
         return err;
     
@@ -394,6 +402,7 @@ static NSString * const KMGSColourSchemeExt = @"plist";
         MGSColourSchemeKeyDefaultErrorHighlightingColor,
         MGSColourSchemeKeyTextColor,
         MGSColourSchemeKeyBackgroundColor,
+        MGSColourSchemeKeySelectionBackgroundColor,
         MGSColourSchemeKeyGutterTextColor,
         MGSColourSchemeKeyGutterBackgroundColor,
         MGSColourSchemeKeyTextInvisibleCharactersColour];

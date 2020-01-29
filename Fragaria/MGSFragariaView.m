@@ -807,6 +807,18 @@
 }
 
 
+- (void)setUseSystemSelectionColor:(BOOL)useSystemSelectionColor
+{
+    self.textView.useSystemSelectionColor = useSystemSelectionColor;
+    [self mgs_propagateValue:@(useSystemSelectionColor) forBinding:NSStringFromSelector(@selector(useSystemSelectionColor))];
+}
+
+- (BOOL)useSystemSelectionColor
+{
+    return self.textView.useSystemSelectionColor;
+}
+
+
 - (void)colourSchemeHasChanged
 {
     self.textView.colourScheme = _colourScheme;

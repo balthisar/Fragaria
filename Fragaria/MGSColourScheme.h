@@ -146,6 +146,8 @@ extern MGSColourSchemeGroupOptionKey MGSColourSchemeGroupOptionKeyFontVariant;
 @property (nonatomic, strong, readonly) NSColor *currentLineHighlightColour;
 /** Editor insertion point color. */
 @property (nonatomic, strong, readonly) NSColor *insertionPointColor;
+/** Editor selection background color (primary). */
+@property (nonatomic, strong, readonly) NSColor *selectionBackgroundColor;
 /** Gutter text color. */
 @property (nonatomic, strong, readonly) NSColor *gutterTextColor;
 /** Gutter background color. */

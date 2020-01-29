@@ -36,6 +36,8 @@
 /** The shared color scheme, set by MGSFragariaView */
 @property (nonatomic, strong) MGSMutableColourScheme *colourScheme;
 
+@property (nonatomic) BOOL useSystemSelectionColor;
+
 - (void)updateLineWrap;
 
 

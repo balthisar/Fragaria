@@ -74,6 +74,7 @@ NSString * const MGSFragariaDefaultsScrollElasticityDisabled = @"scrollElasticit
 
 // Colour Scheme
 NSString * const MGSFragariaDefaultsColourScheme = @"colourScheme";
+NSString * const MGSFragariaDefaultsUseSystemSelectionColor = @"useSystemSelectionColor";
 
 
 #pragma mark - Implementation
@@ -145,6 +146,7 @@ NSString * const MGSFragariaDefaultsColourScheme = @"colourScheme";
             MGSFragariaDefaultsColourScheme :
                 [MGSColourScheme defaultColorSchemeForAppearance:
                     [NSAppearance appearanceNamed:NSAppearanceNameAqua]],
+            MGSFragariaDefaultsUseSystemSelectionColor : @NO
         }];
     });
     
@@ -210,7 +212,8 @@ NSString * const MGSFragariaDefaultsColourScheme = @"colourScheme";
                 
                 MGSFragariaDefaultsColourScheme :
                     [MGSColourScheme defaultColorSchemeForAppearance:
-                        [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua]]
+                        [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua]],
+                MGSFragariaDefaultsUseSystemSelectionColor : @NO
             }];
         });
         return cache;
@@ -347,7 +350,8 @@ NSString * const MGSFragariaDefaultsColourScheme = @"colourScheme";
 + (NSSet *)propertyGroupColouringExtraOptions
 {
 	return [NSSet setWithArray:@[MGSFragariaDefaultsColoursMultiLineStrings,
-        MGSFragariaDefaultsColoursOnlyUntilEndOfLine]];
+        MGSFragariaDefaultsColoursOnlyUntilEndOfLine,
+        MGSFragariaDefaultsUseSystemSelectionColor]];
 }
 
 
