@@ -43,7 +43,8 @@ static NSNumberFormatter *formatter;
     if (!self) return nil;
     
     [self awakeFromNib];
-    _font = [NSFont userFontOfSize:0];
+    _selectedFont = [NSFont userFontOfSize:0];
+    [self updateCellContents];
     
     return self;
 }
@@ -55,7 +56,8 @@ static NSNumberFormatter *formatter;
     if (!self) return nil;
     
     self.cell = [[[[self class] cellClass] alloc] initTextCell:@""];
-    _font = [NSFont userFontOfSize:0];
+    _selectedFont = [NSFont userFontOfSize:0];
+    [self updateCellContents];
     
     return self;
 }
@@ -106,7 +108,7 @@ static NSNumberFormatter *formatter;
     NSFontManager *fontManager = [NSFontManager sharedFontManager];
     
     wasActivatedOnce = YES;
-    baseFont = self.font;
+    baseFont = self.selectedFont;
     [[self window] makeFirstResponder:self];
     [fontManager setSelectedFont:baseFont isMultiple:NO];
     [fontManager orderFrontFontPanel:self];
@@ -118,40 +120,60 @@ static NSNumberFormatter *formatter;
 
 - (id)objectValue
 {
-    return _font;
+    return _selectedFont;
 }
 
 
 - (void)setObjectValue:(id)objectValue
 {
-    self.font = objectValue;
+    self.selectedFont = objectValue;
     [self mgs_propagateValue:objectValue forBinding:@"object"];
 }
 
 
 - (void)setFont:(NSFont *)font
 {
-    NSString *desc, *fontName, *pointSize;
-    
+    [self setSelectedFont:font];
+}
+
+
+- (NSFont *)font
+{
+    return _selectedFont;
+}
+
+
+- (void)setSelectedFont:(NSFont *)font
+{
     [self willChangeValueForKey:@"objectValue"];
-    _font = font;
+    [self willChangeValueForKey:@"font"];
+    _selectedFont = font;
+    [self didChangeValueForKey:@"font"];
     [self didChangeValueForKey:@"objectValue"];
     
-    fontName = [font fontName];
-    pointSize = [formatter stringFromNumber:@([font pointSize])];
-    desc = [NSString stringWithFormat:@"%@ - %@pt", fontName, pointSize];
-    [self.cell setStringValue:desc];
-    [self.cell setFont:font];
-    [self setNeedsDisplay:YES];
+    [self updateCellContents];
     
     [self mgs_propagateValue:font forBinding:@"font"];
+}
+
+
+- (void)updateCellContents
+{
+    NSString *desc, *fontName, *pointSize;
+    
+    fontName = [self.selectedFont fontName];
+    pointSize = [formatter stringFromNumber:@([self.selectedFont pointSize])];
+    desc = [NSString stringWithFormat:@"%@ - %@pt", fontName, pointSize];
+    [self.cell setStringValue:desc];
+    [self.cell setFont:self.selectedFont];
+    [self setNeedsDisplay:YES];
 }
 
 
 - (void)changeFont:(id)sender
 {
     if (self.isEnabled) {
-        self.font = [sender convertFont:baseFont];
+        self.selectedFont = [sender convertFont:baseFont];
         [self sendAction:self.action to:self.target];
     }
 }
@@ -159,7 +181,7 @@ static NSNumberFormatter *formatter;
 
 - (void)takeFontFrom:(id)sender
 {
-    self.font = [sender font];
+    self.selectedFont = [sender font];
 }
 
 

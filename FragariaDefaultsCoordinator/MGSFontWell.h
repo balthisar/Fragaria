@@ -20,7 +20,7 @@
 
 
 /** The font object for this control */
-@property (nonatomic) NSFont *font;
+@property (nonatomic) NSFont *selectedFont;
 
 /** Sets the value of the receiver to a font value obtained from the specified
  *  object. 
