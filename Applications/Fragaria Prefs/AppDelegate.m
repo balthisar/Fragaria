@@ -436,16 +436,14 @@
         before we can set a delegate, so the controller will default
         to asking the AppDelegate anyway.
  *–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
-- (NSDictionary *)defaultsForGroupID:(NSString *)groupID AppearanceName:(NSString *)appearanceName {
-    
-    NSDictionary *result = nil;
+- (NSDictionary *)defaultsForGroupID:(NSString *)groupID AppearanceName:(NSString *)appearanceName
+{
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
     
     if ([groupID isEqualToString:@"bottomWindowGroup"])
     {
-    // The normal default is to soft-wrap text. Let's override that.
-        result = @{
-                   MGSFragariaDefaultsLineWrap : @(NO)
-                   };
+        // The normal default is to soft-wrap text. Let's override that.
+        result[MGSFragariaDefaultsLineWrap] = @(NO);
     }
     
     return result;

@@ -511,12 +511,12 @@ static NSCountedSet *allNonGlobalProperties;
         return self.valuesStore[newWorkingID];
 
     MGSPreferencesProxyDictionary *newValues;
-    NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDictionary]];
+    NSMutableDictionary *defaults = [[MGSFragariaView defaultsDictionary] mutableCopy];
 
     if (@available(macos 10.14, *))
     {
         if ([@[NSAppearanceNameDarkAqua, NSAppearanceNameAccessibilityHighContrastDarkAqua] containsObject:appearanceName])
-            defaults = [NSMutableDictionary dictionaryWithDictionary:[MGSFragariaView defaultsDarkDictionary]];
+            defaults = [[MGSFragariaView defaultsDarkDictionary] mutableCopy];
     }
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(defaultsForGroupID:AppearanceName:)])
@@ -535,11 +535,15 @@ static NSCountedSet *allNonGlobalProperties;
     // If this item *is* persistent, get the state of the defaults. If the
     // controller isn't persistent, it will be identical to what was just
     // registered.
-    defaults = [[NSUserDefaults standardUserDefaults] valueForKey:newWorkingID];
+    NSDictionary *storedDefaults = [[NSUserDefaults standardUserDefaults] valueForKey:newWorkingID];
+    if (storedDefaults) {
+        storedDefaults = [self unarchiveFromDefaultsDictionary:storedDefaults];
+        [defaults addEntriesFromDictionary:storedDefaults];
+    }
 
     // Populate values with the user defaults.
     newValues = [[MGSPreferencesProxyDictionary alloc] initWithController:self
-                                                               dictionary:[self unarchiveFromDefaultsDictionary:defaults]
+                                                               dictionary:defaults
                                                             preferencesID:newWorkingID];
 
     // Keep it around.
