@@ -38,7 +38,7 @@
     NSColor *nc;
     NSMutableString *tmp = [NSMutableString string];
     
-    if ((nc = [col colorUsingColorSpaceName:NSNamedColorSpace])) {
+    if ([col colorUsingColorSpaceName:NSNamedColorSpace]) {
         [tmp appendFormat:@"%@ %@", [col catalogNameComponent], [col colorNameComponent]];
         
     } else if ((nc = [col colorUsingColorSpaceName:NSCalibratedRGBColorSpace])) {
