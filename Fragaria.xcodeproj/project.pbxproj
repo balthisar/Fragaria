@@ -2498,7 +2498,7 @@
 			attributes = {
 				CLASSPREFIX = MGS;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					01919E22217D20A800E26B9D = {
 						CreatedOnToolsVersion = 10.0;
