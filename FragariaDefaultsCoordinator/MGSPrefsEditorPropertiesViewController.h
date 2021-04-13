@@ -6,7 +6,7 @@
 //
 //
 
-#import "MGSPrefsViewController.h"
+#import <FragariaDefaultsCoordinator/MGSPrefsViewController.h>
 
 
 /**

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MGSUserDefaultsControllerProtocol.h"
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsControllerProtocol.h>
 
 
 /**

@@ -6,7 +6,7 @@
 //
 //
 #include <Cocoa/Cocoa.h>
-#include "MGSUserDefaultsDelegate.h"
+#include <FragariaDefaultsCoordinator/MGSUserDefaultsDelegate.h>
 
 
 @class MGSFragariaView;

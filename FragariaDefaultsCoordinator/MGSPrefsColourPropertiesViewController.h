@@ -7,7 +7,7 @@
 //
 
 #import <Fragaria/Fragaria.h>
-#import "MGSPrefsViewController.h"
+#import <FragariaDefaultsCoordinator/MGSPrefsViewController.h>
 
 @class MGSMutableColourScheme;
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Fragaria/Fragaria.h>
-#import "MGSUserDefaultsControllerProtocol.h"
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsControllerProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

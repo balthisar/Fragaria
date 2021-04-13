@@ -14,14 +14,14 @@ FOUNDATION_EXPORT double FragariaDefaultsCoordinatorVersionNumber;
 FOUNDATION_EXPORT const unsigned char FragariaDefaultsCoordinatorVersionString[];
 
 #import <Fragaria/Fragaria.h>
-#import "MGSFragariaView+Definitions.h"
-#import "MGSUserDefaultsDelegate.h"
-#import "MGSUserDefaultsControllerProtocol.h"
-#import "MGSUserDefaultsController.h"
-#import "MGSHybridUserDefaultsController.h"
-#import "MGSPrefsViewController.h"
-#import "MGSPrefsColourPropertiesViewController.h"
-#import "MGSPrefsEditorPropertiesViewController.h"
-#import "MGSColourSchemeTableViewDataSource.h"
-#import "MGSColourSchemeListController.h"
+#import <FragariaDefaultsCoordinator/MGSFragariaView+Definitions.h>
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsDelegate.h>
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsControllerProtocol.h>
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsController.h>
+#import <FragariaDefaultsCoordinator/MGSHybridUserDefaultsController.h>
+#import <FragariaDefaultsCoordinator/MGSPrefsViewController.h>
+#import <FragariaDefaultsCoordinator/MGSPrefsColourPropertiesViewController.h>
+#import <FragariaDefaultsCoordinator/MGSPrefsEditorPropertiesViewController.h>
+#import <FragariaDefaultsCoordinator/MGSColourSchemeTableViewDataSource.h>
+#import <FragariaDefaultsCoordinator/MGSColourSchemeListController.h>
 

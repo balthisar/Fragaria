@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MGSUserDefaultsControllerProtocol.h"
+#import <FragariaDefaultsCoordinator/MGSUserDefaultsControllerProtocol.h>
 
 
 /** 
