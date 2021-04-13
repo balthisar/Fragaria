@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MGSColourScheme.h"
+#import <Fragaria/MGSColourScheme.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

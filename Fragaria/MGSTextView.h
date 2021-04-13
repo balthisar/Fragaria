@@ -22,8 +22,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "FragariaMacros.h"
-#import "MGSFragariaTextViewDelegate.h"
+#import <Fragaria/FragariaMacros.h>
+#import <Fragaria/MGSFragariaTextViewDelegate.h>
 
 
 @class MGSFragariaView;

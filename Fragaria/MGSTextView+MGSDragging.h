@@ -8,7 +8,7 @@
 //  - Implements the required <NSDraggingDestination> protocol classes, passing them on to the delegate.
 //
 
-#import "MGSTextView.h"
+#import <Fragaria/MGSTextView.h>
 
 
 @interface MGSTextView (MGSDragging)

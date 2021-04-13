@@ -8,30 +8,30 @@
  */
 
 #undef FRAGARIA_PRIVATE
-#import "FragariaMacros.h"
-#import "FragariaUtilities.h"
+#import <Fragaria/FragariaMacros.h>
+#import <Fragaria/FragariaUtilities.h>
 
-#import "MGSBreakpointDelegate.h"           
-#import "MGSDragOperationDelegate.h"        
-#import "MGSFragariaTextViewDelegate.h"     
-#import "MGSAutoCompleteDelegate.h"
+#import <Fragaria/MGSBreakpointDelegate.h>
+#import <Fragaria/MGSDragOperationDelegate.h>
+#import <Fragaria/MGSFragariaTextViewDelegate.h>
+#import <Fragaria/MGSAutoCompleteDelegate.h>
 
-#import "MGSFragariaView.h"
-#import "MGSSyntaxError.h"
-#import "MGSTextView.h"
-#import "MGSTextView+MGSTextActions.h"
-#import "MGSTextView+MGSDragging.h"
+#import <Fragaria/MGSFragariaView.h>
+#import <Fragaria/MGSSyntaxError.h>
+#import <Fragaria/MGSTextView.h>
+#import <Fragaria/MGSTextView+MGSTextActions.h>
+#import <Fragaria/MGSTextView+MGSDragging.h>
 
-#import "MGSSyntaxController.h"
-#import "MGSParserFactory.h"
-#import "MGSSyntaxParserClient.h"
-#import "MGSSyntaxAwareEditor.h"
-#import "MGSSyntaxParser.h"
-#import "MGSClassicFragariaParserFactory.h"
+#import <Fragaria/MGSSyntaxController.h>
+#import <Fragaria/MGSParserFactory.h>
+#import <Fragaria/MGSSyntaxParserClient.h>
+#import <Fragaria/MGSSyntaxAwareEditor.h>
+#import <Fragaria/MGSSyntaxParser.h>
+#import <Fragaria/MGSClassicFragariaParserFactory.h>
 
-#import "MGSColourScheme.h"
-#import "MGSMutableColourScheme.h"
-#import "MGSMutableColourSchemeFromPlistTransformer.h"
+#import <Fragaria/MGSColourScheme.h>
+#import <Fragaria/MGSMutableColourScheme.h>
+#import <Fragaria/MGSMutableColourSchemeFromPlistTransformer.h>
 
-#import "NSTextStorage+Fragaria.h"
-#import "MGSMutableSubstring.h"
+#import <Fragaria/NSTextStorage+Fragaria.h>
+#import <Fragaria/MGSMutableSubstring.h>

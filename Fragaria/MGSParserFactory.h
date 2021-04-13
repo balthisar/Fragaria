@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MGSSyntaxParserClient.h"
+#import <Fragaria/MGSSyntaxParserClient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

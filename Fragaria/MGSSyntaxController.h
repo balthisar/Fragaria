@@ -22,7 +22,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "MGSParserFactory.h"
+#import <Fragaria/MGSParserFactory.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

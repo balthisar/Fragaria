@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FragariaMacros.h"
-#import "MGSParserFactory.h"
+#import <Fragaria/FragariaMacros.h>
+#import <Fragaria/MGSParserFactory.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

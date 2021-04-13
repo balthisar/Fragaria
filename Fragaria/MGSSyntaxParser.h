@@ -6,9 +6,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MGSSyntaxParserClient.h"
-#import "MGSSyntaxAwareEditor.h"
-#import "MGSAutoCompleteDelegate.h"
+#import <Fragaria/MGSSyntaxParserClient.h>
+#import <Fragaria/MGSSyntaxAwareEditor.h>
+#import <Fragaria/MGSAutoCompleteDelegate.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

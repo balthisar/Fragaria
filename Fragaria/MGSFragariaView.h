@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "FragariaMacros.h"
+#import <Fragaria/FragariaMacros.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

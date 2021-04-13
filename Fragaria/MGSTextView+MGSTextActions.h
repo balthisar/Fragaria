@@ -6,7 +6,7 @@
 //
 //
 
-#import "MGSTextView.h"
+#import <Fragaria/MGSTextView.h>
 
 
 /** 
