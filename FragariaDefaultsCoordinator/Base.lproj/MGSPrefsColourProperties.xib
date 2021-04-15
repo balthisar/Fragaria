@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,7 +43,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="soo-KG-LXb">
-                    <rect key="frame" x="353" y="36" width="133" height="32"/>
+                    <rect key="frame" x="361" y="36" width="126" height="32"/>
                     <buttonCell key="cell" type="push" title="Save Scheme…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="puF-St-KA8">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -63,7 +63,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-EI-KQe">
-                    <rect key="frame" x="115" y="40" width="239" height="25"/>
+                    <rect key="frame" x="114" y="39" width="250" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="7AC-M6-c5F" id="xgZ-Ts-CTp">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -237,7 +237,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dNx-bb-167">
-                    <rect key="frame" x="324" y="77" width="138" height="16"/>
+                    <rect key="frame" x="324" y="77" width="137" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Current Line Highlight" id="qb0-Fj-0v1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -265,12 +265,12 @@
                     </constraints>
                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="5CW-kg-fpT"/>
                         <binding destination="POX-Qr-aHg" name="value" keyPath="selection.selectionBackgroundColor" id="1Ok-Ub-GsF">
                             <dictionary key="options">
                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                             </dictionary>
                         </binding>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.colourScheme" id="5CW-kg-fpT"/>
                     </connections>
                 </colorWell>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ugn-jV-zU2">
@@ -281,15 +281,15 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="O1O-Ff-5Oi">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.colourScheme" id="tWU-7y-H9H"/>
                         <binding destination="-2" name="textColor" keyPath="self.managedProperties.colourScheme" id="wHq-HB-lff">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">MGSBoolToColourTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.colourScheme" id="O1O-Ff-5Oi">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -535,22 +535,21 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9A-u0-YCr">
+                <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9A-u0-YCr">
                     <rect key="frame" x="50" y="13" width="430" height="159"/>
                     <clipView key="contentView" drawsBackground="NO" id="Lf7-vQ-faq">
                         <rect key="frame" x="1" y="1" width="428" height="157"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="small" viewBased="YES" id="2rq-OV-oYW">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="small" viewBased="YES" id="2rq-OV-oYW">
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="157"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="425" minWidth="40" maxWidth="1000" id="qgS-Io-p2t">
+                                    <tableColumn width="387" minWidth="40" maxWidth="1000" id="qgS-Io-p2t">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -598,11 +597,11 @@
             <point key="canvasLocation" x="139" y="130.5"/>
         </customView>
         <customView id="8dm-4z-17A" userLabel="Color Options View">
-            <rect key="frame" x="0.0" y="0.0" width="500" height="94"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="tEB-mt-DKY">
-                    <rect key="frame" x="29" y="58" width="161" height="18"/>
+                    <rect key="frame" x="29" y="63" width="165" height="18"/>
                     <buttonCell key="cell" type="check" title="Color multi-line strings" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="VD0-tP-TG2">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -623,7 +622,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="5oR-v8-2jt">
-                    <rect key="frame" x="29" y="38" width="438" height="18"/>
+                    <rect key="frame" x="29" y="41" width="442" height="18"/>
                     <buttonCell key="cell" type="check" title="Only color until the end of the line if the closing tag cannot be found " bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mHo-tD-wMd">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -644,24 +643,24 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-5n-TPN">
-                    <rect key="frame" x="29" y="18" width="328" height="18"/>
+                    <rect key="frame" x="29" y="19" width="332" height="18"/>
                     <buttonCell key="cell" type="check" title="Always use the system selection background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bK4-he-pfe">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.useSystemSelectionColor" id="Ugg-Nb-GQB"/>
-                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="zyg-2U-Cub"/>
-                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="hKw-vO-oMW">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="x5m-Ak-VJo" name="value" keyPath="selection.useSystemSelectionColor" id="DjL-fh-zJS">
                             <dictionary key="options">
                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                             </dictionary>
                         </binding>
+                        <binding destination="-2" name="toolTip" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="hKw-vO-oMW">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">MGSBoolToGlobalHintTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="fontBold" keyPath="self.managedGlobalProperties.coloursOnlyUntilEndOfLine" id="zyg-2U-Cub"/>
+                        <binding destination="-2" name="enabled" keyPath="self.managedProperties.useSystemSelectionColor" id="Ugg-Nb-GQB"/>
                     </connections>
                 </button>
             </subviews>
@@ -672,6 +671,7 @@
                 <constraint firstItem="5oR-v8-2jt" firstAttribute="top" secondItem="tEB-mt-DKY" secondAttribute="bottom" constant="6" symbolic="YES" id="8Vi-uh-40c"/>
                 <constraint firstItem="9tm-5n-TPN" firstAttribute="top" secondItem="5oR-v8-2jt" secondAttribute="bottom" constant="6" id="B8b-5V-qlq"/>
                 <constraint firstItem="5oR-v8-2jt" firstAttribute="top" secondItem="tEB-mt-DKY" secondAttribute="bottom" constant="6" id="DAR-Mr-qS3"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9tm-5n-TPN" secondAttribute="trailing" id="G7U-6p-p5J"/>
                 <constraint firstItem="5oR-v8-2jt" firstAttribute="leading" secondItem="tEB-mt-DKY" secondAttribute="leading" id="W0Q-Ea-LZZ"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tEB-mt-DKY" secondAttribute="trailing" constant="20" symbolic="YES" id="XCE-E5-3OR"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5oR-v8-2jt" secondAttribute="trailing" constant="20" symbolic="YES" id="cuF-2P-Ej9"/>
